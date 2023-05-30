@@ -38,6 +38,10 @@ Alternatively, we can just log the variable values using UE_LOG and keep the edi
 - Now we can also drag meshes into the blueprint viewport to give it a visual represenation along with out C++ class features
 - Compile and save, and then drag the blueprint into the level to see it work
 
+Caveats:
+- If you create a Blueprint from a class and then update the class like adding a new class variable etc, then the blueprint breaks
+- It says that the blueprint has an invalid parent - so far had to delete original blueprint and re-create it
+
 ---
 
 ## Create a manual timer using C++
