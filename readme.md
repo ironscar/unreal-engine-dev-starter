@@ -41,8 +41,8 @@ Alternatively, we can just log the variable values using UE_LOG and keep the edi
 Caveats:
 - If you create a Blueprint from a class and then update the class like adding a new class variable etc, then the blueprint breaks
 - It says that the blueprint has an invalid parent
-- We can open the blueprint in editor and then go to file and choose Reparent Blueprint to the class (but I couldn't find the C++ class there)
-- So I had to delete and recreate it
+- We can open the blueprint in editor and then go to file and choose Reparent Blueprint to the class
+- You may have to go to the gear icon to specify `show internal classes` to see the C++ classes you created
 
 ---
 
@@ -64,5 +64,6 @@ Caveats:
 
 - Inherit from GameModeBase like is done for `MyDestroyerGameMode`
 - To use ThirdPersonCharacter pawn class, create a BP from this class and set the default pawn class to `BP_ThirdPersonCharacter`
+- Remember to go to Project settings -> maps and modes -> default game mode and set it to use the BP game mode that you created
 
 ---

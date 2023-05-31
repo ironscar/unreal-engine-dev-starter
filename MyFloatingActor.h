@@ -7,7 +7,7 @@
 #include "MyFloatingActor.generated.h"
 
 /**
- * An actor that is a cube that levitates and rotates, and gets destroyed after 20 seconds
+ * An actor that is a cube with the 'Destructible' tag that levitates and rotates, and gets destroyed after 20 seconds
  */
 UCLASS()
 class LEARNINGKITPROJECT_API AMyFloatingActor : public AActor {

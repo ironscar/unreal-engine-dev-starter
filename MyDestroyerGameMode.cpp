@@ -12,6 +12,8 @@ void AMyDestroyerGameMode::StartDestroyTimer() {
 void AMyDestroyerGameMode::DestroyDestructible() {
 	
 	TArray<AActor*> TaggedActors;
+
+	// below is a slow method and so we shouldn't do this every frame
 	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Destructible", TaggedActors);
 
 	if (TaggedActors.Num() > 0) {
