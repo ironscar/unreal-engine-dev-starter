@@ -8,6 +8,9 @@
 #include "GameFramework/Actor.h"
 #include "FloatingCubeSpawner.generated.h"
 
+/**
+ * An actor that spawns FloatingActors (its subclass BPs) using a timer at regular intervals
+ */
 UCLASS()
 class LEARNINGKITPROJECT_API AFloatingCubeSpawner : public AActor {
 

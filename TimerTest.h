@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "TimerTest.generated.h"
 
+/**
+ * A test actor to test the Timer ActorComponent
+ */
 UCLASS()
 class LEARNINGKITPROJECT_API ATimerTest : public AActor {
 	

@@ -16,10 +16,10 @@ AMyFloatingActor::AMyFloatingActor() {
 		VisualMesh->SetStaticMesh(CubeVisualAsset.Object);
 		VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 		VisualMesh->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
-	}
 
-	// add the destructibe tag that was custom added to all floating actors during spawn (will not be visible in editor if BPs created from it)
-	this->Tags.Add(FName("Destructible"));
+		// add the destructibe tag that was custom added to all floating actors during spawn (will not be visible in editor if BPs created from it)
+		this->Tags.Add(FName("Destructible"));
+	}
 }
 
 // Called when the game starts or when spawned

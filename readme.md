@@ -40,7 +40,9 @@ Alternatively, we can just log the variable values using UE_LOG and keep the edi
 
 Caveats:
 - If you create a Blueprint from a class and then update the class like adding a new class variable etc, then the blueprint breaks
-- It says that the blueprint has an invalid parent - so far had to delete original blueprint and re-create it
+- It says that the blueprint has an invalid parent
+- We can open the blueprint in editor and then go to file and choose Reparent Blueprint to the class (but I couldn't find the C++ class there)
+- So I had to delete and recreate it
 
 ---
 
@@ -55,5 +57,12 @@ Caveats:
 Caveats:
 - Building from C++ often crashes the engine even if there are no errors
 - Just restart and rebuild live coding from Visual Studio with `Ctrl + Alt = F11` and then play to check changes
+
+---
+
+## Create a C++ Game mode
+
+- Inherit from GameModeBase like is done for `MyDestroyerGameMode`
+- To use ThirdPersonCharacter pawn class, create a BP from this class and set the default pawn class to `BP_ThirdPersonCharacter`
 
 ---

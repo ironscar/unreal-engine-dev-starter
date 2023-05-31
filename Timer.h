@@ -6,6 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "Timer.generated.h"
 
+/**
+ * An Actor component that can provide some timer capabilities
+ */
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class LEARNINGKITPROJECT_API UTimer : public UActorComponent {
 

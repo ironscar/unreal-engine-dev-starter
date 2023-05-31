@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "PrintMessage.generated.h"
 
+/**
+ * Prints a message with an angle for the sake of seeing logs
+ */
 UCLASS()
 class LEARNINGKITPROJECT_API APrintMessage : public AActor {
 
