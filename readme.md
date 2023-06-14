@@ -58,12 +58,24 @@ Caveats:
 - Building from C++ often crashes the engine even if there are no errors
 - Just restart and rebuild live coding from Visual Studio with `Ctrl + Alt = F11` and then play to check changes
 
----
 
 ## Create a C++ Game mode
 
 - Inherit from GameModeBase like is done for `MyDestroyerGameMode`
 - To use ThirdPersonCharacter pawn class, create a BP from this class and set the default pawn class to `BP_ThirdPersonCharacter`
 - Remember to go to Project settings -> maps and modes -> default game mode and set it to use the BP game mode that you created
+
+## Create C++ pawns and player controllers
+
+- We can create C++ classes inherited from Pawn and PlayerController
+- For this demo, we also create the MouseInputGameModeBase class from the GameModeBase class which sets the default pawn and controller to our custom ones
+- To set the defaults, we use `FOjbectFinder` like for `FloatingActor` and we can get the reference of the corresponding BP assets by:
+	- finding them in UE5 content browser
+	- Right click and choose `Copy Reference`
+	- Paste in VSCode and append `_C` to the end inside the single quotes
+	- Update `/Script/Engine.Blueprint` to `Class`
+- We can rotate our default pawn using `GetInputMouseDelta` and getting the deltaX and deltaY updates added to our current pawn rotation and setting it back
+	- [TODO] Debug rotation issues
+- At this point, we can see the pawn rotating but it also needs a camera to work as expected, which we can try to add to the Pawn BP
 
 ---
