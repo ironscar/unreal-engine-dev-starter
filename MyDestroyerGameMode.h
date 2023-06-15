@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
+#include "MouseInputGameModeBase.h"
 #include "MyDestroyerGameMode.generated.h"
 
 /**
  * Game mode that destroys the actor at 0 index with the tag 'Destructble' every 10 seconds
  */
 UCLASS()
-class LEARNINGKITPROJECT_API AMyDestroyerGameMode : public AGameModeBase {
+class LEARNINGKITPROJECT_API AMyDestroyerGameMode : public AMouseInputGameModeBase {
 
 	GENERATED_BODY()
 

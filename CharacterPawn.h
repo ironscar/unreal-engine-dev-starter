@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "CharacterPawn.generated.h"
 
@@ -13,6 +14,9 @@ UCLASS()
 class LEARNINGKITPROJECT_API ACharacterPawn : public APawn {
 
 	GENERATED_BODY()
+
+private:
+	UCameraComponent* CameraComponent;
 
 public:
 	// Sets default values for this pawn's properties
@@ -30,6 +34,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Sets location of the pawn
-	void SetRotation(FRotator Rotation);
+	void SetRotation(float deltaX, float deltaY);
 
 };

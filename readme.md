@@ -64,6 +64,8 @@ Caveats:
 - Inherit from GameModeBase like is done for `MyDestroyerGameMode`
 - To use ThirdPersonCharacter pawn class, create a BP from this class and set the default pawn class to `BP_ThirdPersonCharacter`
 - Remember to go to Project settings -> maps and modes -> default game mode and set it to use the BP game mode that you created
+- We will later create a custom `GameModeBase` with a custom pawn class to go with it and have this game mode inherit from it
+	- For this reason, we will delete the BP for this game mode with `BP_ThirdPersonCharacter`
 
 ## Create C++ pawns and player controllers
 
@@ -75,7 +77,11 @@ Caveats:
 	- Paste in VSCode and append `_C` to the end inside the single quotes
 	- Update `/Script/Engine.Blueprint` to `Class`
 - We can rotate our default pawn using `GetInputMouseDelta` and getting the deltaX and deltaY updates added to our current pawn rotation and setting it back
-	- [TODO] Debug rotation issues
 - At this point, we can see the pawn rotating but it also needs a camera to work as expected, which we can try to add to the Pawn BP
+	- So we add a camera component to our BP and in C++, we attempt to get a reference of it using `UCameraComponent` & `FindComponentByClass<T>()`
+	- Once we do, we can use the camera component's relative rotation getter and setter to rotate it accordingly
+- We can update the base class of `MyDestroyerGameMode` to `AMouseInputGameModeBase` to get both functionalities
+	- Also update default mode from Project settings back to `MyDestroyerGameMode` (we can delete the ThirdPersonGameMode we created based on this)
+	- We delete it becase that BP declares `BP_ThirdPersonCharacter` as default pawn and overrides the default pawn settings we set in `AMouseInputGameModeBase`
 
 ---

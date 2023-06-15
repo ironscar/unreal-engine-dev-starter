@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "Camera/CameraComponent.h"
 #include "CharacterPawn.h"
 
 // Sets default values
@@ -12,6 +12,9 @@ ACharacterPawn::ACharacterPawn() {
 // Called when the game starts or when spawned
 void ACharacterPawn::BeginPlay() {
 	Super::BeginPlay();
+
+	// get camera component reference if exists in BP
+	CameraComponent = FindComponentByClass<UCameraComponent>();
 }
 
 // Called every frame
@@ -24,6 +27,18 @@ void ACharacterPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
-void ACharacterPawn::SetRotation(FRotator Rotation) {
-	SetActorRotation(Rotation);
+void ACharacterPawn::SetRotation(float deltaX, float deltaY) {
+	FRotator PawnRotation = GetActorRotation();
+
+	// X for rotating pawn
+	PawnRotation.Yaw += deltaX;
+
+	// Y for rotating camera
+	if (CameraComponent != nullptr) {
+		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
+		CameraRotation.Pitch += deltaY;
+		CameraComponent->SetRelativeRotation(CameraRotation);
+	}
+
+	SetActorRotation(PawnRotation);
 }
