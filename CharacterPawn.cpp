@@ -15,6 +15,7 @@ void ACharacterPawn::BeginPlay() {
 
 	// get camera component reference if exists in BP
 	CameraComponent = FindComponentByClass<UCameraComponent>();
+	BaseRotation = CameraComponent->GetRelativeRotation();
 }
 
 // Called every frame
@@ -37,7 +38,9 @@ void ACharacterPawn::SetRotation(float deltaX, float deltaY) {
 	if (CameraComponent != nullptr) {
 		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
 		CameraRotation.Pitch += deltaY;
-		CameraComponent->SetRelativeRotation(CameraRotation);
+		if (abs(CameraRotation.Pitch - BaseRotation.Pitch) <= RotationLimit) {
+			CameraComponent->SetRelativeRotation(CameraRotation);
+		}
 	}
 
 	SetActorRotation(PawnRotation);

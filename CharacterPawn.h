@@ -16,7 +16,9 @@ class LEARNINGKITPROJECT_API ACharacterPawn : public APawn {
 	GENERATED_BODY()
 
 private:
+	FRotator BaseRotation;
 	UCameraComponent* CameraComponent;
+	float RotationLimit = 40;
 
 public:
 	// Sets default values for this pawn's properties

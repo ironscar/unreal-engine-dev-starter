@@ -83,5 +83,8 @@ Caveats:
 - We can update the base class of `MyDestroyerGameMode` to `AMouseInputGameModeBase` to get both functionalities
 	- Also update default mode from Project settings back to `MyDestroyerGameMode` (we can delete the ThirdPersonGameMode we created based on this)
 	- We delete it becase that BP declares `BP_ThirdPersonCharacter` as default pawn and overrides the default pawn settings we set in `AMouseInputGameModeBase`
+- Camera rotation should have limits so that you cant go in circles
+	- We set base rotation at begin play and compare it with dynamic rotation to decide if to apply more rotation
+	- We use `RotationLimit` to decide the limits and keep it in the header file for easy configuration
 
 ---
