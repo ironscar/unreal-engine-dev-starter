@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "CharacterPawn.h"
+#include "LearningKitProject/Actor/Pawn/CharacterPawn/CharacterPawn.h"
 #include "CharacterPlayerController.h"
 
 void ACharacterPlayerController::PlayerTick(float DeltaTime) {

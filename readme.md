@@ -6,6 +6,23 @@
 - Go to Visual Studio and right click where you want to add it and do `Add Existing Item`
 - Fill with content
 
+## How to setup directory structure
+
+- We will try to follow https://github.com/Allar/ue5-style-guide and take inspiration from it for C++ piece
+- We will use the directory structure to specify the inheritance structure of the game
+- Top level directories will be `Actor`, `ActorComponent` and `GameModeBase` for now
+- All C++ classes that directly inherit from `Actor` will be top-level directories inside Actor with the cpp and h files inside this directory with same name as class
+- Now if a class inherits from `Pawn` which in-turn inherits from `Actor`, we create a Pawn directory inside Actor and then create a directory inside Pawn for this class
+- If there is a class that inherits from two classes in different directories, we have a few options:
+	- Choose one or the other directory based on which context is more appropriate
+	- Choose the closest common parent directory and create it there
+
+Caveats:
+- If you update directory structure from File Explorer, you have to right-click `.uproject` file and ask it to `Generate Visual Studio project files`
+- Updating directory structure in File Explorer doesn't update Solution View structure in Visual Studio but generating project files from uproject does update it accordingly
+- The `#include` statements will also change based on this so can use relative location using `../` or absolute location using `LearningKitProject/` where LearningKitProject is the project name
+- `Build Solution` may fail after this but running directly with `Ctrl+F5` still may work so check that (it will open the engine)
+
 ---
 
 ## How to setup Live Coding

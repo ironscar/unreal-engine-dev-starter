@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MouseInputGameModeBase.h"
+
+#include "LearningKitProject/GameModeBase/MouseInputGameModeBase/MouseInputGameModeBase.h"
 #include "MyDestroyerGameMode.generated.h"
 
 /**
