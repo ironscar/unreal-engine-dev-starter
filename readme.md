@@ -86,5 +86,10 @@ Caveats:
 - Camera rotation should have limits so that you cant go in circles
 	- We set base rotation at begin play and compare it with dynamic rotation to decide if to apply more rotation
 	- We use `RotationLimit` to decide the limits and keep it in the header file for easy configuration
+	- We set up 2 methods, one for 3PS (third-person) and one for FPS (first-person)
+	- For FPS, we apply deltaX to `PawnRotation.Yaw`
+	- For 3PS, we apply deltaX to CameraRotation.Yaw and calculate its new relative location using `x = r*cos(rad)` & `y = r*sin(rad)`
+	- We make r i.e `CameraRadius` and `RotationLimit` as blueprint editable properties
+	- We also make an `IsFPS` property on the `CharacterPlayerController` to choose which rotation method to use
 
 ---

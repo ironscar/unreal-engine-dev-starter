@@ -18,11 +18,16 @@ class LEARNINGKITPROJECT_API ACharacterPawn : public APawn {
 private:
 	FRotator BaseRotation;
 	UCameraComponent* CameraComponent;
-	float RotationLimit = 40;
 
 public:
 	// Sets default values for this pawn's properties
 	ACharacterPawn();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn")
+	float CameraRadius = 150;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn")
+	float RotationLimit = 40;
 
 protected:
 	// Called when the game starts or when spawned
@@ -35,7 +40,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	// Sets location of the pawn
-	void SetRotation(float deltaX, float deltaY);
+	// Sets rotation of the FPS pawn
+	void SetFpsRotation(float deltaX, float deltaY);
+
+	// Sets rotation of the 3PS pawn
+	void Set3psRotation(float deltaX, float deltaY);
 
 };

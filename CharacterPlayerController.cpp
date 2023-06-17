@@ -12,6 +12,10 @@ void ACharacterPlayerController::PlayerTick(float DeltaTime) {
 		float deltaX;
 		float deltaY;
 		this->GetInputMouseDelta(deltaX, deltaY);
-		CharacterPawn->SetRotation(deltaX, deltaY);
+		if (IsFPS) {
+			CharacterPawn->SetFpsRotation(deltaX, deltaY);
+		} else {
+			CharacterPawn->Set3psRotation(deltaX, deltaY);
+		}
 	}
 }

@@ -15,6 +15,10 @@ class LEARNINGKITPROJECT_API ACharacterPlayerController : public APlayerControll
 	GENERATED_BODY()
 
 public:
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPlayerController")
+	bool IsFPS = true;
+
 	// called every frame and delta time is the time elasped since last frame
 	virtual void PlayerTick(float DeltaTime) override;
 

@@ -15,7 +15,9 @@ void ACharacterPawn::BeginPlay() {
 
 	// get camera component reference if exists in BP
 	CameraComponent = FindComponentByClass<UCameraComponent>();
-	BaseRotation = CameraComponent->GetRelativeRotation();
+	if (CameraComponent != nullptr) {
+		BaseRotation = CameraComponent->GetRelativeRotation();
+	}
 }
 
 // Called every frame
@@ -28,13 +30,12 @@ void ACharacterPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
-void ACharacterPawn::SetRotation(float deltaX, float deltaY) {
+// Called to rotate pawn & camera like an FPS character
+void ACharacterPawn::SetFpsRotation(float deltaX, float deltaY) {
 	FRotator PawnRotation = GetActorRotation();
-
-	// X for rotating pawn
 	PawnRotation.Yaw += deltaX;
 
-	// Y for rotating camera
+	// set camera rotations
 	if (CameraComponent != nullptr) {
 		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
 		CameraRotation.Pitch += deltaY;
@@ -43,5 +44,30 @@ void ACharacterPawn::SetRotation(float deltaX, float deltaY) {
 		}
 	}
 
+	// set pawn rotations
 	SetActorRotation(PawnRotation);
+}
+
+// Called to rotate pawn & camera like an 3PS character
+void ACharacterPawn::Set3psRotation(float deltaX, float deltaY) {
+	if (CameraComponent != nullptr) {
+		FVector CameraLocation = CameraComponent->GetRelativeLocation();
+
+		// set camera rotations
+		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
+		CameraRotation.Pitch += deltaY;
+		CameraRotation.Yaw += deltaX;
+		if (abs(CameraRotation.Pitch - BaseRotation.Pitch) <= RotationLimit) {
+			CameraComponent->SetRelativeRotation(CameraRotation);
+		}
+
+		/*
+		 * set camera location around pawn
+		 * Adding 180 as by default it is at 180 degree position but relative rotation specifies 0
+		 * Convert to radians as cos and sin functions work with radians
+		 */
+		CameraLocation.X = CameraRadius * cos((180 + CameraRotation.Yaw) * 3.1416 / 180);
+		CameraLocation.Y = CameraRadius * sin((180 + CameraRotation.Yaw) * 3.1416 / 180);
+		CameraComponent->SetRelativeLocation(CameraLocation);
+	}
 }
