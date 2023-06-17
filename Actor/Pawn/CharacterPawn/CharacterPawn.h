@@ -23,10 +23,12 @@ public:
 	// Sets default values for this pawn's properties
 	ACharacterPawn();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn")
+	/* The radius used by the camera around the pawn for third-person controls */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Camera")
 	float CameraRadius = 150;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn")
+	/* Specifies the pitch (look up/down) rotation limit in degrees */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Camera")
 	float RotationLimit = 40;
 
 protected:
