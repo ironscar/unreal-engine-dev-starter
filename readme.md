@@ -1,5 +1,9 @@
 # Learning Kit Project with C++
 
+## Basic Details
+
+- All C++ related blueprints that I started with are in `/Content/LearningKit_Games/Blueprints/MyClasses/`
+
 ## How to add a readme file
 
 - Add the readme file from Windows explorer
@@ -8,7 +12,7 @@
 
 ## How to setup directory structure
 
-- We will try to follow https://github.com/Allar/ue5-style-guide and take inspiration from it for C++ piece
+- We will try to follow https://github.com/Allar/ue5-style-guide#2-content-directory-structure and take inspiration from it for C++ piece
 - We will use the directory structure to specify the inheritance structure of the game
 - Top level directories will be `Actor`, `ActorComponent` and `GameModeBase` for now
 - All C++ classes that directly inherit from `Actor` will be top-level directories inside Actor with the cpp and h files inside this directory with same name as class
