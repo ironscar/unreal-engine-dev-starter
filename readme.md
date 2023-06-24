@@ -3,6 +3,7 @@
 ## Basic Details
 
 - All C++ related blueprints that I started with are in `/Content/LearningKit_Games/Blueprints/MyClasses/`
+- Added Nvidia DLSS 3 plugins to UE and enabled them for this project
 
 ## How to add a readme file
 
