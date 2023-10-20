@@ -38,10 +38,11 @@ void ACharacterPawn::SetFpsRotation(float deltaX, float deltaY) {
 	// set camera rotations
 	if (CameraComponent != nullptr) {
 		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
-		CameraRotation.Pitch += deltaY;
-		if (abs(CameraRotation.Pitch - BaseRotation.Pitch) <= RotationLimit) {
-			CameraComponent->SetRelativeRotation(CameraRotation);
-		}
+		CameraRotation.Pitch = FMath::Clamp(
+			CameraRotation.Pitch + deltaY,
+			BaseRotation.Pitch - RotationLimit,
+			BaseRotation.Pitch + RotationLimit);
+		CameraComponent->SetRelativeRotation(CameraRotation);
 	}
 
 	// set pawn rotations
@@ -53,13 +54,14 @@ void ACharacterPawn::Set3psRotation(float deltaX, float deltaY) {
 	if (CameraComponent != nullptr) {
 		FVector CameraLocation = CameraComponent->GetRelativeLocation();
 
-		// set camera rotations
+		// set camera rotations clamped by RotationLimit
 		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
-		CameraRotation.Pitch += deltaY;
+		CameraRotation.Pitch = FMath::Clamp(
+			CameraRotation.Pitch + deltaY, 
+			BaseRotation.Pitch - RotationLimit,
+			BaseRotation.Pitch + RotationLimit);
 		CameraRotation.Yaw += deltaX;
-		if (abs(CameraRotation.Pitch - BaseRotation.Pitch) <= RotationLimit) {
-			CameraComponent->SetRelativeRotation(CameraRotation);
-		}
+		CameraComponent->SetRelativeRotation(CameraRotation);
 
 		/*
 		 * set camera location around pawn

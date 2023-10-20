@@ -113,5 +113,6 @@ Caveats:
 	- For 3PS, we apply deltaX to CameraRotation.Yaw and calculate its new relative location using `x = r*cos(rad)` & `y = r*sin(rad)`
 	- We make r i.e `CameraRadius` and `RotationLimit` as blueprint editable properties
 	- We also make an `IsFPS` property on the `CharacterPlayerController` to choose which rotation method to use
+	- We can use `FMath::Clamp(value, min, max)` to apply the limits
 
 ---
