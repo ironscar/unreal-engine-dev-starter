@@ -98,6 +98,9 @@ Caveats:
 	- Right click and choose `Copy Reference`
 	- Paste in VSCode and append `_C` to the end inside the single quotes
 	- Update `/Script/Engine.Blueprint` to `Class`
+
+### Processing mouse movement
+
 - We can rotate our default pawn using `GetInputMouseDelta` and getting the deltaX and deltaY updates added to our current pawn rotation and setting it back
 - At this point, we can see the pawn rotating but it also needs a camera to work as expected, which we can try to add to the Pawn BP
 	- So we add a camera component to our BP and in C++, we attempt to get a reference of it using `UCameraComponent` & `FindComponentByClass<T>()`
@@ -114,5 +117,12 @@ Caveats:
 	- We make r i.e `CameraRadius` and `RotationLimit` as blueprint editable properties
 	- We also make an `IsFPS` property on the `CharacterPlayerController` to choose which rotation method to use
 	- We can use `FMath::Clamp(value, min, max)` to apply the limits
+
+### Processing mouse input
+
+- Migrate to Enhanced Input Actions from Action/Axis mappings as the latter is deprecated [TODO]
+- Update `GetInputMouseDelta` to corresponding axis mapping [TODO]
+- We can spawn a ball on left click and shoot it towards the front [TODO]
+- We can change the type of ball on right click [TODO]
 
 ---

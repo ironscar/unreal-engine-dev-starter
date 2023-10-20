@@ -22,4 +22,13 @@ public:
 	// called every frame and delta time is the time elasped since last frame
 	virtual void PlayerTick(float DeltaTime) override;
 
+	// called to bind functionality to input
+	virtual void SetupInputComponent() override;
+
+	// called when mouse left is clicked
+	void Shoot();
+
+	// called when mouse right is clicked
+	void ChangeAmmo();
+
 };
