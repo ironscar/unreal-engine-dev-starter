@@ -25,11 +25,6 @@ void ACharacterPawn::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 }
 
-// Called to bind functionality to input
-void ACharacterPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
 // Called to rotate pawn & camera like an FPS character
 void ACharacterPawn::SetFpsRotation(float deltaX, float deltaY) {
 	FRotator PawnRotation = GetActorRotation();

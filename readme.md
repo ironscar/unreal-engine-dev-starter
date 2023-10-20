@@ -117,6 +117,7 @@ Caveats:
 	- We make r i.e `CameraRadius` and `RotationLimit` as blueprint editable properties
 	- We also make an `IsFPS` property on the `CharacterPlayerController` to choose which rotation method to use
 	- We can use `FMath::Clamp(value, min, max)` to apply the limits
+- We can bind inputs to either the pawn by overriding `APawn::SetupPlayerInputComponent` or to player controller by overriding `APlayerController::SetupInputComponent`
 
 ### Processing mouse input
 
