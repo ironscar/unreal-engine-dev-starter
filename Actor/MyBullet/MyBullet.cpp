@@ -22,9 +22,10 @@ AMyBullet::AMyBullet() {
 void AMyBullet::BeginPlay() {
 	Super::BeginPlay();
 
-	// set size of bullet & simulate physics true
+	// set size of bullet, simulate physics true and enable gravity false
 	VisualMesh->SetRelativeScale3D(FVector(0.1f, 0.1f, 0.1f) * BulletSizeMultiplier);
 	VisualMesh->SetSimulatePhysics(true);
+	VisualMesh->SetEnableGravity(false);
 
 	// set life span of Eol seconds
 	SetLifeSpan(BulletEol);
@@ -32,5 +33,5 @@ void AMyBullet::BeginPlay() {
 
 void AMyBullet::AddCustomForce(FVector ForwardVector) {
 	FVector ForceVector = ForwardVector * BulletForceMultiplier;
-	//VisualMesh->AddForce(ForceVector);
+	VisualMesh->AddImpulse(ForceVector);
 }
