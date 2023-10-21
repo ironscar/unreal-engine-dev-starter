@@ -2,6 +2,9 @@
 
 #pragma once
 
+#include "LearningKitProject/Actor/MyBullet/MyBullet.h"
+#include "LearningKitProject/Actor/Pawn/CharacterPawn/CharacterPawn.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "CharacterPlayerController.generated.h"
@@ -16,8 +19,20 @@ class LEARNINGKITPROJECT_API ACharacterPlayerController : public APlayerControll
 
 public:
 	
+	// specifies if camera is FPS or 3PS
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPlayerController")
 	bool IsFPS = true;
+
+	// specifies the light ammo type
+	UPROPERTY(EditAnywhere, meta = (MetaClass = "MyBullet"), Category = MyBulletBlueprints)
+	TSubclassOf<AMyBullet> LightAmmo;
+
+	// specifies the heavy ammo type
+	UPROPERTY(EditAnywhere, meta = (MetaClass = "MyBullet"), Category = MyBulletBlueprints)
+	TSubclassOf<AMyBullet> HeavyAmmo;
+
+	// called at start of play or on spawn
+	virtual void BeginPlay() override;
 
 	// called every frame and delta time is the time elasped since last frame
 	virtual void PlayerTick(float DeltaTime) override;
@@ -30,5 +45,13 @@ public:
 
 	// called when mouse right is clicked
 	void ChangeAmmo();
+
+private:
+
+	// pawn reference
+	ACharacterPawn* CharacterPawn;
+
+	// selected ammo type (1 for light and 2 for heavy)
+	float SelectedAmmoType = 1;
 
 };

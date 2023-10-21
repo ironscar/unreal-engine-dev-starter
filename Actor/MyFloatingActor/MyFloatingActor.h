@@ -19,13 +19,13 @@ class LEARNINGKITPROJECT_API AMyFloatingActor : public AActor {
 		AMyFloatingActor();
 
 		UPROPERTY(VisibleAnywhere)
-			UStaticMeshComponent* VisualMesh;
+		UStaticMeshComponent* VisualMesh;
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyFloatingActor")
-			float FloatSpeed = 50.0f;
+		float FloatSpeed = 50.0f;
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyFloatingActor")
-			float RotationSpeed = 50.0f;
+		float RotationSpeed = 50.0f;
 
 	protected:
 		// Called when the game starts or when spawned

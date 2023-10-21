@@ -122,8 +122,9 @@ Caveats:
 ### Processing mouse input
 
 - Migrate to Enhanced Input Actions from Action/Axis mappings as the latter is deprecated [TODO]
-- Update `GetInputMouseDelta` to corresponding axis mapping [TODO]
-- We can spawn a ball on left click and shoot it towards the front [TODO]
-- We can change the type of ball on right click [TODO]
+	- Update `GetInputMouseDelta` to corresponding axis mapping
+- We can spawn a ball on left click and shoot it towards the front 
+	- Ball currently just falls whereas it should shoot forward [TODO]
+- We can change the type of ball on right click
 
 ---

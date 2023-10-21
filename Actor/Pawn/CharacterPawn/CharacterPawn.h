@@ -31,6 +31,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Camera")
 	float RotationLimit = 40;
 
+	// Specifies the muzzle offset from the pawn location
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Shoot")
+	FVector MuzzleOffset = FVector(0, 0, 0);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

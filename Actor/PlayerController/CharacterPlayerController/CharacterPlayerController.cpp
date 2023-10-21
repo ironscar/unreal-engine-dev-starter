@@ -1,13 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "LearningKitProject/Actor/Pawn/CharacterPawn/CharacterPawn.h"
 #include "CharacterPlayerController.h"
+
+void ACharacterPlayerController::BeginPlay() {
+	Super::BeginPlay();
+
+	CharacterPawn = (ACharacterPawn*)GetPawn();
+}
 
 void ACharacterPlayerController::PlayerTick(float DeltaTime) {
 	Super::PlayerTick(DeltaTime);
 
 	// use mouse movement to rotate
-	ACharacterPawn* CharacterPawn = (ACharacterPawn*)GetPawn();
 	if (CharacterPawn != nullptr) {
 		float deltaX;
 		float deltaY;
@@ -18,7 +22,6 @@ void ACharacterPlayerController::PlayerTick(float DeltaTime) {
 			CharacterPawn->Set3psRotation(deltaX, deltaY);
 		}
 	}
-	
 }
 
 void ACharacterPlayerController::SetupInputComponent() {
@@ -36,11 +39,18 @@ void ACharacterPlayerController::SetupInputComponent() {
 }
 
 void ACharacterPlayerController::Shoot() {
-	// spawn a ball actor, but just log for now
-	UE_LOG(LogTemp, Warning, TEXT("Shoot"));
+	// spawn a bullet actor
+	TSubclassOf<AMyBullet> SelectedAmmo = SelectedAmmoType == 1 ? LightAmmo : HeavyAmmo;
+	if (SelectedAmmo != nullptr) {
+		FVector BulletSpawnLocation = CharacterPawn->GetActorLocation() + CharacterPawn->MuzzleOffset;
+		AMyBullet* Bullet = GetWorld()->SpawnActor<AMyBullet>(SelectedAmmo, BulletSpawnLocation, FRotator::ZeroRotator);
+		
+		FVector forwardVector = CharacterPawn->GetActorForwardVector();
+		Bullet->AddCustomForce(forwardVector);
+	}
 }
 
 void ACharacterPlayerController::ChangeAmmo() {
-	// change the type of ball actor to be spawned so just log for now
-	UE_LOG(LogTemp, Warning, TEXT("Change Ammo"));
+	// change the type of ball actor to be spawned
+	SelectedAmmoType = SelectedAmmoType == 1 ? 2 : 1;
 }
