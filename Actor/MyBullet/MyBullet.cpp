@@ -32,5 +32,5 @@ void AMyBullet::BeginPlay() {
 
 void AMyBullet::AddCustomForce(FVector ForwardVector) {
 	FVector ForceVector = ForwardVector * BulletForceMultiplier;
-	VisualMesh->AddForce(ForceVector);
+	//VisualMesh->AddForce(ForceVector);
 }
