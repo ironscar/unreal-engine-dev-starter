@@ -20,6 +20,15 @@ void ACharacterPawn::BeginPlay() {
 	}
 }
 
+// Get Muzzle Location (depends on CharacterPawn Muzzle properties)
+FVector ACharacterPawn::GetMuzzleLocation() {
+	FVector MuzzleLocation = GetActorLocation();
+	MuzzleLocation.Z += MuzzleOffsetHeight;
+	FVector TempForward = GetActorForwardVector().GetClampedToMaxSize(MuzzleOffsetForward);
+	MuzzleLocation += TempForward;
+	return MuzzleLocation;
+}
+
 // Called every frame
 void ACharacterPawn::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);

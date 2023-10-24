@@ -42,11 +42,13 @@ void ACharacterPlayerController::Shoot() {
 	// spawn a bullet actor
 	TSubclassOf<AMyBullet> SelectedAmmo = SelectedAmmoType == 1 ? LightAmmo : HeavyAmmo;
 	if (SelectedAmmo != nullptr) {
-		FVector BulletSpawnLocation = CharacterPawn->GetActorLocation() + CharacterPawn->MuzzleOffset;
+		// get muzzle location and spawn bullet
+		FVector BulletSpawnLocation = CharacterPawn->GetMuzzleLocation();
 		AMyBullet* Bullet = GetWorld()->SpawnActor<AMyBullet>(SelectedAmmo, BulletSpawnLocation, FRotator::ZeroRotator);
-		
-		FVector forwardVector = CharacterPawn->GetActorForwardVector();
-		Bullet->AddCustomForce(forwardVector);
+
+		// get forward vector and add impulse
+		FVector ForwardVector = CharacterPawn->GetActorForwardVector();
+		Bullet->AddCustomForce(ForwardVector);
 	}
 }
 

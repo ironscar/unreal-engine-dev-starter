@@ -121,9 +121,16 @@ Caveats:
 
 ### Processing mouse input
 
+- We can spawn a ball on left click and shoot it towards the front and change the type of ball on right click
+	- To get muzzle location:
+		- we get pawn's `GetActorLocation`
+		- add `MuzzleOffsetHeight` to its Z component
+		- use `GetClampedToMaxSize` which basically returns a vector in same direction but with specific magnitude
+		- use `GetActorForwardVector` with the MuzzleOffsetForward as arg in the above method to get the muzzle location
+	- Then we spawn the bullet using `AddImpulse` on the forward vector along with a force magnitude
+		- `AddForce` requires to be used every frame so `AddImpulse` seemed like the easier/better option
 - Migrate to Enhanced Input Actions from Action/Axis mappings as the latter is deprecated [TODO]
+	- https://dev.epicgames.com/community/learning/tutorials/KwE1/unreal-engine-5-1-migrating-to-enhanced-input-system
 	- Update `GetInputMouseDelta` to corresponding axis mapping
-- We can spawn a ball on left click and shoot it towards the front
-- We can change the type of ball on right click
 
 ---
