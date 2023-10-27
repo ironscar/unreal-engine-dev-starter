@@ -130,6 +130,11 @@ Caveats:
 		- `GetForwardVector` uses the pawn's `GetActorForwardVector` and it's camera component's `GetForwardVector().Z`
 	- Then we spawn the bullet using `AddImpulse` on the forward vector along with a force magnitude
 		- `AddForce` requires to be used every frame so `AddImpulse` seemed like the easier/better option
+- Problem with the pawn spawning way above ground was solved
+	- PlayerStart transform is at center of capsule at Z = 126
+	- CharacterController and Pawn instantiate at Z = 126
+	- The actual pawn asset however has transform at the base making it instantiate its base at Z = 126 instead of center
+	- So we offset the actual pawn asset in the pawn BP and update the `MuzzleOffsetHeight` property in BP to match
 - Migrate to Enhanced Input Actions from Action/Axis mappings as the latter is deprecated [TODO]
 	- https://dev.epicgames.com/community/learning/tutorials/KwE1/unreal-engine-5-1-migrating-to-enhanced-input-system
 	- Update `GetInputMouseDelta` to corresponding axis mapping
