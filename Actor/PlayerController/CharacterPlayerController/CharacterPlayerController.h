@@ -6,6 +6,7 @@
 #include "LearningKitProject/Actor/Pawn/CharacterPawn/CharacterPawn.h"
 
 #include "CoreMinimal.h"
+#include "EnhancedInputComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "CharacterPlayerController.generated.h"
 
@@ -40,16 +41,36 @@ public:
 	// called to bind functionality to input
 	virtual void SetupInputComponent() override;
 
+	// called when mouse moved
+	void Look(const FInputActionValue& Value);
+
 	// called when mouse left is clicked
 	void Shoot();
 
 	// called when mouse right is clicked
 	void ChangeAmmo();
 
+protected:
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	class UInputMappingContext* InputMapping;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* Look2D;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* MouseLeft;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* MouseRight;
+
 private:
 
 	// pawn reference
 	ACharacterPawn* CharacterPawn;
+
+	// enhanced input component reference
+	UEnhancedInputComponent* PlayerEnhancedInputComponent;
 
 	// selected ammo type (1 for light and 2 for heavy)
 	float SelectedAmmoType = 1;

@@ -15,6 +15,7 @@ AMyBullet::AMyBullet() {
 	if (SphereVisualAsset.Succeeded()) {
 		VisualMesh->SetStaticMesh(SphereVisualAsset.Object);
 		VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+		SetRootComponent(VisualMesh);
 	}
 }
 

@@ -135,8 +135,19 @@ Caveats:
 	- CharacterController and Pawn instantiate at Z = 126
 	- The actual pawn asset however has transform at the base making it instantiate its base at Z = 126 instead of center
 	- So we offset the actual pawn asset in the pawn BP and update the `MuzzleOffsetHeight` property in BP to match
-- Migrate to Enhanced Input Actions from Action/Axis mappings as the latter is deprecated [TODO]
-	- https://dev.epicgames.com/community/learning/tutorials/KwE1/unreal-engine-5-1-migrating-to-enhanced-input-system
-	- Update `GetInputMouseDelta` to corresponding axis mapping
+- Migrate to Enhanced Input Actions from Action/Axis mappings for new characters as the latter is deprecated
+	- Create a new folder called `EnhancedInputs` under `MyClasses`
+	- Add new Input Actions and give the mousemove a `Vector 2D` type and shoot/change as `bool` type
+	- Create a Input Context Mapping and add all the Input Actions to it with corresponding bindings
+	- Go to UE5 Project Settings > Input > Default Classes and make sure it uses the enhanced versions
+	- Open the uproject file in code and add `EnhancedInput` plugin enabled
+	- Open the `<GameProject>.Build.cs` file and add `EnhancedInput` to PublicDependencyModuleNames
+	- At this point, IDE may still not be able to pull the corresponding header files and show error
+	- Regenerate build files from uproject file and then it should not throw that error on IDE
+	- Follow https://nightails.com/2022/10/16/unreal-engine-enhanced-input-system-in-c/ to understand what is being done
+	- In this project, we have used `CharacterController` and `Pawn` instead of `Character`
+	- Don't forget to assign the Enhanced Input class references to `BP_MyCharacterPlayerController`
+- To fix the root component warning in the log for placeables
+	- we need to call `SetRootComponent` with the mesh as argument
 
 ---
