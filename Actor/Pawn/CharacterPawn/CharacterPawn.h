@@ -47,6 +47,9 @@ public:
 	// Get Muzzle Location (depends on CharacterPawn Muzzle properties)
 	FVector GetMuzzleLocation();
 
+	// Get Forward vector using pawn direction and camera Z
+	FVector GetForwardVector();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

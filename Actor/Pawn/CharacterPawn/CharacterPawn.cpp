@@ -29,6 +29,14 @@ FVector ACharacterPawn::GetMuzzleLocation() {
 	return MuzzleLocation;
 }
 
+// Get Forward vector using pawn direction and camera Z
+FVector ACharacterPawn::GetForwardVector() {
+	FVector ForwardVector = GetActorForwardVector();
+	FVector CameraForwardVector = CameraComponent->GetForwardVector();
+	ForwardVector.Z = CameraForwardVector.Z;
+	return ForwardVector;
+}
+
 // Called every frame
 void ACharacterPawn::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);

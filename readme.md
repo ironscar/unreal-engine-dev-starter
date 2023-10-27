@@ -126,7 +126,8 @@ Caveats:
 		- we get pawn's `GetActorLocation`
 		- add `MuzzleOffsetHeight` to its Z component
 		- use `GetClampedToMaxSize` which basically returns a vector in same direction but with specific magnitude
-		- use `GetActorForwardVector` with the MuzzleOffsetForward as arg in the above method to get the muzzle location
+		- use `GetForwardVector` with the MuzzleOffsetForward as arg in the above method to get the muzzle location
+		- `GetForwardVector` uses the pawn's `GetActorForwardVector` and it's camera component's `GetForwardVector().Z`
 	- Then we spawn the bullet using `AddImpulse` on the forward vector along with a force magnitude
 		- `AddForce` requires to be used every frame so `AddImpulse` seemed like the easier/better option
 - Migrate to Enhanced Input Actions from Action/Axis mappings as the latter is deprecated [TODO]

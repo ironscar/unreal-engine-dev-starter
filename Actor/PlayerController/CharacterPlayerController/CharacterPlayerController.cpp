@@ -47,7 +47,7 @@ void ACharacterPlayerController::Shoot() {
 		AMyBullet* Bullet = GetWorld()->SpawnActor<AMyBullet>(SelectedAmmo, BulletSpawnLocation, FRotator::ZeroRotator);
 
 		// get forward vector and add impulse
-		FVector ForwardVector = CharacterPawn->GetActorForwardVector();
+		FVector ForwardVector = CharacterPawn->GetForwardVector();
 		Bullet->AddCustomForce(ForwardVector);
 	}
 }
