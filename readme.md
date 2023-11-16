@@ -149,5 +149,20 @@ Caveats:
 	- Don't forget to assign the Enhanced Input class references to `BP_MyCharacterPlayerController`
 - To fix the root component warning in the log for placeables
 	- we need to call `SetRootComponent` with the mesh as argument
+- To jump out of game mode during game, we can press `F8`
 
 ---
+## Art notes
+
+- To create UDIM tiles In Blender 
+	- Go to UV mode, toggle sidebar with `N`
+	- Go to `Image` > `UDIM Tiles` and click `+`
+    - Then you can drag parts of your unwrap into separate tile
+- UE5 needs to `Enable Virtual Textures` from Settings to work with UDIMs
+	- Go to `Engine` > `Rendering` > `Virtual Textures`
+	- otherwise it loads all UDIMs as single file and only shows first one in preview
+	- Once enabled, engine restarts by compiling all shaders again which takes some time
+	- After restart, the preview will show all tiles
+	- We have to make sure that the imported files are now Virtual Textures
+	- Look at the material created to see how to connect all the maps
+	- All assets in `Content/LearningKit_Games/Assets/Characters/MyFirstCharacter`
