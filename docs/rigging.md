@@ -4,6 +4,7 @@
 
 ### Fundamentals
 
+- Movement is with Middle mouse click & panning is holding Shift with the same
 - Check that character model is positioned at (0,0,0) at foot center
 - Shift + A will bring up the menu to place objects in scene
 - Choose Armature and by default that should place a single bone where the cursor is at
