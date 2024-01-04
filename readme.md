@@ -156,12 +156,21 @@ Caveats:
 ## Art notes
 
 - UE5 needs to `Enable Virtual Textures` from Settings to work with UDIMs
-	- Go to `Engine` > `Rendering` > `Virtual Textures`
-	- otherwise it loads all UDIMs as single file and only shows first one in preview
-	- Once enabled, engine restarts by compiling all shaders again which takes some time
-	- After restart, the preview will show all tiles
-	- We have to make sure that the imported files are now Virtual Textures
-	- Look at the material created to see how to connect all the maps
-	- All assets in `Content/LearningKit_Games/Assets/Characters/MyFirstCharacter`
+- Go to `Engine` > `Rendering` > `Virtual Textures`
+- otherwise it loads all UDIMs as single file and only shows first one in preview
+- Once enabled, engine restarts by compiling all shaders again which takes some time
+- After restart, the preview will show all tiles
+- We have to make sure that the imported files are now Virtual Textures
+  	- Now all UDIMs are still single files but it will work correctly
+- Look at the material created to see how to connect all the maps
+  	- Load each map into a `Texture Sample` node in the material editor
+  	- `Albedo` goes to the `Diffuse Albedo` pin of `Substrate Slab BSDF` node
+  	- `Metalness` goes to the `F0` pin of `Substrate Slab BSDF` node
+  	- `Roughness` goes to `Roughness` pin of `Substrate Slab BSDF` node
+  	- `Normal` goes to `Normal` pin of `Substrate Slab BSDF` node
+  	- `Displacement` goes to `World Position Offset` pin of the final material node
+  	- `AO` goes into the `Ambient Occlusion` pin of the final material node
+  	- The `Substrate Slab BSDF` node is pre-connected to the `Front Material` pin of the final material node
+- All assets in `Content/LearningKit_Games/Assets/Characters/MyFirstCharacter`
 
 ---
