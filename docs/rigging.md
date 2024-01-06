@@ -54,8 +54,35 @@
 
 ---
 
+### Tablet Navigation Fundamentals
+
+- For weight paint mode, it might make sense to do with a tablet
+- Like Quixel, we need custom express keys for easier navigation
+  - Middle Click
+  - Shift + Middle click
+  - Zoom
+  - Alt
+- `Middle Click` and hover/move allows moving the camera
+- `Shift + Middle click` and hover/move allows panning
+- `Zoom` and touch/move pen allows zooming
+- Tablet pressure for weights doesn't seem to work
+
+---
+
 ### Weight Painting
 
-- 
+- To start weight painting
+    - Select the model in object mode and add an Armature modifier to it
+    - Add the Armature object to the modifier
+    - Deselect the model, select the armature and `Shift + Left Click` to select the model in object mode
+    - Then go to weight paint mode while both are selected (model should be selected second)
+    - By default, one bone will be selected and you can paint the weights for that bone
+    - You can select other bones using `Ctrl + Left Click` and weight paint for those too
+- In left sidebar, in `Active Tools and Workspace settings`, you can turn on symmetry as well
+  - The rest of the brush settings like weight, radius and strength are also there
+- Painting with weight 1 makes it red implying most deformation and weight 0 is blue implying no deformation
+  - Green is 0.5 and implies partial deformation
+  - You can paint blue on red or green or red, final color is what matters
+- Idea is to do this weight paint on the model for each bone so that during animation, its deformation can be controlled
 
 ---

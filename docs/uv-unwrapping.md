@@ -5,7 +5,7 @@
 ### Fundamentals
 
 - Movement is with `Middle Mouse Button` and use `Shift` along with it to pan
-- Zooming can be done by `scrolling`
+- Zooming can be done by `scrolling` or `Ctrl + Shift + Middle Click drag`
 - Go to `UV Editing` mode from the top menu bar
 - Go to Edit mode of model in 3D viewport by clicking `Tab`
 - Go to edge mode in 3D viewport and select all edges that should not be connected in UV map
