@@ -84,5 +84,7 @@
   - Green is 0.5 and implies partial deformation
   - You can paint blue on red or green or red, final color is what matters
 - Idea is to do this weight paint on the model for each bone so that during animation, its deformation can be controlled
+- In `Object Data Properties`, whenever you paint for a new bone, it creates a new vertex group with the bone's name
+    - Once created, you can also select the vertex groups from here and do the painting from where you left off
 
 ---
