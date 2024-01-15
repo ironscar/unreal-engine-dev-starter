@@ -61,10 +61,11 @@
   - Middle Click
   - Shift + Middle click
   - Zoom
-  - Alt
+  - Ctrl
 - `Middle Click` and hover/move allows moving the camera
 - `Shift + Middle click` and hover/move allows panning
 - `Zoom` and touch/move pen allows zooming
+- `Ctrl + click` helps to select a bone
 - Tablet pressure for weights doesn't seem to work
 
 ---
@@ -80,6 +81,7 @@
     - You can select other bones using `Ctrl + Left Click` and weight paint for those too
 - In left sidebar, in `Active Tools and Workspace settings`, you can turn on symmetry as well
   - The rest of the brush settings like weight, radius and strength are also there
+  - Pressing `F` changes size of brush
 - Painting with weight 1 makes it red implying most deformation and weight 0 is blue implying no deformation
   - Green is 0.5 and implies partial deformation
   - You can paint blue on red or green or red, final color is what matters
