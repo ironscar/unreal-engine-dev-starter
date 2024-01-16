@@ -66,7 +66,11 @@
 - `Shift + Middle click` and hover/move allows panning
 - `Zoom` and touch/move pen allows zooming
 - `Ctrl + click` helps to select a bone
-- Tablet pressure for weights doesn't seem to work
+- Tablet pressure for weights doesn't seem to work by default
+  - But you can set `Weight` to 1 and `Strength` to 1
+  - Then click the small button beside `Strength` bar which enables painting by pressure
+  - But on places where you have already painted red, it doesn't change anything
+  - You can try changing blend to `Subtract` at that point to remove from it
 
 ---
 
@@ -88,5 +92,8 @@
 - Idea is to do this weight paint on the model for each bone so that during animation, its deformation can be controlled
 - In `Object Data Properties`, whenever you paint for a new bone, it creates a new vertex group with the bone's name
     - Once created, you can also select the vertex groups from here and do the painting from where you left off
+- Once done, you can go to Pose mode of the Armature and rotate the bones to see how they move the model
+  - You can actually rotate the bones even in weight paint mode to see how the current distribution works
+  - You can also do this to reach and paint the places which you cannot paint due to close surfaces
 
 ---
