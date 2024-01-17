@@ -85,7 +85,8 @@
     - You can select other bones using `Ctrl + Left Click` and weight paint for those too
 - In left sidebar, in `Active Tools and Workspace settings`, you can turn on symmetry as well
   - The rest of the brush settings like weight, radius and strength are also there
-  - Pressing `F` changes size of brush
+    - These three can also be accessed on right click or on the top toolbar
+    - Pressing `F` changes size of brush
 - Painting with weight 1 makes it red implying most deformation and weight 0 is blue implying no deformation
   - Green is 0.5 and implies partial deformation
   - You can paint blue on red or green or red, final color is what matters
@@ -95,5 +96,12 @@
 - Once done, you can go to Pose mode of the Armature and rotate the bones to see how they move the model
   - You can actually rotate the bones even in weight paint mode to see how the current distribution works
   - You can also do this to reach and paint the places which you cannot paint due to close surfaces
+- If you paint one bone on the left and want to mirror it to the other side
+  - Go to `Object Data Properties` on the right side-menu, select the specific vertex group
+  - Click on the dark down-chevron on the right of the vertex groups sub-menu
+  - Do `Copy Vertex Group` followed by `Mirror Vertex Group`
+  - Then update the name of vertex group by replacing `_r` with `_l` or vice versa
+  - This will assign it to the corresponding bone on the other side with copied group
+  - It mostly works but could need small tweaks (still saves more time than repainting)
 
 ---
