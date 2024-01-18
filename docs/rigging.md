@@ -105,3 +105,16 @@
   - It mostly works but could need small tweaks (still saves more time than repainting)
 
 ---
+
+### Caveats
+
+- Sometime it matters where your bone is positioned and not just what its weights are
+  - Based on where its positioned and how you rotate it, the weighted area of the mesh moves around that focal point
+  - If that focal point is closer to a large part of the mesh, the mesh attempts to rotate around that point and may get overly curved (Its a matter of radius of rotation orbit)
+  - In those cases, we may have to position the bone further away to get it to rotate the right way (greater radius allows lesser mesh curvature)
+  - Sometimes these bones are connected to other bones
+    - So specifically disconnect them from the `Object Data Properties` right side-menu
+    - Deselect the bone and select again at this point as otherwise it may act connected still (weird issue)
+    - Then move the bone to an approprate position allowing larger radius
+
+---
