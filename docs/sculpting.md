@@ -119,3 +119,15 @@
     - The subdivision levels don't get carried through so export it at the correct level
 
 ---
+
+### Todos
+
+- Sculpt the human body accurately (blur face and perfect body)
+- Sculpt the human body with imperfections (wrinkles and fat)
+- Sculpt the human face accurately (perfect face)
+- Sculpt the human face with imperfections (wrinkles and fat)
+- Sculpt hair and create hair cards for it
+- One proper organic sculpt (from ArtStation including retopology look & polycount)
+- One proper hard-surface sculpt (from ArtStation including retopology look & polycount)
+
+---

@@ -128,3 +128,16 @@
   - Select all bones with `A` and press `Shift + Alt + R` to reset rotations for all
 
 ---
+
+### Todos
+
+- Figure out why Maya has all those extra shapes and stuff on rigged models
+- Figure out when and how to use shape keys / morph targets
+- Figure out when and how to use Inverse Kinematics
+- Rig a normal human body with perfect range of motion (not face)
+- Rig a normal human face with perfect range of motion
+- Rig a quadruped
+- Rig a flying bird
+- Pick a crazy movement monster from ArtStation and rig it
+
+---

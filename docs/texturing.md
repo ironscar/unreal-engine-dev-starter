@@ -139,3 +139,11 @@
 - You can then use these in the engine
 
 ---
+
+### Todos
+
+- Figure out how to do procedural textures
+- Figure out how to control the direction of the texture on custom models
+- Figure out how to texture hair cards
+
+---
