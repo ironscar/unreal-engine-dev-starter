@@ -12,7 +12,7 @@
 
 ## Sessions
 
-- `20th January 2024`: Finished rigging first character in Blender
+- `20th January 2024`: Finished rigging first character in Blender & updated docs
 
 ---
 
