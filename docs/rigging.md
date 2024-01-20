@@ -6,29 +6,29 @@
 
 - Movement is with Middle mouse click & panning is holding Shift with the same
 - Check that character model is positioned at (0,0,0) at foot center
-- Shift + A will bring up the menu to place objects in scene
+- `Shift + A` will bring up the menu to place objects in scene
 - Choose Armature and by default that should place a single bone where the cursor is at
     - Make sure to positionhead of armature object at (0,0,0) as well to align
 - Currently the bone maybe hidden by the model because it is inside
-    - For that, in the Object Properties on the right, go to Viewport Display > Show > In Front
-    - You can also change what a bone looks like by going to the Object Data Properties on the right
-    - Then, going to Viewport Display > Display As and select the preffered one (Stick for me)
+    - For that, in the Object Properties on the right, go to `Viewport Display > Show > In Front`
+    - You can also change what a bone looks like by going to the `Object Data Properties` on the right
+    - Then, going to `Viewport Display > Display As` and select the preffered one (Stick for me)
 - Moreover, armatures have three modes: Object, Edit, Pose
-- Tab toggles between object and edit mode
-- Ctrl + Tab toggles between object and pose mode
-- Placing bones is easier in Orthographic mode so Numpad 1, Numpad 3, Numpad 7 give you the front, side, top views
+- `Tab` toggles between object and edit mode
+- `Ctrl + Tab` toggles between object and pose mode
+- Placing bones is easier in Orthographic mode so `Numpad 1, Numpad 3, Numpad 7` give you the front, side, top views (adding `Ctrl` to it gives the mirror view)
 - To change the name of a bone, go to Bone Properties on the right and update the name
-- Pressing G puts object/bone in move mode and then pressing X,Y,Z constrains the movement to that axis
+- Pressing `G` puts object/bone in move mode and then pressing `X,Y,Z` constrains the movement to that axis
     - You can do this with the entire bone or the ends of the bone in Edit mode by separately selecting it
     - This will allow you to scale the bone accordingly or move its ends
     - Right Click during move mode cancels the movement
 - You can see the armatures of UE5 assets by checking the skeletal assets and try to understand them
 - In case you want to add a bone in the middle of an existing armature
     - Go to Edit mode of the armature
-    - Press Shift + A to add a new bone
+    - Press `Shift + A` to add a new bone
     - Position the new bone and affected bones correctly
-    - Go to Bone Properties on the right and go to Relations > Parent
-    - Update the parents of required bones to get the correct hierarchy and check Connected
+    - Go to Bone Properties on the right and go to `Relations > Parent`
+    - Update the parents of required bones to get the correct hierarchy and check `Connected`
     - Sometimes clicking the connection points in this case won't allow movement
     - In that case, drag-select the connection point and then it will work
     - Update the names if required in convention `boneName_index_l/r`
@@ -46,10 +46,10 @@
     - Then we can Mirror the bones to the other side if its a symmetric model by 
         - drag select one side of the bones only
         - use Shift click to select the bones connected to the central ones in case they didn't get selected before
-        - right click > Symmetrize
+        - `Right click > Symmetrize`
         - This will also update the names to have `_r` from `_l` 
         - The positions of the entire selection can be off sometimes so fix that while all are still selected
-        - Then select the bones connected to the central ones and check Connected in Bone Properties > Relations
+        - Then select the bones connected to the central ones and check `Connected` in `Bone Properties > Relations`
     - If asymmetric, then we will have to create the bones ourselves
 
 ---
@@ -66,6 +66,7 @@
 - `Shift + Middle click` and hover/move allows panning
 - `Zoom` and touch/move pen allows zooming
 - `Ctrl + click` helps to select a bone
+- `Shift + C` resets view to see the whole model
 - Tablet pressure for weights doesn't seem to work by default
   - But you can set `Weight` to 1 and `Strength` to 1
   - Then click the small button beside `Strength` bar which enables painting by pressure
@@ -116,5 +117,14 @@
     - So specifically disconnect them from the `Object Data Properties` right side-menu
     - Deselect the bone and select again at this point as otherwise it may act connected still (weird issue)
     - Then move the bone to an approprate position allowing larger radius
+
+- Sometimes while testing out your bone weight-painting, you won't be able to keep track of getting the bones back in original orientations
+  - In that case, Pose mode has a `Clear Pose Rotation` shortcut set to `Alt + R`
+  - Due to various reasons (including but not limited to Nvidia GeForce Experience), this shortcut may not work
+  - Go to `Edit > Preferences > Keymap` and search by name `Rotation`
+  - Update the shortcut for `Clear Pose Rotation` to `Shift + Alt + R`
+  - While painting, if you have to get everything back to default
+    - like when you have to mirror bone weights and you need the model to be symmetric again
+  - Select all bones with `A` and press `Shift + Alt + R` to reset rotations for all
 
 ---
