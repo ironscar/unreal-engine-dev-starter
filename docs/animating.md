@@ -8,7 +8,7 @@
   - `Zoom` also works on the timeline panel
 - Go to Pose mode of Armature by `Ctrl + Tab`
 - Rotate the bones around to get the initial pose of the animation
-- Select all bones with `A`, press `I` & select `Rotation` to insert a rotation keyframe
+- Select all bones with `A`, press `I` & select `Location Rotation` to insert a location + rotation keyframe
 - You can see the associated keyframes in the `Dope Sheet` when bones are selected
   - Important to note that each bone has its own independent keyframe inserted now
   - So whenever you have to move where the keyframe is or delete it, select all bones first and then do the action
@@ -30,5 +30,33 @@
   - Or you can just do everything in the `Action Editor` too as it also has a timeline & keyframes
 - You can play animation with `Spacebar` and navigate the keyframes with `Up/Down arrow`
   - `Shift + Left/Right arrow` jumps to start/end of full animation
+
+---
+
+### Import animations from Blender to Unreal
+
+- Name `Armature` to something else like `skeleton` as otherwise there may be scale issues in UE animation
+  - This happens because of a bug in the FBX importer in UE
+- Select armature and mesh and do `File > Export > FBX`
+- Click `Selected objects` on the right menu of the popup
+- Make sure `Forward` and `Up` axes are set correctly under `Transform`
+- Under `Geometry`, uncheck `Apply modifiers`
+- Under `Armature`, uncheck `Add Leaf Bones`
+- Under `Bake Animation`, uncheck `NLA strips` and `Force Start/End Keying`
+- Export after this
+- In Unreal, click `Import` from Content browser
+  - Currently in `MyFirstCharacter/Animations` directory
+- Select the exported fbx
+- Make sure that `Create Physics Asset` is checked as the animation asset becomes invisible without it
+- Set `Material Import Method` to `Do not create material` if you already have material created on engine
+- Then click `Import all` which imports the following assets
+  - Skeleton 
+  - Skeletal asset
+  - An Animation Sequence for each Action created in Blender
+  - Physics Asset (created by UE as we checked an option for it above)
+- Open the `Skeletal mesh` asset and assign material if already created on UE
+- From top-right of screen, we can see the `Skeleton`, `Skeletal mesh`, `Animation Sequence`, `Physics Asset` views
+  - We can see all of them for our custom character in correct scale
+  - In `Animation Sequence` view, we can select each of the sequences and see the animation for that character
 
 ---

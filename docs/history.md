@@ -15,6 +15,7 @@
 - `20th January 2024`: Finished rigging first character in Blender & updated docs
 - `31st January 2024`: Started a new character painting in Phtotoshop (cyber-boxer)
 - `5th February 2024`: Started animating rigged character in Blender & updated docs
+- `6th February 2024`: Created basic walk animation in Blender & imported to UE5 successfully
 
 ---
 
