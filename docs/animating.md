@@ -30,6 +30,10 @@
   - Or you can just do everything in the `Action Editor` too as it also has a timeline & keyframes
 - You can play animation with `Spacebar` and navigate the keyframes with `Up/Down arrow`
   - `Shift + Left/Right arrow` jumps to start/end of full animation
+- Once you have animations that look proper in `Location + Rotation`
+  - Disable location for the root bone in Action editor (which is ideally the only bone that you change location for)
+  - then drag root bone back to origin so that you can quickly get in-place animations
+  - in-place animations are easier to work with so consider this before export
 
 ---
 
@@ -58,5 +62,31 @@
 - From top-right of screen, we can see the `Skeleton`, `Skeletal mesh`, `Animation Sequence`, `Physics Asset` views
   - We can see all of them for our custom character in correct scale
   - In `Animation Sequence` view, we can select each of the sequences and see the animation for that character
+- For every new animation
+  - during export from Blender, you can uncheck `All actions` under `Animation` to only export the specific animation
+    - make sure to have the new animation selected in the `Action Editor`
+    - this creates a new fbx file for the animation itself
+  - during import to UE5
+    - uncheck `Import mesh` and select the existing skeleton asset for the `Skeleton` field
+    - this will only import the specific animation sequence as an asset
+- For updates to existing animations, delete the old one and then import it as new one
+
+---
+
+### Todos
+
+- Walk [DONE]
+- Idle [DONE]
+- Idle-run blend space [DONE]
+- Run
+- At-place Jump
+- Running Jump
+- Crouch idle
+- Crouch walk
+- Slide
+- Melee attack
+- Long-range attack
+- Damage taken
+- Animation BP & Input integration
 
 ---
