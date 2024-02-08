@@ -94,6 +94,9 @@ Caveats:
 ### Create C++ pawns and player controllers
 
 - We can create C++ classes inherited from Pawn and PlayerController
+  - We will also create blueprints classes from these new C++ classes
+  - These will be the `BP_MyCharacterPawn` and `BP_MyCharacterPlayerController`
+  - In the pawn BP, we can drag in our custom character mesh and camera to give it visual representation
 - For this demo, we also create the MouseInputGameModeBase class from the GameModeBase class which sets the default pawn and controller to our custom ones
 - To set the defaults, we use `FOjbectFinder` like for `FloatingActor` and we can get the reference of the corresponding BP assets by:
 	- finding them in UE5 content browser
@@ -174,5 +177,46 @@ Caveats:
   	- `AO` goes into the `Ambient Occlusion` pin of the final material node
   	- The `Substrate Slab BSDF` node is pre-connected to the `Front Material` pin of the final material node
 - All assets in `Content/LearningKit_Games/Assets/Characters/MyFirstCharacter`
+
+---
+
+### Input Integration UE5
+
+- We open our `BP_MyCharacterPawn` blueprint and go to the `Event Graph`
+- We can delete all other nodes apart from `Event Begin Play`
+- Before anyhing else, we will go to `My Blueprint` panel on the right and click on the gear icon on the top of the panel
+  - Check `Show inherited variables` to see all the variables inherited from parent classes
+  - We may want to use some of those, especially `Pawn` class
+- Now, UE suggests using one animation blueprint per skeleton
+  - We may have multiple pawns with different skeletons but using our custom C++ pawn class
+  - Each of those pawns will have a custom blueprint class inherited from our custom C++ pawn class as that is where the skeletal mesh of the pawn will go
+  - Hence, there is a one-to-one mapping for the pawn blueprint class to the Animation Blueprint
+  - Therefore, the C++ class should allow the BP to provide its custom Animation Blueprint
+  - The C++ class should also handle updating the speed for the Animation Blueprint as it already handles other interactions
+  - The Character Player Controller has the main input interactions so we should start the movement interaction there
+
+#### Movement requirements
+
+- Let us set up a few requirements on how movement should work for us so that it's easy to integrate FPS and 3PS
+
+|Control  		| FPS 				| 3PS							|
+|---------------|-------------------|-------------------------------|
+| W				|Walk forward		|Walk forward					|
+| A				|Walk left			|Turn left + Walk forward		|
+| S				|Walk backward		|Turn back + Walk forward		|
+| D				|Walk right			|Turn right + Walk forward		|
+| Shift + W		|Run forward		|Run forward					|
+| Shift + A		|Walk left			|Turn left + Run forward		|
+| Shift + S		|Walk right			|Turn back + Run forward		|
+| Shift + D		|Walk backward		|Turn right + Run forward		|
+| Ctrl* + W		|Crouch forward		|Crouch forward					|
+| Ctrl* + A		|Crouch left		|Turn left + Crouch forward		|
+| Ctrl* + S		|Crouch right		|Turn back + Crouch forward		|
+| Ctrl* + D		|Crouch backward	|Turn right + Crouch forward	|
+| space			|Jump				|Jump							|
+
+- `*` use `Ctrl` as a toggle for crouch instead of continuous press
+- If running and then you press `Ctrl`, slide in direction of running (only one anim required as run is only one direction)
+- If running and then you press `Space`, make a running jump in direction of running, else stop and do at-place jump (separate anims for left/right/back jump not required)
 
 ---

@@ -73,20 +73,54 @@
 
 ---
 
+### UE5 Blend spaces
+
+- Blend spaces are a way of blending multiple animations by interpolating values between one or two variables
+- We can create a new blend space in our `Animation` directory by right-clicking and going to `Animation` and choosing `Blend Space`
+- On the left, we can define the axis details for the horizontal and vertical
+  - For now, we will only name horizontal axis as `Speed` since we only need one dimension
+  - You can also change the range of the axis here
+- You can drag in your animation sequences from the right `Asset Browser` panel into the blend space area in the bottom panel
+  - We will drag and place the `Idle` sequence at Speed 0 (the other axis doesn't matter so i'll place it in center)
+  - We will drag and place the `walk_progress` sequence at Speed 25
+- If you hold `Ctrl`, a little green cross moves with your mouse in the blend space area
+  - Depending on where this green cross is defines the current axis values
+  - Playing the blended animations now will show you how its getting blended dynamically as you move your mouse around
+
+---
+
+### Animation Blueprint UE5
+
+- We will start with integrating idle-run blend with a speed variable in the BP
+- We will create the Speed variable as type float and then create a `State Machine` node in the `Anim Graph`
+- Once we connect both, we can go inside the `State Machine` and start creating states
+- We will create our first state as `Idle/Run` and connect the pre-existing `Entry` node to that
+- Then we drag our idle-run blend into the new state node and they get hooked up
+- Double-clicking on the state node takes you inside to show the blend-space asset node connected to an output node
+- The axes of the blend space are available as variables and we can drag out Speed variable in the BP as a getter and hook it into the Speed input of the Blend space
+- Compile and save now to see that when you update your speed variable in the BP, the blend space animation updates
+
+---
+
 ### Todos
 
-- Walk [DONE]
+- Walk Forward [DONE]
+- Walk Sideways
+- walk Backward
 - Idle [DONE]
-- Idle-run blend space [DONE]
-- Run
-- At-place Jump
-- Running Jump
+- Idle-run blend space [STARTED]
+- Run (you cannot run sideways or backwards)
+- At-place Jump (start/loop/fall)
+- Running Jump (start/loop/fall)
 - Crouch idle
-- Crouch walk
+- Crouch walk Forward
+- Crouch walk sideways
+- Crouch walk backward
 - Slide
 - Melee attack
 - Long-range attack
 - Damage taken
-- Animation BP & Input integration
+- Animation BP [STARTED]
+- Input integration
 
 ---

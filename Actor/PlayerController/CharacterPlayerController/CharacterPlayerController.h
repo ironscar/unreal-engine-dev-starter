@@ -55,12 +55,15 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	class UInputMappingContext* InputMapping;
 
+	// for looking around
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* Look2D;
 
+	// to shoot
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* MouseLeft;
 
+	// to toggle ammo
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* MouseRight;
 
