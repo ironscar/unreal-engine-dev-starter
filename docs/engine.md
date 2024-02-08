@@ -213,7 +213,7 @@ Caveats:
 | Ctrl* + A		|Crouch left		|Turn left + Crouch forward		|
 | Ctrl* + S		|Crouch right		|Turn back + Crouch forward		|
 | Ctrl* + D		|Crouch backward	|Turn right + Crouch forward	|
-| space			|Jump				|Jump							|
+| Space			|Jump				|Jump							|
 
 - `*` use `Ctrl` as a toggle for crouch instead of continuous press
 - If running and then you press `Ctrl`, slide in direction of running (only one anim required as run is only one direction)
