@@ -50,6 +50,12 @@ public:
 	// called when mouse right is clicked
 	void ChangeAmmo();
 
+	// called when W/S on keyboard is pressed
+	void MoveForward(const FInputActionValue& Value);
+
+	// called when A/D on keyboard is pressed
+	void MoveSideways(const FInputActionValue& Value);
+
 protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
@@ -66,6 +72,14 @@ protected:
 	// to toggle ammo
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* MouseRight;
+
+	// to move forward
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* MoveY;
+
+	// to move sideways
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* MoveX;
 
 private:
 

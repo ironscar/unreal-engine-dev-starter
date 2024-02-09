@@ -59,4 +59,13 @@ public:
 	// Sets rotation of the 3PS pawn
 	void Set3psRotation(float deltaX, float deltaY);
 
+	// Sets forward/backward location of pawn
+	void SetMoveForward(float value);
+
+	// Sets sideways location of FPS pawn
+	void SetFpsMoveSideways(float value);
+
+	// Sets sideways location of 3PS pawn
+	void Set3psMoveSideways(float value);
+
 };

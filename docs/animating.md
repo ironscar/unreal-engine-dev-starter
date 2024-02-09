@@ -121,6 +121,6 @@
 - Long-range attack
 - Damage taken
 - Animation BP [STARTED]
-- Input integration
+- Input integration [STARTED]
 
 ---

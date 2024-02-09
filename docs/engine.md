@@ -46,10 +46,10 @@ Caveats:
 - Set the game project as default project (it will be bold if it already is)
 - Set Visual Studio configuration to DebugGame Editor and Win64
 - Rebuild the solution for the first time you do this for a project
-- Next time onwards, press F5 to start Debug (this starts the UE5 editor again with debug enabled, Ctrl + F5 will start editor without debug enabled)
-- Starting the game using Alt + P would trigger the breakpoint if this actor is in the world and if debug is enabled
+- Next time onwards, press `F5` to start Debug (this starts the UE5 editor again with debug enabled, `Ctrl + F5` will start editor without debug enabled)
+- Starting the game using `Alt + P` would trigger the breakpoint if this actor is in the world and if debug is enabled
 - You cannot change the breakpoints during run again (we have to stop debugging and update the breakpoints)
-- Press Shift + F5 to stop debugging which will also close the editor
+- Press `Shift + F5` to stop debugging which will also close the editor
  
 Alternatively, we can just log the variable values using UE_LOG and keep the editor open on the side (as the above is manual / complex)
 
@@ -218,5 +218,26 @@ Caveats:
 - `*` use `Ctrl` as a toggle for crouch instead of continuous press
 - If running and then you press `Ctrl`, slide in direction of running (only one anim required as run is only one direction)
 - If running and then you press `Space`, make a running jump in direction of running, else stop and do at-place jump (separate anims for left/right/back jump not required)
+
+#### Movement setup
+
+- Create two new `Input Actions` for `MoveForward` and `MoveSideways` as `Axis 1D` values
+  - Add them to the `Input Mapping Configuration`
+  - For `MoveForward`, we give it `W` and `S` keyboard mappings with `S` having a `Negate` modifier
+  - For `MoveSideways`, we give it `A` and `D` keyboard mappings with `A` having a `Negate` modifier
+  - In `CharacterPlayerController` C++ class, add two new `UPROPERTY` fields for the new actions and add the binding functions for them like were done before
+  - Both Movement actions are Axis 1D so take a `FInputAction` argument in the binding functions and cast it to `float`
+    - it will send 1 for `W/D` and -1 for `A/S` and call the trigger binding functions for every frame its kept pressed
+  - For `MoveForward`, we create a method with the same name on the pawn C++ class and call that with the value
+	- Internally, it sets `AddMovementInput` taking the `ForwardVector` and the input value
+	- This is same for both FPS and 3PS
+	- We use `SetActorLocation` with New Location as `CurrentLocation + (ForwardVector * Direction)`
+  - For `MoveSideways`, we create a new method in the pawn C++ class too
+	- For FPS, it doesn't change the forward vector and makes character go sideways
+	  -	We use `SetActorLocation` with New Location as `CurrentLocation + (RightVector * Direction)`
+	- For 3PS, it makes the character turn sideways and then move forward
+	  - Try to get the `Skeletal Mesh` component and rotate that and move along its forward vector [TRY]
+	
+- Set the Anim BP on pawn somehow [CHECK]
 
 ---

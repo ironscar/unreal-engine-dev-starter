@@ -28,6 +28,9 @@ void ACharacterPlayerController::SetupInputComponent() {
 	PlayerEnhancedInputComponent->BindAction(MouseLeft, ETriggerEvent::Completed, this, &ACharacterPlayerController::Shoot);
 	PlayerEnhancedInputComponent->BindAction(MouseRight, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo);
 	PlayerEnhancedInputComponent->BindAction(Look2D, ETriggerEvent::Triggered, this, &ACharacterPlayerController::Look);
+	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);
+	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveSideways);
+
 }
 
 void ACharacterPlayerController::Look(const FInputActionValue& Value) {
@@ -61,4 +64,23 @@ void ACharacterPlayerController::Shoot() {
 void ACharacterPlayerController::ChangeAmmo() {
 	// change the type of ball actor to be spawned
 	SelectedAmmoType = SelectedAmmoType == 1 ? 2 : 1;
+}
+
+void ACharacterPlayerController::MoveForward(const FInputActionValue& Value) {
+	const float DirectionValue = Value.Get<float>();
+	if (CharacterPawn != nullptr && DirectionValue != 0) {
+		// same for both FPS and 3PS
+		CharacterPawn->SetMoveForward(DirectionValue);
+	}
+}
+
+void ACharacterPlayerController::MoveSideways(const FInputActionValue& Value) {
+	const float DirectionValue = Value.Get<float>();
+	if (CharacterPawn != nullptr && DirectionValue != 0) {
+		if (IsFPS) {
+			CharacterPawn->SetFpsMoveSideways(DirectionValue);
+		} else {
+			CharacterPawn->Set3psMoveSideways(DirectionValue);
+		}
+	}
 }

@@ -85,3 +85,18 @@ void ACharacterPawn::Set3psRotation(float deltaX, float deltaY) {
 		CameraComponent->SetRelativeLocation(CameraLocation);
 	}
 }
+
+// Called to move the pawn forward/backward
+void ACharacterPawn::SetMoveForward(float value) {
+	SetActorLocation((GetActorForwardVector() * value) + GetActorLocation());
+}
+
+// Called to move the FPS pawn sideways
+void ACharacterPawn::SetFpsMoveSideways(float value) {
+	SetActorLocation((GetActorRightVector() * value) + GetActorLocation());
+}
+
+// Called to move the 3PS pawn sideways
+void ACharacterPawn::Set3psMoveSideways(float value) {
+	// AddMovementInput(GetActorForwardVector(), value);
+}
