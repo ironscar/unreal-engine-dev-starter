@@ -19,6 +19,8 @@ private:
 	FRotator BaseRotation;
 	UCameraComponent* CameraComponent;
 
+	float CurrentSpeed = 0;
+
 public:
 	// Sets default values for this pawn's properties
 	ACharacterPawn();
@@ -39,9 +41,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Muzzle")
 	float MuzzleOffsetHeight = 100;
 
+	/* Specifies speed of walking */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
+	float WalkSpeed = 25;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	// Called to set speed on the animation blueprint
+	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Animations")
+	void SetAnimBlueprintSpeed(float value);
 
 public:
 	// Get Muzzle Location (depends on CharacterPawn Muzzle properties)

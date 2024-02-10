@@ -18,6 +18,15 @@ void ACharacterPawn::BeginPlay() {
 	if (CameraComponent != nullptr) {
 		BaseRotation = CameraComponent->GetRelativeRotation();
 	}
+
+	// set walk speed to 0
+	SetAnimBlueprintSpeed(0);
+}
+
+// Called to set speed on animation blueprint
+void ACharacterPawn::SetAnimBlueprintSpeed_Implementation(float value) {
+	// Each BP ought to override this and set the animation blueprint speed with the specific implementation
+	CurrentSpeed = value;
 }
 
 // Get Muzzle Location (depends on CharacterPawn Muzzle properties)
@@ -88,11 +97,14 @@ void ACharacterPawn::Set3psRotation(float deltaX, float deltaY) {
 
 // Called to move the pawn forward/backward
 void ACharacterPawn::SetMoveForward(float value) {
-	SetActorLocation((GetActorForwardVector() * value) + GetActorLocation());
+	SetAnimBlueprintSpeed(WalkSpeed);
+	UE_LOG(LogTemp, Warning, TEXT("Speed = %f"), CurrentSpeed);
+	SetActorLocation((GetActorForwardVector() * value * CurrentSpeed) + GetActorLocation());
 }
 
 // Called to move the FPS pawn sideways
 void ACharacterPawn::SetFpsMoveSideways(float value) {
+	SetAnimBlueprintSpeed(WalkSpeed);
 	SetActorLocation((GetActorRightVector() * value) + GetActorLocation());
 }
 

@@ -238,6 +238,23 @@ Caveats:
 	- For 3PS, it makes the character turn sideways and then move forward
 	  - Try to get the `Skeletal Mesh` component and rotate that and move along its forward vector [TRY]
 	
-- Set the Anim BP on pawn somehow [CHECK]
+- To controlling Anim BP on pawn
+  - We create a new protected method for setting speed as `SetAnimBlueprintSpeed`
+  - We add `UFUNCTION(BlueprintNativeEvent)` above it (this doesn't get autocomplete)
+  - `BlueprintNativeEvent` makes it overridable in the BP
+    - Idea is every pawn may have its own Animation BP
+    - So we allow overriding the method to control BP and call them from the movement control C++ methods
+  - Now, to provide an implementation for this method in C++, we need to implement `{methodName}_Implementation` instead of the actual method name
+    - Here we set the `CurrentSpeed` with an argument
+    - This basically gets called if the pawn doesn't override the method on its end
+  - Build this on live code and then in the pawn BP event graph
+    - Get the event for this method
+    - Right click it and choose `Add Call to Parent Function` which internally sets the current speed
+    - We can get the Animation BP Instance from the `Get Anim Instance` method with target as skeletal mesh component of the pawn
+    - We check if its valid and if not, we set the instance to use our pawn's Animation BP `BP_MyCharacterAnim`
+    - Then we set the `Speed` variable on the Animation BP with argument coming from `SetAnimBlueprintSpeed`
+  
+- Problems are that when we stop pressing `W/S`
+  - it doesn't trigger with value 0 so character never stops walk anim [CHECK]
 
 ---
