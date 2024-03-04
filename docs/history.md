@@ -20,6 +20,7 @@
 - `8th February 2024`: Created basic animation blueprint in UE5 for idle-walk blend & started input integration
 - `9th February 2024`: Inputs integrated for moving FPS-mode character without animations
 - `10th February 2024`: Hooked up animation blueprint to custom pawn in UE5
+- `4th March 2024`: Move forward animation & input integration for FPS done
 
 ---
 
