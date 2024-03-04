@@ -233,15 +233,16 @@ Caveats:
   - Both Movement actions are Axis 1D so take a `FInputAction` argument in the binding functions and cast it to `float`
     - it will send 1 for `W/D` and -1 for `A/S` and call the trigger binding functions
   - For `MoveForward`, we create a method `SetMoveForward` on the pawn C++ class and call that with the value
-	- Internally, it sets the `CurrentSpeed` of the pawn to a constant `Walk Speed` multiplied by the directional value argument
-	- If `Completed`, its set to zero, otherwise it is `25` or `-25` based on the key
+	- Internally, it sets the `CurrentSpeed` of the pawn to a constant `Walk Speed` multiplied by the absolute directional value argument
+	- We cannot depend on `CurrentSpeed` specifying direction as there are two axes involved
+	- If `Completed`, its set to zero, otherwise it is `5` (current threshold on AnimBP and constant in class)
 	- This is same for both FPS and 3PS
-	- We also set a boolean flag to specify if its moving forward
-	- In Tick, we check if `abs(CurrentSpeed) > 0` and use `SetActorLocation` with New Location as `CurrentLocation + (ForwardVector * CurrentSpeed)`
+	- We also set a float `MovingForward` to specify if its moving forward (1 for W and -1 for S)
+	- In Tick, we check if `CurrentSpeed > 0` and use `SetActorLocation` with New Location as `CurrentLocation + (ForwardVector * CurrentSpeed * MovingForward)`
   - For `MoveSideways`, we create a new method in the pawn C++ class too
 	- For FPS, it doesn't change the forward vector and makes character go sideways
-	  -	We set a boolean flag to specify if its moving sideways, and other parts remain the same as for forward
-	  -	We use `SetActorLocation` with New Location as `CurrentLocation + (RightVector * CurrentSpeed)`
+	  -	We set a float `MoveSideways` to specify if its moving sideways (1 for D and -1 for A), and other parts remain the same as for forward
+	  -	We use `SetActorLocation` with New Location as `CurrentLocation + (RightVector * CurrentSpeed * MovingSideways)`
 	- For 3PS, it makes the character turn sideways and then move forward
 	  - Try to get the `Skeletal Mesh` component and rotate that and move along its forward vector [TRY]
 	
@@ -259,6 +260,10 @@ Caveats:
     - Right click it and choose `Add Call to Parent Function` which internally sets the current speed
     - We can get the Animation BP Instance from the `Get Anim Instance` method with target as skeletal mesh component of the pawn
     - We check if its valid and if not, we set the instance to use our pawn's Animation BP `BP_MyCharacterAnim`
-    - Then we set the `Speed` variable on the Animation BP with the absolute value of the argument coming from `SetAnimBlueprintSpeed` as it is directional
+    - Then we set the `Speed` variable on the Animation BP with the value of the argument coming from `SetAnimBlueprintSpeed`
+
+- Caveat
+	- For some reason, the enhanced input bindings for movement and the call to parent function in CharacterPawnBP keep getting removed
+	- We have to make sure those are set for movement integration to work end-to-end
 
 ---

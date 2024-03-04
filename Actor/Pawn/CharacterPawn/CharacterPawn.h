@@ -20,8 +20,8 @@ private:
 	UCameraComponent* CameraComponent;
 
 	float CurrentSpeed = 0;
-	bool IsMovingForward = false;
-	bool IsMovingSideways = false;
+	float MovingForward = 0;
+	float MovingSideways = 0;
 
 public:
 	// Sets default values for this pawn's properties

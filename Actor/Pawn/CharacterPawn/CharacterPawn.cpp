@@ -51,14 +51,13 @@ void ACharacterPawn::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 
 	// move actor if moving in any direction
-	if (abs(CurrentSpeed) > 0) {
-		if (IsMovingForward) {
-			SetActorLocation((GetActorForwardVector() * CurrentSpeed) + GetActorLocation());
+	if (CurrentSpeed > 0) {
+		if (MovingForward != 0) {
+			SetActorLocation((GetActorForwardVector() * CurrentSpeed * MovingForward) + GetActorLocation());
 		}
-		if (IsMovingSideways) {
-			SetActorLocation((GetActorRightVector() * CurrentSpeed) + GetActorLocation());
+		if (MovingSideways != 0) {
+			SetActorLocation((GetActorRightVector() * CurrentSpeed * MovingSideways) + GetActorLocation());
 		}
-		
 	}
 }
 
@@ -108,15 +107,15 @@ void ACharacterPawn::Set3psRotation(float deltaX, float deltaY) {
 
 // Called to move the pawn forward/backward
 void ACharacterPawn::SetMoveForward(float value) {
-	IsMovingForward = value != 0;
-	SetAnimBlueprintSpeed(WalkSpeed * value);
+	MovingForward = value;
+	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
 	UE_LOG(LogTemp, Warning, TEXT("Pawn Forward Speed = %f"), CurrentSpeed);
 }
 
 // Called to move the FPS pawn sideways
 void ACharacterPawn::SetFpsMoveSideways(float value) {
-	IsMovingSideways = value != 0;
-	SetAnimBlueprintSpeed(WalkSpeed * value);
+	MovingSideways = value;
+	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
 	UE_LOG(LogTemp, Warning, TEXT("Pawn Side Speed = %f"), CurrentSpeed);
 }
 
