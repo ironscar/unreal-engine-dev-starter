@@ -225,16 +225,23 @@ Caveats:
   - Add them to the `Input Mapping Configuration`
   - For `MoveForward`, we give it `W` and `S` keyboard mappings with `S` having a `Negate` modifier
   - For `MoveSideways`, we give it `A` and `D` keyboard mappings with `A` having a `Negate` modifier
-  - In `CharacterPlayerController` C++ class, add two new `UPROPERTY` fields for the new actions and add the binding functions for them like were done before
+  - In `CharacterPlayerController` C++ class, add two new `UPROPERTY` fields for the new actions and add the binding functions for them
+	- This time we bind on `Started` and `Completed` instead of `Triggered`
+	- `Triggered` fires multilpe time while event occurs but the others only happen at the start and end
+	- We do this because we want to track when the event stops and `Triggered` does not help us do that
+	- `Completed` will send a value of zero
   - Both Movement actions are Axis 1D so take a `FInputAction` argument in the binding functions and cast it to `float`
-    - it will send 1 for `W/D` and -1 for `A/S` and call the trigger binding functions for every frame its kept pressed
-  - For `MoveForward`, we create a method with the same name on the pawn C++ class and call that with the value
-	- Internally, it sets `AddMovementInput` taking the `ForwardVector` and the input value
+    - it will send 1 for `W/D` and -1 for `A/S` and call the trigger binding functions
+  - For `MoveForward`, we create a method `SetMoveForward` on the pawn C++ class and call that with the value
+	- Internally, it sets the `CurrentSpeed` of the pawn to a constant `Walk Speed` multiplied by the directional value argument
+	- If `Completed`, its set to zero, otherwise it is `25` or `-25` based on the key
 	- This is same for both FPS and 3PS
-	- We use `SetActorLocation` with New Location as `CurrentLocation + (ForwardVector * Direction)`
+	- We also set a boolean flag to specify if its moving forward
+	- In Tick, we check if `abs(CurrentSpeed) > 0` and use `SetActorLocation` with New Location as `CurrentLocation + (ForwardVector * CurrentSpeed)`
   - For `MoveSideways`, we create a new method in the pawn C++ class too
 	- For FPS, it doesn't change the forward vector and makes character go sideways
-	  -	We use `SetActorLocation` with New Location as `CurrentLocation + (RightVector * Direction)`
+	  -	We set a boolean flag to specify if its moving sideways, and other parts remain the same as for forward
+	  -	We use `SetActorLocation` with New Location as `CurrentLocation + (RightVector * CurrentSpeed)`
 	- For 3PS, it makes the character turn sideways and then move forward
 	  - Try to get the `Skeletal Mesh` component and rotate that and move along its forward vector [TRY]
 	
@@ -252,9 +259,6 @@ Caveats:
     - Right click it and choose `Add Call to Parent Function` which internally sets the current speed
     - We can get the Animation BP Instance from the `Get Anim Instance` method with target as skeletal mesh component of the pawn
     - We check if its valid and if not, we set the instance to use our pawn's Animation BP `BP_MyCharacterAnim`
-    - Then we set the `Speed` variable on the Animation BP with argument coming from `SetAnimBlueprintSpeed`
-  
-- Problems are that when we stop pressing `W/S`
-  - it doesn't trigger with value 0 so character never stops walk anim [CHECK]
+    - Then we set the `Speed` variable on the Animation BP with the absolute value of the argument coming from `SetAnimBlueprintSpeed` as it is directional
 
 ---

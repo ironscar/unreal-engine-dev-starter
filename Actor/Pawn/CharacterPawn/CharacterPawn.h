@@ -20,6 +20,8 @@ private:
 	UCameraComponent* CameraComponent;
 
 	float CurrentSpeed = 0;
+	bool IsMovingForward = false;
+	bool IsMovingSideways = false;
 
 public:
 	// Sets default values for this pawn's properties
@@ -43,7 +45,7 @@ public:
 
 	/* Specifies speed of walking */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
-	float WalkSpeed = 25;
+	float WalkSpeed = 5;
 
 protected:
 	// Called when the game starts or when spawned

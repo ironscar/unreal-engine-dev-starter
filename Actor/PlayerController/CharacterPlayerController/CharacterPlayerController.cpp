@@ -28,9 +28,10 @@ void ACharacterPlayerController::SetupInputComponent() {
 	PlayerEnhancedInputComponent->BindAction(MouseLeft, ETriggerEvent::Completed, this, &ACharacterPlayerController::Shoot);
 	PlayerEnhancedInputComponent->BindAction(MouseRight, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo);
 	PlayerEnhancedInputComponent->BindAction(Look2D, ETriggerEvent::Triggered, this, &ACharacterPlayerController::Look);
-	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);
-	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveSideways);
-
+	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Started, this, &ACharacterPlayerController::MoveForward);
+	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveForward);
+	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Started, this, &ACharacterPlayerController::MoveSideways);
+	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveSideways);
 }
 
 void ACharacterPlayerController::Look(const FInputActionValue& Value) {
@@ -68,7 +69,7 @@ void ACharacterPlayerController::ChangeAmmo() {
 
 void ACharacterPlayerController::MoveForward(const FInputActionValue& Value) {
 	const float DirectionValue = Value.Get<float>();
-	if (CharacterPawn != nullptr && DirectionValue != 0) {
+	if (CharacterPawn != nullptr) {
 		// same for both FPS and 3PS
 		CharacterPawn->SetMoveForward(DirectionValue);
 	}
@@ -76,7 +77,7 @@ void ACharacterPlayerController::MoveForward(const FInputActionValue& Value) {
 
 void ACharacterPlayerController::MoveSideways(const FInputActionValue& Value) {
 	const float DirectionValue = Value.Get<float>();
-	if (CharacterPawn != nullptr && DirectionValue != 0) {
+	if (CharacterPawn != nullptr) {
 		if (IsFPS) {
 			CharacterPawn->SetFpsMoveSideways(DirectionValue);
 		} else {
