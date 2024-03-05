@@ -22,7 +22,7 @@ public:
 	
 	// specifies if camera is FPS or 3PS
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPlayerController")
-	bool IsFPS = true;
+	bool IsFPS = false;
 
 	// specifies the light ammo type
 	UPROPERTY(EditAnywhere, meta = (MetaClass = "MyBullet"), Category = MyBulletBlueprints)

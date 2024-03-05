@@ -19,6 +19,9 @@ void ACharacterPawn::BeginPlay() {
 		BaseRotation = CameraComponent->GetRelativeRotation();
 	}
 
+	// get skeletal mesh component reference if exists in BP
+	SkeletalMeshComponent = FindComponentByClass<USkeletalMeshComponent>();
+
 	// set walk speed to 0
 	SetAnimBlueprintSpeed(0);
 }
@@ -29,18 +32,30 @@ void ACharacterPawn::SetAnimBlueprintSpeed_Implementation(float value) {
 	CurrentSpeed = value;
 }
 
+// Called to get the skeletal mesh forward vector as it depends on how this mesh was exported
+FVector ACharacterPawn::GetSkeletalMeshForwardVector_Implementation() {
+	// Each BP ought to override this based on how their mesh aligns with the pawn directions
+	return SkeletalMeshComponent->GetForwardVector();
+}
+
+// Called to get the skeletal mesh right vector as it depends on how this mesh was exported
+FVector ACharacterPawn::GetSkeletalMeshRightVector_Implementation() {
+	// Each BP ought to override this based on how their mesh aligns with the pawn directions
+	return SkeletalMeshComponent->GetRightVector();
+}
+
 // Get Muzzle Location (depends on CharacterPawn Muzzle properties)
 FVector ACharacterPawn::GetMuzzleLocation() {
 	FVector MuzzleLocation = GetActorLocation();
 	MuzzleLocation.Z += MuzzleOffsetHeight;
-	FVector TempForward = GetActorForwardVector().GetClampedToMaxSize(MuzzleOffsetForward);
+	FVector TempForward = GetSkeletalMeshForwardVector().GetClampedToMaxSize(MuzzleOffsetForward);
 	MuzzleLocation += TempForward;
 	return MuzzleLocation;
 }
 
 // Get Forward vector using pawn direction and camera Z
 FVector ACharacterPawn::GetForwardVector() {
-	FVector ForwardVector = GetActorForwardVector();
+	FVector ForwardVector = GetSkeletalMeshForwardVector();
 	FVector CameraForwardVector = CameraComponent->GetForwardVector();
 	ForwardVector.Z = CameraForwardVector.Z;
 	return ForwardVector;
@@ -53,10 +68,17 @@ void ACharacterPawn::Tick(float DeltaTime) {
 	// move actor if moving in any direction
 	if (CurrentSpeed > 0) {
 		if (MovingForward != 0) {
-			SetActorLocation((GetActorForwardVector() * CurrentSpeed * MovingForward) + GetActorLocation());
+			SetActorLocation((GetSkeletalMeshForwardVector() * CurrentSpeed * MovingForward) + GetActorLocation());
 		}
 		if (MovingSideways != 0) {
-			SetActorLocation((GetActorRightVector() * CurrentSpeed * MovingSideways) + GetActorLocation());
+			SetActorLocation((GetSkeletalMeshRightVector() * CurrentSpeed * MovingSideways) + GetActorLocation());
+		}
+		if (MeshRotating != 0) {
+			FRotator CurrentRotation = SkeletalMeshComponent->GetRelativeRotation();
+			float DeltaRot = 10;
+			CurrentRotation.Yaw = MeshRotating > 0 ? CurrentRotation.Yaw + DeltaRot : CurrentRotation.Yaw - DeltaRot;
+			SkeletalMeshComponent->SetRelativeRotation(CurrentRotation);
+			MeshRotating = MeshRotating > 0 ? MeshRotating - DeltaRot : MeshRotating + DeltaRot;
 		}
 	}
 }
@@ -116,10 +138,13 @@ void ACharacterPawn::SetMoveForward(float value) {
 void ACharacterPawn::SetFpsMoveSideways(float value) {
 	MovingSideways = value;
 	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
-	UE_LOG(LogTemp, Warning, TEXT("Pawn Side Speed = %f"), CurrentSpeed);
+	UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Side Speed = %f"), CurrentSpeed);
 }
 
 // Called to move the 3PS pawn sideways
 void ACharacterPawn::Set3psMoveSideways(float value) {
-	// AddMovementInput(GetActorForwardVector(), value);
+	MovingForward = value;
+	MeshRotating = 90 * value;
+	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
+	UE_LOG(LogTemp, Warning, TEXT("3PS Pawn Side Speed = %f"), CurrentSpeed);
 }

@@ -21,6 +21,7 @@
 - `9th February 2024`: Inputs integrated for moving FPS-mode character without animations
 - `10th February 2024`: Hooked up animation blueprint to custom pawn in UE5
 - `4th March 2024`: Move forward animation & input integration for FPS done
+- `5th March 2024`: Move sideways for 3PS pawn in progress
 
 ---
 

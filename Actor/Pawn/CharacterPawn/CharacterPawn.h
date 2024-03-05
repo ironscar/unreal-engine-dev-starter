@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Pawn.h"
 #include "CharacterPawn.generated.h"
 
@@ -18,10 +19,12 @@ class LEARNINGKITPROJECT_API ACharacterPawn : public APawn {
 private:
 	FRotator BaseRotation;
 	UCameraComponent* CameraComponent;
+	USkeletalMeshComponent* SkeletalMeshComponent;
 
 	float CurrentSpeed = 0;
 	float MovingForward = 0;
 	float MovingSideways = 0;
+	float MeshRotating = 0;
 
 public:
 	// Sets default values for this pawn's properties
@@ -29,7 +32,7 @@ public:
 
 	/* The radius used by the camera around the pawn for third-person controls */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Camera")
-	float CameraRadius = 150;
+	float CameraRadius = 440;
 
 	/* Specifies the pitch (look up/down) rotation limit in degrees */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Camera")
@@ -54,6 +57,14 @@ protected:
 	// Called to set speed on the animation blueprint
 	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Animations")
 	void SetAnimBlueprintSpeed(float value);
+
+	// Called to get the skeletal mesh forward vector as it depends on how this mesh was exported
+	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Directions")
+	FVector GetSkeletalMeshForwardVector();
+
+	// Called to get the skeletal mesh right vector as it depends on how this mesh was exported
+	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Directions")
+	FVector GetSkeletalMeshRightVector();
 
 public:
 	// Get Muzzle Location (depends on CharacterPawn Muzzle properties)

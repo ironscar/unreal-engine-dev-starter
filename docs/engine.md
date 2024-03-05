@@ -244,7 +244,19 @@ Caveats:
 	  -	We set a float `MoveSideways` to specify if its moving sideways (1 for D and -1 for A), and other parts remain the same as for forward
 	  -	We use `SetActorLocation` with New Location as `CurrentLocation + (RightVector * CurrentSpeed * MovingSideways)`
 	- For 3PS, it makes the character turn sideways and then move forward
-	  - Try to get the `Skeletal Mesh` component and rotate that and move along its forward vector [TRY]
+	  -	We get a reference of the `SkeletalMeshComponent` as we did for `CamerComponent`
+      - We want to replace all occurrences of `GetActorForwardVector` and `GetActorRightVector` with `SkeletalMeshComponent->GetForwardVector` and `SkeletalMeshComponent->GetRightVector` respectively
+	  - But because UE treats `X` as forward vector whereas we exported the mesh with `Y` as forward vector, the directions don't align for the pawn and the mesh
+	  - So we create two blueprint-overrideable functions for returning the forward and right vector of the skeletal mesh as aligned with the pawn
+	  - In the C++ class, we return the exact vectors but in BP, we override them from `My Blueprint > Add > Override function`
+	  - For forward, we sent the right vector and for right, we send the opposite of the forward vector (multiply by -1)
+	  - For sideways, we need to rotate the skeletal mesh incrementally so we do so in `Tick` with another flag that we set in the `Set3psMoveSideways` method
+	  - This flag is set to `90 * value` and is decremented to zero while applying those delta decrements to the rotation
+
+- Todo
+  - Try to rotate the mesh when wanting to go sideways [TRY]
+	- since camera is child of pawn, the whole camera rotates when the pawn rotates which is not the intended behavior
+  - Try to move in the direction of the camera like FPS [TRY]
 	
 - To controlling Anim BP on pawn
   - We create a new protected method for setting speed as `SetAnimBlueprintSpeed`
