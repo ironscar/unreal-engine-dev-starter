@@ -97,6 +97,7 @@ Caveats:
   - We will also create blueprints classes from these new C++ classes
   - These will be the `BP_MyCharacterPawn` and `BP_MyCharacterPlayerController`
   - In the pawn BP, we can drag in our custom character mesh and camera to give it visual representation
+  - Camera and mesh should be siblings so that camera can move independently of mesh if required 
 - For this demo, we also create the MouseInputGameModeBase class from the GameModeBase class which sets the default pawn and controller to our custom ones
 - To set the defaults, we use `FOjbectFinder` like for `FloatingActor` and we can get the reference of the corresponding BP assets by:
 	- finding them in UE5 content browser
@@ -232,31 +233,34 @@ Caveats:
 	- `Completed` will send a value of zero
   - Both Movement actions are Axis 1D so take a `FInputAction` argument in the binding functions and cast it to `float`
     - it will send 1 for `W/D` and -1 for `A/S` and call the trigger binding functions
-  - For `MoveForward`, we create a method `SetMoveForward` on the pawn C++ class and call that with the value
-	- Internally, it sets the `CurrentSpeed` of the pawn to a constant `Walk Speed` multiplied by the absolute directional value argument
-	- We cannot depend on `CurrentSpeed` specifying direction as there are two axes involved
-	- If `Completed`, its set to zero, otherwise it is `5` (current threshold on AnimBP and constant in class)
-	- This is same for both FPS and 3PS
-	- We also set a float `MovingForward` to specify if its moving forward (1 for W and -1 for S)
-	- In Tick, we check if `CurrentSpeed > 0` and use `SetActorLocation` with New Location as `CurrentLocation + (ForwardVector * CurrentSpeed * MovingForward)`
-  - For `MoveSideways`, we create a new method in the pawn C++ class too
+  
+- For `MoveForward`, we create a method `SetMoveForward` on the pawn C++ class and call that with the value
+  - Internally, it sets the `CurrentSpeed` of the pawn to a constant `Walk Speed` multiplied by the absolute directional value argument
+  - We cannot depend on `CurrentSpeed` specifying direction as there are two axes involved
+  - If `Completed`, its set to zero, otherwise it is `10` (current constant in class)
+  - We also set a float `MovingForward` to specify if its moving forward (1 for W and -1 for S)
+  - In Tick, we check if `CurrentSpeed > 0` and `MovingForward` is not zero
+    - we get the Camera forward vector and reset its `Z` value to the skeletal mesh's overridden forward vector Z value
+    - we do this so that any rotations to Camera while looking up/down doesn't make the movement in that vector and remains on the floor
+    - then we do `SetActorLocation` by adding `CameraVector * CurrentSpeed * MovingForward` to current location
+  - This is same for both FPS and 3PS
+  
+- For `MoveSideways`, we create a new method in the pawn C++ class too
 	- For FPS, it doesn't change the forward vector and makes character go sideways
 	  -	We set a float `MoveSideways` to specify if its moving sideways (1 for D and -1 for A), and other parts remain the same as for forward
+	  - We use Camera right vector but reset its Z with the skeletal mesh's overridden forward vector Z value for same reason as for forward
 	  -	We use `SetActorLocation` with New Location as `CurrentLocation + (RightVector * CurrentSpeed * MovingSideways)`
 	- For 3PS, it makes the character turn sideways and then move forward
-	  -	We get a reference of the `SkeletalMeshComponent` as we did for `CamerComponent`
-      - We want to replace all occurrences of `GetActorForwardVector` and `GetActorRightVector` with `SkeletalMeshComponent->GetForwardVector` and `SkeletalMeshComponent->GetRightVector` respectively
+	  -	We get a reference of the `SkeletalMeshComponent` as we did for `CameraComponent`
+      - We want to replace all occurrences of `GetActorForwardVector` and `GetActorRightVector` with `SkeletalMeshComponent->GetForwardVector` and `SkeletalMeshComponent->GetRightVector` respectively for now
 	  - But because UE treats `X` as forward vector whereas we exported the mesh with `Y` as forward vector, the directions don't align for the pawn and the mesh
-	  - So we create two blueprint-overrideable functions for returning the forward and right vector of the skeletal mesh as aligned with the pawn
+	  - So we create blueprint-overrideable functions for returning the forward and right vector of the skeletal mesh as aligned with the pawn
 	  - In the C++ class, we return the exact vectors but in BP, we override them from `My Blueprint > Add > Override function`
 	  - For forward, we sent the right vector and for right, we send the opposite of the forward vector (multiply by -1)
-	  - For sideways, we need to rotate the skeletal mesh incrementally so we do so in `Tick` with another flag that we set in the `Set3psMoveSideways` method
-	  - This flag is set to `90 * value` and is decremented to zero while applying those delta decrements to the rotation
-
-- Todo
-  - Try to rotate the mesh when wanting to go sideways [TRY]
-	- since camera is child of pawn, the whole camera rotates when the pawn rotates which is not the intended behavior
-  - Try to move in the direction of the camera like FPS [TRY]
+	  - Similarly, e will add it for RelativeRotation as well which needs `Yaw + 90`
+	  - We calculate a turn angle which is the difference of rotations between camera and skeletal mesh (aligned with pawn)
+	  - If 3PS, we make the mesh slowly take deltaRotations towards the turn angle
+    	- this is not working correctly yet because it makes random rotations [FIX]
 	
 - To controlling Anim BP on pawn
   - We create a new protected method for setting speed as `SetAnimBlueprintSpeed`
@@ -273,9 +277,5 @@ Caveats:
     - We can get the Animation BP Instance from the `Get Anim Instance` method with target as skeletal mesh component of the pawn
     - We check if its valid and if not, we set the instance to use our pawn's Animation BP `BP_MyCharacterAnim`
     - Then we set the `Speed` variable on the Animation BP with the value of the argument coming from `SetAnimBlueprintSpeed`
-
-- Caveat
-	- For some reason, the enhanced input bindings for movement and the call to parent function in CharacterPawnBP keep getting removed
-	- We have to make sure those are set for movement integration to work end-to-end
 
 ---

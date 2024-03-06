@@ -24,7 +24,7 @@ private:
 	float CurrentSpeed = 0;
 	float MovingForward = 0;
 	float MovingSideways = 0;
-	float MeshRotating = 0;
+	bool is3PS = false;
 
 public:
 	// Sets default values for this pawn's properties
@@ -32,7 +32,7 @@ public:
 
 	/* The radius used by the camera around the pawn for third-person controls */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Camera")
-	float CameraRadius = 440;
+	float CameraRadius = 150;
 
 	/* Specifies the pitch (look up/down) rotation limit in degrees */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Camera")
@@ -44,11 +44,15 @@ public:
 
 	/* Specifies the height muzzle offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Muzzle")
-	float MuzzleOffsetHeight = 100;
+	float MuzzleOffsetHeight = 10;
 
 	/* Specifies speed of walking */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
-	float WalkSpeed = 5;
+	float WalkSpeed = 10;
+
+	/* Specifies speed of turning */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
+	float TurnSpeed = 10;
 
 protected:
 	// Called when the game starts or when spawned
@@ -65,6 +69,10 @@ protected:
 	// Called to get the skeletal mesh right vector as it depends on how this mesh was exported
 	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Directions")
 	FVector GetSkeletalMeshRightVector();
+
+	// Called to get the skeletal mesh rotation as it depends on how this mesh was exported
+	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Directions")
+	FRotator GetSkeletalMeshRotation();
 
 public:
 	// Get Muzzle Location (depends on CharacterPawn Muzzle properties)

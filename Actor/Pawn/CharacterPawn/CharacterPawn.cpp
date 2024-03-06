@@ -44,6 +44,12 @@ FVector ACharacterPawn::GetSkeletalMeshRightVector_Implementation() {
 	return SkeletalMeshComponent->GetRightVector();
 }
 
+// Called to get the skeletal mesh rotation as it depends on how this mesh was exported
+FRotator ACharacterPawn::GetSkeletalMeshRotation_Implementation() {
+	// Each BP ought to override this based on how their mesh aligns with the pawn directions
+	return SkeletalMeshComponent->GetRelativeRotation();
+}
+
 // Get Muzzle Location (depends on CharacterPawn Muzzle properties)
 FVector ACharacterPawn::GetMuzzleLocation() {
 	FVector MuzzleLocation = GetActorLocation();
@@ -67,18 +73,35 @@ void ACharacterPawn::Tick(float DeltaTime) {
 
 	// move actor if moving in any direction
 	if (CurrentSpeed > 0) {
+		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
+		FRotator SkeletalMeshRotation = GetSkeletalMeshRotation();
+		FVector SkeletalMeshForwardVector = GetSkeletalMeshForwardVector();
+		UE_LOG(LogTemp, Warning, TEXT("Camera & Mesh angles = (%f,%f)"), CameraRotation.Yaw, SkeletalMeshRotation.Yaw);
+		float TurnAngle = SkeletalMeshRotation.Yaw - CameraRotation.Yaw;
+
 		if (MovingForward != 0) {
-			SetActorLocation((GetSkeletalMeshForwardVector() * CurrentSpeed * MovingForward) + GetActorLocation());
+			FVector CameraVector = CameraComponent->GetForwardVector();
+			// need to eliminate the pitch rotation aspect of the camera in this vector
+			CameraVector.Z = SkeletalMeshForwardVector.Z;
+			SetActorLocation((CameraVector * CurrentSpeed * MovingForward) + GetActorLocation());
 		}
 		if (MovingSideways != 0) {
-			SetActorLocation((GetSkeletalMeshRightVector() * CurrentSpeed * MovingSideways) + GetActorLocation());
+			FVector CameraVector = CameraComponent->GetRightVector();
+			// need to eliminate the pitch rotation aspect of the camera in this vector
+			CameraVector.Z = SkeletalMeshForwardVector.Z;
+			SetActorLocation((CameraVector * CurrentSpeed * MovingSideways) + GetActorLocation());
+
+			// meed to set turn angle to direction you want to move for 3PS
+			TurnAngle -= 90 * MovingSideways;
 		}
-		if (MeshRotating != 0) {
+		if (TurnAngle != 0 && is3PS) {
+			UE_LOG(LogTemp, Warning, TEXT("Turn angle = %f"), TurnAngle);
+
+			// set the turn speed to angle if its smaller so that we can surely get to zero
+			float ActualTurnSpeed = TurnAngle < TurnSpeed ? TurnAngle : TurnSpeed;
 			FRotator CurrentRotation = SkeletalMeshComponent->GetRelativeRotation();
-			float DeltaRot = 10;
-			CurrentRotation.Yaw = MeshRotating > 0 ? CurrentRotation.Yaw + DeltaRot : CurrentRotation.Yaw - DeltaRot;
+			CurrentRotation.Yaw = TurnAngle < 0 ? CurrentRotation.Yaw + ActualTurnSpeed : CurrentRotation.Yaw - ActualTurnSpeed;
 			SkeletalMeshComponent->SetRelativeRotation(CurrentRotation);
-			MeshRotating = MeshRotating > 0 ? MeshRotating - DeltaRot : MeshRotating + DeltaRot;
 		}
 	}
 }
@@ -143,8 +166,8 @@ void ACharacterPawn::SetFpsMoveSideways(float value) {
 
 // Called to move the 3PS pawn sideways
 void ACharacterPawn::Set3psMoveSideways(float value) {
-	MovingForward = value;
-	MeshRotating = 90 * value;
+	MovingSideways = value;
+	is3PS = true;
 	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
 	UE_LOG(LogTemp, Warning, TEXT("3PS Pawn Side Speed = %f"), CurrentSpeed);
 }

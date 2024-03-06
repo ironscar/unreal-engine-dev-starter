@@ -22,6 +22,7 @@
 - `10th February 2024`: Hooked up animation blueprint to custom pawn in UE5
 - `4th March 2024`: Move forward animation & input integration for FPS done
 - `5th March 2024`: Move sideways for 3PS pawn in progress
+- `6th March 2024`: Fixed move forward for 3PS but move sideways still in progress
 
 ---
 
