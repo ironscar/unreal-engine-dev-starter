@@ -5,7 +5,7 @@ This project attempts to unify various game development concepts. But this repos
 ## Resources
 
 - `/docs/histry.md` - a historical collection of what I did over individual sessions
-- `/docs/engine.md` - docs for things we learned while using a game engine
+- `/docs/engine/engine.md` - docs for things we learned while using a game engine
 - `/docs/sculpting.md` - docs for things we learned while sculpting
 - `/docs/uv-unwrapping.md` - docs for things we learned while uv-unwrapping
 - `/docs/texturing.md` - docs for things we learned while texturing
