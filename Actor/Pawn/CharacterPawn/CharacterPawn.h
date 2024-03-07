@@ -10,6 +10,17 @@
 
 /*
  * A pawn class override to take mouse and keyboard input and do associated actions
+ * Assumptions:
+ *  - Will be controlled by a derivative of CharacterPlayerController class
+ *  - Will be inherited by a Blueprint class
+ *  - Blueprint class will have a skeletal mesh and camera component as siblings
+ *  - There will be an associated Animation blueprint for the skeletal mesh
+ *  - Blueprint class will sync with the Anim BP by listening to the SetAnimBlueprintSpeed event
+ *  - On this event, it should call the parent method, set the AnimInstance to the Anim BP if not set, and then use it to control variables on the Anim BP
+ *  - Blueprint class can choose to override implementations of getting forward, right, rotation values of mesh aligned with pawn based on how its exported
+ *  - Default implementation assumes mesh exported with forward as X
+ *  - Provides a few blueprint properties that can be overridden for customizability
+ *	- Override the DefaultPawn class in Project settings > Maps & Modes > Default modes > Selected game mode to a derivative of this class to use it
  */
 UCLASS()
 class LEARNINGKITPROJECT_API ACharacterPawn : public APawn {
