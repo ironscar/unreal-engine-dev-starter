@@ -72,12 +72,14 @@ void ACharacterPawn::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 
 	// move actor if moving in any direction
+	MovePawnPerTick();
+}
+
+void ACharacterPawn::MovePawnPerTick() {
 	if (CurrentSpeed > 0) {
-		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
+		FRotator TargetRotation = CameraComponent->GetRelativeRotation();
 		FRotator SkeletalMeshRotation = GetSkeletalMeshRotation();
 		FVector SkeletalMeshForwardVector = GetSkeletalMeshForwardVector();
-		UE_LOG(LogTemp, Warning, TEXT("Camera & Mesh angles = (%f,%f)"), CameraRotation.Yaw, SkeletalMeshRotation.Yaw);
-		float TurnAngle = SkeletalMeshRotation.Yaw - CameraRotation.Yaw;
 
 		if (MovingForward != 0) {
 			FVector CameraVector = CameraComponent->GetForwardVector();
@@ -91,42 +93,35 @@ void ACharacterPawn::Tick(float DeltaTime) {
 			CameraVector.Z = SkeletalMeshForwardVector.Z;
 			SetActorLocation((CameraVector * CurrentSpeed * MovingSideways) + GetActorLocation());
 
-			// meed to set turn angle to direction you want to move for 3PS
-			TurnAngle -= 90 * MovingSideways;
+			// meed to offset target rotation to direction you want to move for 3PS
+			TargetRotation.Yaw += 90 * MovingSideways;
 		}
-		if (TurnAngle != 0 && is3PS) {
-			UE_LOG(LogTemp, Warning, TEXT("Turn angle = %f"), TurnAngle);
 
+		// Calculate difference in angles and normalize it to -180 to 180 as sometimes it would go to +360 and have weird cases like infinite rotations or stuttering
+		float TurnAngle = SkeletalMeshRotation.Yaw - TargetRotation.Yaw;
+		if (TurnAngle > 180) {
+			TurnAngle = -180 + (TurnAngle - 180);
+		} else if (TurnAngle < -180) {
+			TurnAngle = 180 + (TurnAngle + 180);
+		}
+		UE_LOG(LogTemp, Warning, TEXT("Camera, Mesh, Turn = (%f,%f,%f)"), TargetRotation.Yaw, SkeletalMeshRotation.Yaw, TurnAngle);
+
+		if (TurnAngle != 0 && !isFPS) {
 			// set the turn speed to angle if its smaller so that we can surely get to zero
-			float ActualTurnSpeed = TurnAngle < TurnSpeed ? TurnAngle : TurnSpeed;
+			float ActualTurnSpeed = abs(TurnAngle) < TurnSpeed ? abs(TurnAngle) : TurnSpeed;
+
+			// use actual relative rotation rather than overridden relative rotation
 			FRotator CurrentRotation = SkeletalMeshComponent->GetRelativeRotation();
+
 			CurrentRotation.Yaw = TurnAngle < 0 ? CurrentRotation.Yaw + ActualTurnSpeed : CurrentRotation.Yaw - ActualTurnSpeed;
 			SkeletalMeshComponent->SetRelativeRotation(CurrentRotation);
 		}
 	}
 }
 
-// Called to rotate pawn & camera like an FPS character
-void ACharacterPawn::SetFpsRotation(float deltaX, float deltaY) {
-	FRotator PawnRotation = GetActorRotation();
-	PawnRotation.Yaw += deltaX;
-
-	// set camera rotations
-	if (CameraComponent != nullptr) {
-		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
-		CameraRotation.Pitch = FMath::Clamp(
-			CameraRotation.Pitch + deltaY,
-			BaseRotation.Pitch - RotationLimit,
-			BaseRotation.Pitch + RotationLimit);
-		CameraComponent->SetRelativeRotation(CameraRotation);
-	}
-
-	// set pawn rotations
-	SetActorRotation(PawnRotation);
-}
-
 // Called to rotate pawn & camera like an 3PS character
 void ACharacterPawn::Set3psRotation(float deltaX, float deltaY) {
+	isFPS = false;
 	if (CameraComponent != nullptr) {
 		FVector CameraLocation = CameraComponent->GetRelativeLocation();
 
@@ -150,6 +145,26 @@ void ACharacterPawn::Set3psRotation(float deltaX, float deltaY) {
 	}
 }
 
+// Called to rotate pawn & camera like an FPS character
+void ACharacterPawn::SetFpsRotation(float deltaX, float deltaY) {
+	isFPS = true;
+	FRotator PawnRotation = GetActorRotation();
+	PawnRotation.Yaw += deltaX;
+
+	// set camera rotations
+	if (CameraComponent != nullptr) {
+		FRotator CameraRotation = CameraComponent->GetRelativeRotation();
+		CameraRotation.Pitch = FMath::Clamp(
+			CameraRotation.Pitch + deltaY,
+			BaseRotation.Pitch - RotationLimit,
+			BaseRotation.Pitch + RotationLimit);
+		CameraComponent->SetRelativeRotation(CameraRotation);
+	}
+
+	// set pawn rotations
+	SetActorRotation(PawnRotation);
+}
+
 // Called to move the pawn forward/backward
 void ACharacterPawn::SetMoveForward(float value) {
 	MovingForward = value;
@@ -157,17 +172,9 @@ void ACharacterPawn::SetMoveForward(float value) {
 	UE_LOG(LogTemp, Warning, TEXT("Pawn Forward Speed = %f"), CurrentSpeed);
 }
 
-// Called to move the FPS pawn sideways
-void ACharacterPawn::SetFpsMoveSideways(float value) {
+// Called to move the pawn sideways
+void ACharacterPawn::SetMoveSideways(float value) {
 	MovingSideways = value;
 	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
 	UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Side Speed = %f"), CurrentSpeed);
-}
-
-// Called to move the 3PS pawn sideways
-void ACharacterPawn::Set3psMoveSideways(float value) {
-	MovingSideways = value;
-	is3PS = true;
-	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
-	UE_LOG(LogTemp, Warning, TEXT("3PS Pawn Side Speed = %f"), CurrentSpeed);
 }

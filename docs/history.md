@@ -23,6 +23,7 @@
 - `4th March 2024`: Move forward animation & input integration for FPS done
 - `5th March 2024`: Move sideways for 3PS pawn in progress
 - `6th March 2024`: Fixed move forward for 3PS but move sideways still in progress
+- `7th March 2024`: Fixed FPS & 3PS pawn movement in all directions and started documenting shooting control cases
 
 ---
 

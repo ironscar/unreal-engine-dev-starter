@@ -9,7 +9,7 @@
 #include "CharacterPawn.generated.h"
 
 /*
- * A pawn class override to take mouse input
+ * A pawn class override to take mouse and keyboard input and do associated actions
  */
 UCLASS()
 class LEARNINGKITPROJECT_API ACharacterPawn : public APawn {
@@ -21,10 +21,13 @@ private:
 	UCameraComponent* CameraComponent;
 	USkeletalMeshComponent* SkeletalMeshComponent;
 
+	bool isFPS = false;
 	float CurrentSpeed = 0;
 	float MovingForward = 0;
 	float MovingSideways = 0;
-	bool is3PS = false;
+
+	// pawn movement processed every tick
+	void MovePawnPerTick();
 
 public:
 	// Sets default values for this pawn's properties
@@ -48,7 +51,7 @@ public:
 
 	/* Specifies speed of walking */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
-	float WalkSpeed = 10;
+	float WalkSpeed = 5;
 
 	/* Specifies speed of turning */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
@@ -84,19 +87,16 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Sets rotation of the FPS pawn
-	void SetFpsRotation(float deltaX, float deltaY);
-
 	// Sets rotation of the 3PS pawn
 	void Set3psRotation(float deltaX, float deltaY);
+
+	// Sets rotation of the FPS pawn
+	void SetFpsRotation(float deltaX, float deltaY);
 
 	// Sets forward/backward location of pawn
 	void SetMoveForward(float value);
 
-	// Sets sideways location of FPS pawn
-	void SetFpsMoveSideways(float value);
-
-	// Sets sideways location of 3PS pawn
-	void Set3psMoveSideways(float value);
+	// Sets sideways location of pawn
+	void SetMoveSideways(float value);
 
 };

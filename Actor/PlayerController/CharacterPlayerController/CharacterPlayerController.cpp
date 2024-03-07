@@ -78,10 +78,6 @@ void ACharacterPlayerController::MoveForward(const FInputActionValue& Value) {
 void ACharacterPlayerController::MoveSideways(const FInputActionValue& Value) {
 	const float DirectionValue = Value.Get<float>();
 	if (CharacterPawn != nullptr) {
-		if (IsFPS) {
-			CharacterPawn->SetFpsMoveSideways(DirectionValue);
-		} else {
-			CharacterPawn->Set3psMoveSideways(DirectionValue);
-		}
+		CharacterPawn->SetMoveSideways(DirectionValue);
 	}
 }
