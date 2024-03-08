@@ -33,8 +33,10 @@
   - For `MoveForward`, we give it `W` and `S` keyboard mappings with `S` having a `Negate` modifier
   - For `MoveSideways`, we give it `A` and `D` keyboard mappings with `A` having a `Negate` modifier
   - In `CharacterPlayerController` C++ class, add two new `UPROPERTY` fields for the new actions and add the binding functions for them
-	- This time we bind on `Started` and `Completed` instead of `Triggered`
-	- `Triggered` fires multilpe time while event occurs but the others only happen at the start and end
+	- This time we bind on `Triggered` and `Completed`
+	- We could have used `Started` to just track when it starts but when you keep both A and D pressed, it fails to emit an event
+	- `Completed` signals end of event
+	- `Triggered` fires multilpe time while event occurs and therefore it keeps track of it even if both are pressed
 	- We do this because we want to track when the event stops and `Triggered` does not help us do that
 	- `Completed` will send a value of zero
   - Both Movement actions are Axis 1D so take a `FInputAction` argument in the binding functions and cast it to `float`
@@ -79,11 +81,12 @@
 - `BlueprintNativeEvent` makes it overridable in the BP
   - Idea is every pawn may have its own Animation BP
   - So we allow overriding the method to control BP and call them from the movement control C++ methods
+  - If the method returns a value, you can override it, otherwise you have to listen to the event in the main event graph and do the needful 
 - Now, to provide an implementation for this method in C++, we need to implement `{methodName}_Implementation` instead of the actual method name
-  - Here we set the `CurrentSpeed` with an argument
+  - Here we set the `CurrentSpeed` to `WalkSpeed` if either of `MovingForward` or `MovingSideways` is non-zero
   - This basically gets called if the pawn doesn't override the method on its end
 - Build this on live code and then in the pawn BP event graph
-  - Get the event for this method
+  - Override this method
   - Right click it and choose `Add Call to Parent Function` which internally sets the current speed
   - We can get the Animation BP Instance from the `Get Anim Instance` method with target as skeletal mesh component of the pawn
   - We check if its valid and if not, we set the instance to use our pawn's Animation BP `BP_MyCharacterAnim`
@@ -93,7 +96,6 @@
 
 ## Improvements
 
-- Controls aren't continuous if pressing keys back-to-back
 - FPS moving sideways requires side-walk animation and its corresponding integration
 
 ---

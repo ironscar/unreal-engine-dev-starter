@@ -23,13 +23,14 @@ void ACharacterPawn::BeginPlay() {
 	SkeletalMeshComponent = FindComponentByClass<USkeletalMeshComponent>();
 
 	// set walk speed to 0
-	SetAnimBlueprintSpeed(0);
+	SetAnimBlueprintSpeed();
 }
 
 // Called to set speed on animation blueprint
-void ACharacterPawn::SetAnimBlueprintSpeed_Implementation(float value) {
+float ACharacterPawn::SetAnimBlueprintSpeed_Implementation() {
 	// Each BP ought to override this and set the animation blueprint speed with the specific implementation
-	CurrentSpeed = value;
+	CurrentSpeed = MovingForward != 0 || MovingSideways != 0 ? WalkSpeed : 0;
+	return CurrentSpeed;
 }
 
 // Called to get the skeletal mesh forward vector as it depends on how this mesh was exported
@@ -104,7 +105,7 @@ void ACharacterPawn::MovePawnPerTick() {
 		} else if (TurnAngle < -180) {
 			TurnAngle = 180 + (TurnAngle + 180);
 		}
-		UE_LOG(LogTemp, Warning, TEXT("Camera, Mesh, Turn = (%f,%f,%f)"), TargetRotation.Yaw, SkeletalMeshRotation.Yaw, TurnAngle);
+		// UE_LOG(LogTemp, Warning, TEXT("Target Rotation, Mesh Rotation, Turn Angle = %f, %f, %f"), TargetRotation.Yaw, SkeletalMeshRotation.Yaw, TurnAngle);
 
 		if (TurnAngle != 0 && !isFPS) {
 			// set the turn speed to angle if its smaller so that we can surely get to zero
@@ -168,13 +169,13 @@ void ACharacterPawn::SetFpsRotation(float deltaX, float deltaY) {
 // Called to move the pawn forward/backward
 void ACharacterPawn::SetMoveForward(float value) {
 	MovingForward = value;
-	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
-	UE_LOG(LogTemp, Warning, TEXT("Pawn Forward Speed = %f"), CurrentSpeed);
+	SetAnimBlueprintSpeed();
+	// UE_LOG(LogTemp, Warning, TEXT("Pawn Forward Speed = %f, %f"), CurrentSpeed, MovingForward);
 }
 
 // Called to move the pawn sideways
 void ACharacterPawn::SetMoveSideways(float value) {
 	MovingSideways = value;
-	SetAnimBlueprintSpeed(WalkSpeed * abs(value));
-	UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Side Speed = %f"), CurrentSpeed);
+	SetAnimBlueprintSpeed();
+	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Side Speed = %f, %f"), CurrentSpeed, MovingSideways);
 }
