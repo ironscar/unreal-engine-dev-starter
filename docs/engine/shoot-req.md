@@ -22,9 +22,22 @@
 
 ---
 
+## Shooting integration
+
+- Add new `EnhancedInputAction` for weapon selection
+  - looks like have to create a new one for each weapon, for now only 2
+  - add those to `InputMappingContext` and then to `CharacterPlayerController`
+- Update bindings so that we can press `1` or `2` to change to specific weapon
+  - we ideally want a single method to set it instead of creating a new method for each weapon binding
+  - for this we create a private `DECLARE_DELEGATE_OneParam` with a float parameter
+  - we pass that float parameter in the BindAction method as a constand for each action
+  - don't know how to use different delegates for different actions though [CHECK]
+- need to setup focus [TODO]
+
+---
+
 ## Improvements
 
 - All shooting is semi-automatic so instead make light weapon as automatic and heavy weapon as semi-automatic
-- Key bindings today are different so need to update those to the requirements
 
 ---

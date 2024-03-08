@@ -24,6 +24,7 @@
 - `5th March 2024`: Move sideways for 3PS pawn in progress
 - `6th March 2024`: Fixed move forward for 3PS but move sideways still in progress
 - `7th March 2024`: Fixed FPS & 3PS pawn movement in all directions and started documenting shooting control cases
+- `8th March 2024`: Improved movement controls and updated shoot binding actions
 
 ---
 

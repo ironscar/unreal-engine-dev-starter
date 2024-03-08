@@ -26,7 +26,8 @@ void ACharacterPlayerController::SetupInputComponent() {
 
 	// bind enhanced input actions
 	PlayerEnhancedInputComponent->BindAction(MouseLeft, ETriggerEvent::Completed, this, &ACharacterPlayerController::Shoot);
-	PlayerEnhancedInputComponent->BindAction(MouseRight, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo);
+	PlayerEnhancedInputComponent->BindAction(Weapon1Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 1.0f);
+	PlayerEnhancedInputComponent->BindAction(Weapon2Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 2.0f);
 	PlayerEnhancedInputComponent->BindAction(Look2D, ETriggerEvent::Triggered, this, &ACharacterPlayerController::Look);
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveForward);
@@ -62,9 +63,9 @@ void ACharacterPlayerController::Shoot() {
 	}
 }
 
-void ACharacterPlayerController::ChangeAmmo() {
-	// change the type of ball actor to be spawned
-	SelectedAmmoType = SelectedAmmoType == 1 ? 2 : 1;
+void ACharacterPlayerController::ChangeAmmo(float value) {
+	// select weapon type
+	SelectedAmmoType = value;
 }
 
 void ACharacterPlayerController::MoveForward(const FInputActionValue& Value) {

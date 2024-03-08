@@ -56,7 +56,7 @@ public:
 	void Shoot();
 
 	// called when mouse right is clicked
-	void ChangeAmmo();
+	void ChangeAmmo(float value);
 
 	// called when W/S on keyboard is pressed
 	void MoveForward(const FInputActionValue& Value);
@@ -77,7 +77,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* MouseLeft;
 
-	// to toggle ammo
+	// to focus
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* MouseRight;
 
@@ -89,10 +89,21 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* MoveX;
 
+	// to select weapon 1
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* Weapon1Select;
+
+	// to select weapon 2
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* Weapon2Select;
+
 private:
 
 	// pawn reference
 	ACharacterPawn* CharacterPawn;
+
+	// parameterized delegate for input binding
+	DECLARE_DELEGATE_OneParam(FWeaponSelectDelegate, const float);
 
 	// enhanced input component reference
 	UEnhancedInputComponent* PlayerEnhancedInputComponent;
