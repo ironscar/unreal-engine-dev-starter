@@ -105,22 +105,20 @@
 ### Todos
 
 - Walk Forward [DONE]
-- Walk Sideways
-- walk Backward
+- Walk Sideways [STARTED]
 - Idle [DONE]
-- Idle-run blend space [STARTED]
+- Idle-run blend space
 - Run (you cannot run sideways or backwards)
 - At-place Jump (start/loop/fall)
 - Running Jump (start/loop/fall)
 - Crouch idle
 - Crouch walk Forward
 - Crouch walk sideways
-- Crouch walk backward
 - Slide
 - Melee attack
 - Long-range attack
 - Damage taken
-- Animation BP [STARTED]
-- Input integration [STARTED]
+- Animation BP
+- Input integration
 
 ---
