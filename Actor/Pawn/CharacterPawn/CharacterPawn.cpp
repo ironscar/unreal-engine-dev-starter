@@ -68,6 +68,16 @@ FVector ACharacterPawn::GetForwardVector() {
 	return ForwardVector;
 }
 
+// Getter for MoveForward
+bool ACharacterPawn::isMovingForward() {
+	return MovingForward != 0 || !isFPS;
+}
+
+// Getter for MoveSideways
+bool ACharacterPawn::IsMovingSideways() {
+	return MovingSideways != 0 && isFPS;
+}
+
 // Called every frame
 void ACharacterPawn::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);

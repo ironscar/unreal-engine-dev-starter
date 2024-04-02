@@ -72,6 +72,14 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Getter for MoveForward
+	UFUNCTION(BlueprintCallable, Category = "CharacterPawn Animations")
+	bool isMovingForward();
+
+	// Getter for MoveSideways (only for FPS)
+	UFUNCTION(BlueprintCallable, Category = "CharacterPawn Animations")
+	bool IsMovingSideways();
+
 	// Called to set speed on the animation blueprint
 	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Animations")
 	float SetAnimBlueprintSpeed();

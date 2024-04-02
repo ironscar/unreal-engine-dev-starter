@@ -63,7 +63,9 @@
   - We can see all of them for our custom character in correct scale
   - In `Animation Sequence` view, we can select each of the sequences and see the animation for that character
 - For every new animation
-  - during export from Blender, you can uncheck `All actions` under `Animation` to only export the specific animation
+  - during export from Blender: 
+    - you can select only `Armature` and `Other` in `Object types`
+    - you can uncheck `All actions` under `Animation` to only export the specific animation
     - make sure to have the new animation selected in the `Action Editor`
     - this creates a new fbx file for the animation itself
   - during import to UE5
@@ -105,10 +107,10 @@
 ### Todos
 
 - Walk Forward [DONE]
-- Walk Sideways [STARTED]
+- Walk Sideways [DONE]
 - Idle [DONE]
-- Idle-run blend space
 - Run (you cannot run sideways or backwards)
+- Idle-run blend space
 - At-place Jump (start/loop/fall)
 - Running Jump (start/loop/fall)
 - Crouch idle

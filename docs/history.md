@@ -26,6 +26,7 @@
 - `7th March 2024`: Fixed FPS & 3PS pawn movement in all directions and started documenting shooting control cases
 - `8th March 2024`: Improved movement controls and updated shoot binding actions
 - `1st April 2024`: Started walk sideways animation in Blender
+- `2nd April 2024`: Finished walk sideways animation and integration in UE5 complete
 
 ---
 

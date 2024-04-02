@@ -94,8 +94,30 @@
 
 ---
 
+## Side walk animation integration
+
+- Created walk sideways animation and imported from Blender
+- Added it to vertical axis of idle-run blendspace
+- Created new public variable on Animation blueprint so now there is `FrontSpeed` and `SideSpeed` instead of `Speed`
+- In C++, created protected methods called `IsMovingForward` and `IsMovingSideways`
+  - Internally, checks if `MovingForward` and `MovingSideways` is zero or not
+  - This setup is only there for FPS
+	- For MovingForward, always return true if not FPS
+	- For MovingSideways, always return false if not FPS
+	- This should not be controllable on the BP so we do it directly in C++ code
+- Update `BP_MyCharacterPawn` `SetAnimBlueprintSpeed` method
+  - If moving forward, set front-speed to speed
+  - If not moving forward, set front-speed to zero
+  - If moving sideways, set side-speed to speed
+  - If not moving sideways, set side-speed to zero
+
+---
+
 ## Improvements
 
-- FPS moving sideways requires side-walk animation and its corresponding integration
+- Integrate run animations into movement
+- Integrate crouch animations into movement
+- Integrate jump animations into movement
+- Integrate slide animations into movement
 
 ---
