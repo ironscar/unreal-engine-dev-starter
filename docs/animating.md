@@ -34,6 +34,17 @@
   - Disable location for the root bone in Action editor (which is ideally the only bone that you change location for)
   - then drag root bone back to origin so that you can quickly get in-place animations
   - in-place animations are easier to work with so consider this before export
+- Sometimes you want to be able to flip all the bones of a pose
+  - Like when you have a run animation, the keyframes repeat in mirror images in a way
+  - For this, you can select all bones with `A` and then right click on viewport and select `Paste X-flipped Pose`
+    - This does however require your model's front to be Y axis whereas UE expects it to be X by default
+    - We have gotten around this but adds extra logic
+
+#### Caveats
+
+- If you make animations with locations and then have to uncheck movement only for X and Y axis, it doesn't work
+  - Either all movement is disabled or it starts behaving weirdly
+  - This happened with the run animation so had to manually make it in-place 
 
 ---
 
@@ -69,7 +80,7 @@
     - make sure to have the new animation selected in the `Action Editor`
     - this creates a new fbx file for the animation itself
   - during import to UE5
-    - uncheck `Import mesh` and select the existing skeleton asset for the `Skeleton` field
+    - uncheck `Import meshes in bone hierarchy` and select the existing skeleton asset for the `Skeleton` field
     - this will only import the specific animation sequence as an asset
 - For updates to existing animations, delete the old one and then import it as new one
 
@@ -109,8 +120,8 @@
 - Walk Forward [DONE]
 - Walk Sideways [DONE]
 - Idle [DONE]
-- Run (you cannot run sideways or backwards)
-- Idle-run blend space
+- Run (you cannot run sideways or backwards) [DONE]
+- Idle-run blend space [DONE]
 - At-place Jump (start/loop/fall)
 - Running Jump (start/loop/fall)
 - Crouch idle

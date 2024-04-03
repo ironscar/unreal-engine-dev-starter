@@ -126,6 +126,7 @@
   - While painting, if you have to get everything back to default
     - like when you have to mirror bone weights and you need the model to be symmetric again
   - Select all bones with `A` and press `Shift + Alt + R` to reset rotations for all
+  - For resetting location, `Alt + G` works
 
 ---
 
