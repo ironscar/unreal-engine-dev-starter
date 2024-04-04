@@ -64,6 +64,9 @@ public:
 	// called when A/D on keyboard is pressed
 	void MoveSideways(const FInputActionValue& Value);
 
+	// called when Left Shift is Started or Completed
+	void SetIsRunning(const FInputActionValue& Value);
+
 protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
@@ -96,6 +99,10 @@ protected:
 	// to select weapon 2
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* Weapon2Select;
+
+	// to run
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* Run;
 
 private:
 

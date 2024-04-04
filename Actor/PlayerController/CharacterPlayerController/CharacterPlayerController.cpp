@@ -29,6 +29,10 @@ void ACharacterPlayerController::SetupInputComponent() {
 	PlayerEnhancedInputComponent->BindAction(Weapon1Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 1.0f);
 	PlayerEnhancedInputComponent->BindAction(Weapon2Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 2.0f);
 	PlayerEnhancedInputComponent->BindAction(Look2D, ETriggerEvent::Triggered, this, &ACharacterPlayerController::Look);
+
+	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Started, this, &ACharacterPlayerController::SetIsRunning);
+	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetIsRunning);
+
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveForward);
 	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveSideways);
@@ -81,4 +85,8 @@ void ACharacterPlayerController::MoveSideways(const FInputActionValue& Value) {
 	if (CharacterPawn != nullptr) {
 		CharacterPawn->SetMoveSideways(DirectionValue);
 	}
+}
+
+void ACharacterPlayerController::SetIsRunning(const FInputActionValue& Value) {
+	CharacterPawn->SetIsRunning(Value.Get<bool>());
 }

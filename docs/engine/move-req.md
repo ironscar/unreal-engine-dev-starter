@@ -113,11 +113,30 @@
 
 ---
 
+## Run animation integration
+
+- Created walk sideways animation and imported from Blender
+- Added it to end of horizontal axis of idle-run blendspace
+- Created a new `InputAction` for Run of type `boolean` and added it to the `InputMappingContext` with `Left Shift`
+- In C++, added this new action to the `CharacterPlayerController`
+  - Create a new method binded to Started and Completed of this new action, which would send true on keydown and false on keyup
+  - This calls a method on the pawn to set a new private flag `WantsToRun` 
+  - Update the `SetAnimBlueprintSpeed` base implementation
+	- update conditions so that we run only if going ahead or going either side in 3PS
+	- this automatically updates the speed send to the animation blueprint and thereby, the blendspace, so no updates required on Pawn BP or Anim BP
+	- We set another flag to identify whether pawn is actually running called `IsActuallyRunning`
+- This works well enough for FPS except for delays which are most probably due to performance issues and not code issues
+- For 3PS though, turning from right to left looks super weird
+  - So we add a `WalkTurnSpeed = 10` and a `RunTurnSpeed = 30` along with a getter `GetTurnSpeed` instead of just one `TurnSpeed`
+  - Then all accesses to `TurnSpeed` are replaced by the getter
+  - If `isActuallyRunning`, return `RunTurnSpeed` and else use `WalkTurnSpeed`, and that looks a lot more natural
+
+---
+
 ## Improvements
 
-- Integrate run animations into movement
-- Integrate crouch animations into movement
 - Integrate jump animations into movement
+- Integrate crouch animations into movement
 - Integrate slide animations into movement
 
 ---

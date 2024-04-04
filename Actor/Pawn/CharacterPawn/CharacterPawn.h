@@ -32,10 +32,15 @@ private:
 	UCameraComponent* CameraComponent;
 	USkeletalMeshComponent* SkeletalMeshComponent;
 
-	bool isFPS = false;
+	bool IsFPS = false;
+	bool IsActuallyRunning = false;
 	float CurrentSpeed = 0;
 	float MovingForward = 0;
 	float MovingSideways = 0;
+	bool WantsToRun = false;
+
+	// to get the appropriate turn speed
+	float GetTurnSpeed();
 
 	// pawn movement processed every tick
 	void MovePawnPerTick();
@@ -64,9 +69,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
 	float WalkSpeed = 5;
 
-	/* Specifies speed of turning */
+	/* Specifies speed of running */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
-	float TurnSpeed = 10;
+	float RunSpeed = 20;
+
+	/* Specifies speed of turning while walking */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
+	float WalkTurnSpeed = 10;
+
+	/* Specifies speed of turning while running */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
+	float RunTurnSpeed = 30;
 
 protected:
 	// Called when the game starts or when spawned
@@ -117,5 +130,8 @@ public:
 
 	// Sets sideways location of pawn
 	void SetMoveSideways(float value);
+
+	// Sets if pawn is running
+	void SetIsRunning(bool value);
 
 };

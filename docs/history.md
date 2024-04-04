@@ -28,6 +28,7 @@
 - `1st April 2024`: Started walk sideways animation in Blender
 - `2nd April 2024`: Finished walk sideways animation and integration in UE5 complete
 - `3rd April 2024`: Finished run animation in Blender and added to blend space in UE5
+- `4th April 2024`: Finished input integration for run animations in UE5
 
 ---
 
