@@ -25,10 +25,15 @@
 - `6th March 2024`: Fixed move forward for 3PS but move sideways still in progress
 - `7th March 2024`: Fixed FPS & 3PS pawn movement in all directions and started documenting shooting control cases
 - `8th March 2024`: Improved movement controls and updated shoot binding actions
+- `19th March 2024`: Started sculpt for cyber-boxer
+- `20th March 2024`: Continued sculpt for cyber-boxer
+- `21st March 2024`: Attempted sculpting dreadlocks on cyber-boxer
+- `22nd March 2024`: Continued sculpting dreadlocks on cyber-boxer after research
 - `1st April 2024`: Started walk sideways animation in Blender
 - `2nd April 2024`: Finished walk sideways animation and integration in UE5 complete
 - `3rd April 2024`: Finished run animation in Blender and added to blend space in UE5
 - `4th April 2024`: Finished input integration for run animations in UE5
+- `5th April 2024`: Added more high-poly details to cyber-boxer sculpt
 
 ---
 
