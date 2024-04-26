@@ -34,6 +34,9 @@
 - `3rd April 2024`: Finished run animation in Blender and added to blend space in UE5
 - `4th April 2024`: Finished input integration for run animations in UE5
 - `5th April 2024`: Added more high-poly details to cyber-boxer sculpt
+- `20th April 2024`: Did the face sculpt for the cyber-boxer sculpt
+- `21st April 2024`: Started adding metallic parts to the cyber-boxer sculpt
+- `26th April 2024`: Upgraded LearningKitProject from UE5.2 to UE5.4
 
 ---
 

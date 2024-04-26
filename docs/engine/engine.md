@@ -204,3 +204,13 @@ Caveats:
 - `./shoot-req.md` for shooting requirements and related integration details
 
 ---
+
+### Upgrades
+
+- Upgrading to UE 5.4
+  - Had to update the `LearningKitProjectEditorTarget.cs` file to `BuildSettingsVersion.V4` and `EngineIncludeOrderVersion.Unreal5_4`
+  - Then since some plugins were not available in 5.4, had to go to `LearningKitProject.uproject` to set `Enabled: false`
+  - One build failed but then it passed on redoing it
+  - It was not identifying UE5 classes but regenerating project files from the `uproject` file fixed that too
+
+---
