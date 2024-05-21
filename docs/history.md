@@ -37,6 +37,8 @@
 - `20th April 2024`: Did the face sculpt for the cyber-boxer sculpt
 - `21st April 2024`: Started adding metallic parts to the cyber-boxer sculpt
 - `26th April 2024`: Upgraded LearningKitProject from UE5.2 to UE5.4
+- `20th May 2024`: Refreshed on the content of the game
+- `21st May 2024`: Started research on building a modular environment kit
 
 ---
 
