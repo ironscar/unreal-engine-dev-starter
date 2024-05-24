@@ -39,7 +39,9 @@
 - `26th April 2024`: Upgraded LearningKitProject from UE5.2 to UE5.4
 - `20th May 2024`: Refreshed on the content of the game
 - `21st May 2024`: Started research on building a modular environment kit
-- `22nd May 2024`: Practice making concept houses from the reference board
+- `22nd May 2024`: Started practice for making concept houses from the reference board
+- `23rd May 2024`: Started painting concept house
+- `24th May 2024`: Continue painting concept house
 
 ---
 
