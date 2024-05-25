@@ -42,6 +42,7 @@
 - `22nd May 2024`: Started practice for making concept houses from the reference board
 - `23rd May 2024`: Started painting concept house
 - `24th May 2024`: Continue painting concept house
+- `25th May 2024`: Finished first concept house
 
 ---
 
