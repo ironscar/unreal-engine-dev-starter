@@ -43,6 +43,7 @@
 - `23rd May 2024`: Started painting concept house
 - `24th May 2024`: Continue painting concept house
 - `25th May 2024`: Finished first concept house
+- `9th June 2024`: Rebuilt reference board for "Nautilus Queen" and did some research on ZBrush layers and skin detail sculpting
 
 ---
 

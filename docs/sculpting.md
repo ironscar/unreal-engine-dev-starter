@@ -120,6 +120,21 @@
 
 ---
 
+### ZBrush layers
+
+- ZBrush layers allow somewhat non-linear workflows by creating a layers of 3D details whose strength and visibility can be adjusted
+- These can only be created at the highest subdivision level
+- We can create a new layer from `Tool > Layers > New` which opens by default in Record mode (a white circle with `REC` below it)
+  - We can sculpt what details we want while in record mode
+  - Then we can click on the white circle to go into non-record mode (greyed circle and eye icon)
+  - We can adust the layer opacity with the slider in non-record mode for whatever was sculpted while in record mode
+  - We can click the eye icon to completely hide that layer's details
+  - We can click on the grey circle to go back into record mode
+  - When multiple layers are created, only one can be in record mode and all others will automatically be in non-record mode
+- We can create multiple layers of details and bake them down to the actual scuplt as well
+
+---
+
 ### Todos
 
 - Sculpt the human body accurately (blur face and perfect body)
