@@ -44,6 +44,7 @@
 - `24th May 2024`: Continue painting concept house
 - `25th May 2024`: Finished first concept house
 - `9th June 2024`: Rebuilt reference board for "Nautilus Queen" and did some research on ZBrush layers and skin detail sculpting
+- `14th July 2024`: Continued cyber-boxer mech parts sculpting, did some research on brush settings & custom brushes in Photoshop
 
 ---
 

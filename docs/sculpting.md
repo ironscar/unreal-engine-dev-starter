@@ -47,6 +47,12 @@
   - You can click on them to open them up in a new viewport
   - To jump back to the main viewport, find the entry which has your main viewport
   - If your main viewport has multiple subtools, the entry will show up with a number on the top right
+- How to give different materials to subtools
+  - Select the subtool you want and select the material you want
+    - this will assign the material to all subtools if we havent assigned a material to other subtools
+  - Enable MRGB, go to Color menu at the top menu bar and select Fill for object
+    - you can use a slider to adjust the intensity of color
+  - Repeat this for all subtools so that material selection doesn't override the other subtools
 
 ---
 
