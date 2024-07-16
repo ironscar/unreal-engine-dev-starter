@@ -140,7 +140,13 @@
 
 ---
 
-### Todos
+## How to begin (InstaMat)
+
+- [TO FILL]
+
+---
+
+## Todos
 
 - Figure out how to do procedural textures
 - Figure out how to control the direction of the texture on custom models
