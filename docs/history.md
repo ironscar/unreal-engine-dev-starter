@@ -46,6 +46,7 @@
 - `9th June 2024`: Rebuilt reference board for "Nautilus Queen" and did some research on ZBrush layers and skin detail sculpting
 - `14th July 2024`: Continued cyber-boxer mech parts sculpting, did some research on brush settings & custom brushes in Photoshop
 - `16th July 2024`: Started following online tutorials for texturing in InstaMat
+- `19th July 2024`: Learned how to do basic layered texture painting in InstaMat
 
 ---
 
