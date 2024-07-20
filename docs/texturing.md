@@ -198,7 +198,9 @@
   - Normal -> Normal
   - Displacement -> Height
   - if roughness exists, Roughness -> Roughness, else Gloss -> Invert -> Roughness
-  - If metalness exists, Metalness -> Metalness, else Specular -> Metalness [unsure how accurate this is]
+  - If metalness exists, Metalness -> Metalness, else Specular -> Metalness
+    - this is not completely accuraate so check below link for accurate conversion logic
+    - https://marmoset.co/posts/pbr-texture-conversion/
   - AO -> AO
 - We can save this and preview the quixel material on the mesh
 - Then we can go to a `Layering` project and directly drag the saved `Element Graph` into the layer stack
