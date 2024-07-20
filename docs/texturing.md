@@ -142,7 +142,41 @@
 
 ## How to begin (InstaMat)
 
-- [TO FILL]
+### Tablet Navigation Fundamentals
+
+- For the atom and element graphs:
+  - [TODO]
+- For the actual 3D space:
+  - [TODO]
+
+---
+
+### Mesh Baking
+
+- This is the process of transferring high resolution details on to a low poly mesh
+- First, we sculpt a high poly mesh in ZBrush
+- Second, we retopologize it at varying levels to create low poly meshes
+- We export all these meshes as FBX from ZBrush
+- We then import the high poly mesh into blender and fix the scale to 1 for X,Y,Z and re-export it as FBX
+- For the low-poly mesh, we fix the scale to 0.95 so that its completely covered by the high poly mesh
+- In addition, we also UV unwrap it, and then export it as FBX
+- For the FBX export
+  - limit to selected objects and object types as Mesh
+  - nothing needs to change in the Transform tab
+  - In Geometry tab, disable `Apply Modifiers`
+  - For non-animated assets, nothing else is required
+- Then we open instamat and create a new `Layering` project
+- We select the low poly mesh in this window, and turn on `Bake mesh on creation` and create the project thereafter
+- This will automatically open the baking options on open
+  - target mesh will be auto-selected to the low poly mesh
+  - select the high poly mesh as source mesh
+  - update baking engine to GPU and set the texture resolution as appropriate
+  - enable `Displacement` maps and turn on `Full range`
+  - in `Normal Tangent Space`, choose output tangent space as `DirectX`
+  - then bake it (this takes some time)
+- Once baked, go to the `Layering Project Editor` in the top left second icon in the left panel
+  - under mesh, select `Mesh Format` as `DirectX`
+- With this you can see the transferred details onto the low poly mesh
 
 ---
 

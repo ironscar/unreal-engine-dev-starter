@@ -47,6 +47,7 @@
 - `14th July 2024`: Continued cyber-boxer mech parts sculpting, did some research on brush settings & custom brushes in Photoshop
 - `16th July 2024`: Started following online tutorials for texturing in InstaMat
 - `19th July 2024`: Learned how to do basic layered texture painting in InstaMat
+- `20th July 2024`: Mesh baking and high poly detail projection onto low poly mesh from ZBrush -> Blender -> InstaMat
 
 ---
 
