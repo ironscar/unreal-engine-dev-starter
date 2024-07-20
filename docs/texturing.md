@@ -207,6 +207,22 @@
 
 ---
 
+### Extra texture channels
+
+- In `Layer Project Editor` on the left menu, we can add channels
+- By extra channels, I mean `Emissive, Opacity and Height`
+- We can paint height infomation directly using a multi-channel brush
+  - adjust the strength either by adjusting the linear scale of height in brush
+  - for additional adjustment, we can adjust the `Height Normal Strength` in channel settings
+  - to add or subtract, we can set the layer type from `Default` to `Add/Subtract`
+  - this will not mix with the normal details added and instead add/subtract on top of it
+- For opacity, we can adjust the linear slider and get various gradations of opacity
+  - if you are painting on one side of a box, you can see through the entire box
+  - this is because there are no actual polygons to render the inside of the box making it invisible
+- For emissive [TODO]
+
+---
+
 ## Todos
 
 - Figure out how to do procedural textures
