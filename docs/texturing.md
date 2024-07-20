@@ -173,17 +173,21 @@
   - update baking engine to GPU and set the texture resolution as appropriate
   - enable `Displacement` maps and turn on `Full range`
   - in `Normal Tangent Space`, choose output tangent space as `DirectX`
+  - we only really need `Normal Tangent Space` for the projection
   - then bake it (this takes some time)
 - Once baked, go to the `Layering Project Editor` in the top left second icon in the left panel
   - under mesh, select `Mesh Format` as `DirectX`
 - With this you can see the transferred details onto the low poly mesh
+
+- To try:
+  - what level of low poly detail is good enough to project the high poly details successfully
 
 ---
 
 ## Todos
 
 - Figure out how to do procedural textures
-- Figure out how to control the direction of the texture on custom models
 - Figure out how to texture hair cards
+- Figure out how to control the direction of the texture on custom models
 
 ---
