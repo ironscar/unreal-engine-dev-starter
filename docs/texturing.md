@@ -184,6 +184,28 @@
 
 ---
 
+### Megascan imports
+
+- This section defines how to use Quixel megascan materials in InstaMat
+- First we create a new `Element Graph` project of `PBR` template
+- Delete everything apart from the output nodes of `Normal, Base color, Height, AO, Metalness, Roughness`
+- Create 2 parameters of type `ElementImage` called `Albedo` and `Normal`
+- Create 4 parameters of type `ElementImageGrey` called `AO, Gloss, Specular, Displacement`
+- Each parameter corresponds to a texture map for the megascan material
+- We import the megascan texture maps into InstaMat assets and then feed it into these parameters
+- Drag the parameters onto the canvas and connect them accordingly
+  - Albedo -> Base color
+  - Normal -> Normal
+  - Displacement -> Height
+  - if roughness exists, Roughness -> Roughness, else Gloss -> Invert -> Roughness
+  - If metalness exists, Metalness -> Metalness, else Specular -> Metalness [unsure how accurate this is]
+  - AO -> AO
+- We can save this and preview the quixel material on the mesh
+- Then we can go to a `Layering` project and directly drag the saved `Element Graph` into the layer stack
+  -  this will apply the material to the mesh
+
+---
+
 ## Todos
 
 - Figure out how to do procedural textures
