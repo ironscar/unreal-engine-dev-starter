@@ -179,9 +179,7 @@
 - Once baked, go to the `Layering Project Editor` in the top left second icon in the left panel
   - under mesh, select `Mesh Format` as `DirectX`
 - With this you can see the transferred details onto the low poly mesh
-
-- To try:
-  - what level of low poly detail is good enough to project the high poly details successfully
+  - successful detail transfer from high poly mesh of `737152` faces to low poly mesh of `1197` faces
 
 ---
 
