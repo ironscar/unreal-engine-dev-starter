@@ -48,6 +48,7 @@
 - `16th July 2024`: Started following online tutorials for texturing in InstaMat
 - `19th July 2024`: Learned how to do basic layered texture painting in InstaMat
 - `20th July 2024`: Mesh baking and high poly detail projection onto low poly mesh from ZBrush -> Blender -> InstaMat
+- `21st July 2024`: Learned opacity, displacement and emissive channel painting in InstaMat
 
 ---
 

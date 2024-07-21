@@ -219,10 +219,12 @@
 - For opacity, we can adjust the linear slider and get various gradations of opacity
   - if you are painting on one side of a box, you can see through the entire box
   - this is because there are no actual polygons to render the inside of the box making it invisible
-- For emissive
-  - things dont seem to be visible in the InstaMat editor [CHECK]
-  - But if we export it and import into UE5, we can see the emissive effect
-  - Funnily, in UE5, we don't see the opacity map working directly [CHECK]
+- For emissive, we need to add the emissive channel
+  - this won't work if there is an opacity channel already as opacity uses a different render mode
+  
+- ideally, we ought to keep two separate material Ids for opaque (non-opacity) and translucent (with opacity) [TRY]
+  - InstaMat will support this from the next version [WAIT]
+  - in addition, try this with UDIM or unified mode to see if you can still paint across both [TRY]
 
 ---
 
