@@ -221,12 +221,42 @@
   - this is because there are no actual polygons to render the inside of the box making it invisible
 - For emissive, we need to add the emissive channel
   - this won't work if there is an opacity channel already as opacity uses a different render mode
-  
+- We can go to blender and select Material properties on the left side panel
+  - select a meterial in the list (there should be one there by default)
+  - go to edit mode of object and select the faces for that material
+    - click `C` to go into selection mode and paint on mesh with pen to select faces
+    - `Shoft + C` helps to deselect faces
+    - `Esc` to come out of selection mode
+    - while using tablet, you cannot seem to move or do anything else in selection mode
+    - make sure to come out of selection mode after done selecting
+  - click `Assign` in the material panel
+    - doing this while in selection mode has no effect
+  - add a new material to list and repeat
+- Importing this mesh into Instamat will have two material sections
+  - you can assign the baked maps for full mesh to both and they will apply correctly
+  - you may have to select the active material to refresh the view though for each material
+  - depending on type of layering project, the painting expierence is slightly different
+    - `Multi-material` allows you to have multiple materials but you can paint across one at a time
+    - `Multi-material (unified)` allows you to paint across multiple materials at once
+
 - ideally, we ought to keep two separate material Ids for opaque (non-opacity) and translucent (with opacity) [TRY]
-  - InstaMat will support this from the next version [WAIT]
-  - in addition, try this with UDIM or unified mode to see if you can still paint across both [TRY]
 
 ---
+
+### Brush properties
+
+- Most properties are easy to figure out
+- That being said, pressure sensitivity is not auto-enabled
+  - It has to be enabled for each brush layer
+  - Same for symmetry
+  - Both are found in brush properties
+- For pressure sensitivity, we have to go to the ``Dynamics` section
+  - adjust the amount of the effect by slider
+  - click the small `shuffle` button beside the slider
+  - the first dropdown let's you select `Pressure` which will enable this
+  - we can do this for all the dynamic properties, but `Flow` is the most common usecase
+- Moreover, some of the brush strokes may seem a little jittery
+  - That is because default spacing is 20 and we can lower it to 5 to feel less jittery
 
 ## Todos
 
