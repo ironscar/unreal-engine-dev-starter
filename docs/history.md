@@ -50,6 +50,8 @@
 - `20th July 2024`: Mesh baking and high poly detail projection onto low poly mesh from ZBrush -> Blender -> InstaMat
 - `21st July 2024`: Learned opacity, displacement and emissive channel painting in InstaMat
 - `29th July 2024`: Learned how to have multiple material sections and pressure sensitivity in InstaMat
+- `30th July 2024`: Finished texturing crate with materials, masks and brush layers
+- `31st July 2024`: Started substance designer tutorials to understand InstaMat elements
 
 ---
 
