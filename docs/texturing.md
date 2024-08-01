@@ -149,6 +149,12 @@
 - For the actual 3D space:
   - [TODO]
 
+### Procedural textures
+
+- You would generally start by setting up the `Material Make` node
+  - Then you can right click and select `Expose output parameters` so that each channel is a texture output
+- Press `H` to disable selected nodes
+
 ---
 
 ### Mesh Baking
@@ -239,7 +245,7 @@
     - `Multi-material` allows you to have multiple materials but you can paint across one at a time
     - `Multi-material (unified)` allows you to paint across multiple materials at once
 
-- ideally, we ought to keep two separate material Ids for opaque (non-opacity) and translucent (with opacity) [TRY]
+- ideally, we ought to keep two separate material Ids for opaque (non-opacity) and translucent (with opacity) [CURRENTLY-NOT-SUPPORTED]
 
 ---
 

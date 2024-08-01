@@ -52,7 +52,7 @@
 - `29th July 2024`: Learned how to have multiple material sections and pressure sensitivity in InstaMat
 - `30th July 2024`: Finished texturing crate with materials, masks and brush layers
 - `31st July 2024`: Started substance designer tutorials to understand InstaMat elements
-
+- `1st Aug 2024`: Continued substance designer tutorials for InstaMat
 ---
 
 ## History branches 
