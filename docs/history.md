@@ -53,6 +53,9 @@
 - `30th July 2024`: Finished texturing crate with materials, masks and brush layers
 - `31st July 2024`: Started substance designer tutorials to understand InstaMat elements
 - `1st Aug 2024`: Continued substance designer tutorials for InstaMat
+- `2nd Aug 2024`: Continued substance designer tutorials for InstaMat
+- `3rd Aug 2024`: Made custom height to normal atom and used in new element
+
 ---
 
 ## History branches 
