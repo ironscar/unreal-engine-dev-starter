@@ -55,6 +55,10 @@
 - `1st Aug 2024`: Continued substance designer tutorials for InstaMat
 - `2nd Aug 2024`: Continued substance designer tutorials for InstaMat
 - `3rd Aug 2024`: Made custom height to normal atom and used in new element
+- `12th Aug 2024`: Continued on procedural texturing with InstaMat
+- `13th Aug 2024`: Continued on procedural texturing with InstaMat
+- `14th Aug 2024`: Continued on procedural texturing with InstaMat
+- `15th Aug 2024`: Updated docs with navigation and procedural texturing notes
 
 ---
 

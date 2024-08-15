@@ -144,16 +144,77 @@
 
 ### Tablet Navigation Fundamentals
 
+- Express keys from left to right are as follows:
+  - Shift
+  - Alt
+  - Ctrl
+  - Double-click
 - For the atom and element graphs:
-  - [TODO]
+  - Moving around can be done by putting the pen down and dragging
+    - moving nodes is a similar experience
+  - Zooming can be done by holding down the top button and then dragging
+  - Clicking the top button alone opens the node context menu
+  - There were a few issues with double ciicking though so that's why mapped an express key
+    - Adding a connection point on a link needs this and doesn't work with just tapping twice
+  - There were also a few issues with focusing on the 3D view with `F` but its intermittent
+  - Scrolling in menus has to be done via the scrollbar
+  - All other things are similar as when doing with a mouse
+    - Press double-click express key in 3D view and trying again seems to work
 - For the actual 3D space:
-  - [TODO]
+  - `Alt + Click` dragging for rotating around object
+  - `Ctrl + Alt + Click` dragging for panning
+  - `Shift + pen-top-button + Click` dragging for rotating environment
+  - `express-double-click + F` to focus scene (though actually just `F` should work)
+  - `pen-bottom-button + Click` dragging for zooming in and out
+  - `pen-top-button + Click` dragging for looking around from fixed camera position
+
+---
 
 ### Procedural textures
 
 - You would generally start by setting up the `Material Make` node
   - Then you can right click and select `Expose output parameters` so that each channel is a texture output
 - Press `H` to disable selected nodes
+- An atom is like a utility function while an element is generally a fully encapsulated material
+  - Atoms can be used inside other custom atoms or elements and there are some atoms which are already available
+  - For example, predefined atoms are available for different kinds of noise
+- Images generated are either grayscale or color
+  - pin links to nodes for color images show up in green while for grayscale, show up in grey
+- If height related things look too flat in 3D view during element graph building
+  - we can press `3` to go to Settings and scroll down to `Render settings`
+  - we can increase the `Displacement factor` and the `Tessellation level` to see what looks good
+  - increasing these degrades performance so use only when needed
+
+- Following things are basics of procedural texturing:
+  - First, you create a new `Element`
+  - You generally start with some predefined atoms with image outputs or you can import images of your own
+  - You can transform the base image for scaling, rotating and translating as required using the `Transform` node
+  - Next, you generally want to blend this image with something else using the `Blend` node
+    - this can either be a basic image (from an atom) or a processed image
+  - Then, you usually have to tile the basic component of your texture using the `Tile` node
+  - You repeat this process for all the basic components of your texture and blend them together
+  - Sometimes you need to play around with how light or dark different parts of the texture is, which can be done with the `Levels` node
+  - At this point, you have a node graph that generates your texture
+  - Throughout this process, we try to incorporate different kinds of randomness into the texture to make it more natural
+    - this can be done using noise atoms or attributes of other atoms
+    - we can also play around with those noises with different kinds of effects like `Sharpen`, `Blur` etc
+  - This helps in generating a procedural texture
+
+- A material needs multiple textures like Normal, Height, AO, Albedo, Roughness, Metalness etc.
+  - we create node graphs for each texture in the same element
+  - we can often reuse parts of the node graph for different components of the same texture or even across textures
+    - these are things you can consider creating custom atoms for
+  - usually we start with the height map as it is often used to generate the Normal and AO maps as well
+    - we use the `Height to Normal` and `Height to AO` nodes for this
+    - personally `Height to Normal` node didn't work well for me so I created a custom atom for it myself in the same package
+    - you can refer to the atom of the node you are trying to customize and replicate it youself (direct copy doesn't always work)
+  - what comes next [TODO]
+
+- Once we have all the texture maps generated procedurally
+  - we use the `Material Make` node and connect all the generated maps to it
+    - currently I'm using the `PBR realtime` shading model
+    - it defines predefined material type outputs for each corresponding texture map
+  - once we have all of this hooked up, our procedural materal is ready
 
 ---
 
@@ -268,6 +329,6 @@
 
 - Figure out how to do procedural textures
 - Figure out how to texture hair cards
-- Figure out how to control the direction of the texture on custom models
+- Figure out how to control the direction of textures on different parts of custom models during painting
 
 ---
