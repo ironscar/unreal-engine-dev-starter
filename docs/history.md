@@ -60,6 +60,7 @@
 - `14th Aug 2024`: Continued on procedural texturing with InstaMat
 - `15th Aug 2024`: Updated docs with navigation and procedural texturing notes
 - `16th Aug 2024`: Sculpted cyber-boxer metallic forearms
+- `17th Aug 2024`: World building and modular kits videos
 
 ---
 
