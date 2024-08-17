@@ -53,6 +53,7 @@
   - Enable MRGB, go to Color menu at the top menu bar and select Fill for object
     - you can use a slider to adjust the intensity of color
   - Repeat this for all subtools so that material selection doesn't override the other subtools
+- `Shift + Click` on the eye icon of a subtool toggles visibility of all other subtools
 
 ---
 
@@ -90,6 +91,8 @@
 - `Inflate (BIN)` is used to inflate parts of the mesh
 - `Clay Buildup (BCB)` is used to buildup the mesh in a more blocky manner and is commonly used in organic sculpting
 - `Dam Standard (BDS)` is good for grooves/seams and is subtractive by default
+- `Curve Tubes (BCX)` is good for inserting curved tubes into mesh useful for things like dreadlock hair
+  - once inserted, tubes can only be edited using this brush until a new tube is inserted
 
 ---
 
