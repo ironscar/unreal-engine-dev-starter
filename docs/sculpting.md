@@ -72,12 +72,19 @@
     - Then while sculpting, if the topology becomes too stretched, do a `Ctrl + Click drag` outside the model
     - If the model was unmasked before, it will retopologize the model to have uniform topology
   - Generally use `Dynamesh` to get the basic shape and then start `Subdivision`
+  - To mirror a subtool on two sides of a main model, we can go to `Modify Topology > Mirror and Weld`
+    - mesh shouln't have any subdivisions prior to this so do this before starting any actual sculpting
   - `Polygroups` are a way to group different parts of a single subtool in a group
     - You can create them a bunch of ways visible in `Tool > Geometry > Polygroups`
     - They will be visible in the Polyframe view `Shift + F`
     - Most common is you mask an area and press `Ctrl + W`
     - Handy part is if you `Ctrl + Shift + Click` on a polygroup, it will hide all other polygroups
     - Smart use of polygroups can make sculpting easier in tight areas
+- To turn random MRGB colors coming onto the model, you can go to `Polypaint` in Tool menu and turn off `Colorize`
+- To quickly create repeated meshes from one piece, we can use `ArrayMesh`
+  - To place a mesh across a curve and not simply repeat it, create a new Insert brush from that mesh and set `Stroke > Curve > CurveMode`
+  - After that it works similar to `Curve Tubes` brush
+- To quickly create complex shapes from basic ones by subtraction/intersection, we can use `Live Boolean`
 
 ---
 
@@ -93,6 +100,8 @@
 - `Dam Standard (BDS)` is good for grooves/seams and is subtractive by default
 - `Curve Tubes (BCX)` is good for inserting curved tubes into mesh useful for things like dreadlock hair
   - once inserted, tubes can only be edited using this brush until a new tube is inserted
+  - to commit a tube, click anywhere on base mesh
+  - thereafter, everything on mesh is masked so unmask if you want to do other things
 
 ---
 

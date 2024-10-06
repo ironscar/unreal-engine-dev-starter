@@ -62,6 +62,8 @@
 - `16th Aug 2024`: Sculpted cyber-boxer metallic forearms
 - `17th Aug 2024`: World building and modular kits videos
 - `18th Aug 2024`: Retried the dreadlock hair sculpting for cyber boxer
+- `7th Sep 2024`: Messed around with the hair and started hands for cyber boxer
+- `6th Oct 2024`: Learned about ZBrush Arraymesh and Live boolean 
 
 ---
 
