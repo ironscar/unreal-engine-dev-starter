@@ -63,7 +63,10 @@
 - `17th Aug 2024`: World building and modular kits videos
 - `18th Aug 2024`: Retried the dreadlock hair sculpting for cyber boxer
 - `7th Sep 2024`: Messed around with the hair and started hands for cyber boxer
-- `6th Oct 2024`: Learned about ZBrush Arraymesh and Live boolean 
+- `6th Oct 2024`: Learned about ZBrush Arraymesh and Live boolean
+- `7th Oct 2024`: Completed cyber boxer hand and hoodie sculpt, and started paintover
+- `10th Oct 2024`: Started level design abandoned apartment tutorial
+- `11th Oct 2024`: Continued level design abandoned apartment tutorial
 
 ---
 
