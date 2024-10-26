@@ -17,7 +17,7 @@
  *  - BP class must set an InputMappingContext for all the different EnhancedInput bindings
  *  - BP class must also set all the individual EnhancedInputActions which are already in the context
  *  - BP class must set the blueprints used for light ammo and heavy ammo
- *	- BP class also allows overridding the behavior based on FPS or 3PS
+ *	- BP class also allows overriding the behavior based on FPS or 3PS
  *	- Controls pawns which are derived from CharacterPawn
  *	- Override the DefaultPlayerController class in Project settings > Maps & Modes > Default modes > Selected game mode to a derivative of this class to use it
  */
