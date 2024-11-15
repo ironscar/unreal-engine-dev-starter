@@ -218,6 +218,7 @@ Caveats:
   - Run input action `IA_Run` didn't work with `ETriggerEvent::Started`
     - kept sending false all the time
     - changing it to `ETriggerEvent::Triggered` works but fires multiple times which shouldn't be required
+    - only works when built through Rider and not if we start the editor directly
     - added question in UEForum so wait for answers if any
 
 ---
