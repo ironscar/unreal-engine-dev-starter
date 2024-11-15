@@ -44,7 +44,7 @@ Caveats:
 
 - Close UE5 editor go to Solution Explorer in Visual Studio
 - Set the game project as default project (it will be bold if it already is)
-- Set Visual Studio configuration to DebugGame Editor and Win64
+- Set Visual Studio configuration to `DebugGame Editor` and `Win64`
 - Rebuild the solution for the first time you do this for a project
 - Next time onwards, press `F5` to start Debug (this starts the UE5 editor again with debug enabled, `Ctrl + F5` will start editor without debug enabled)
 - Starting the game using `Alt + P` would trigger the breakpoint if this actor is in the world and if debug is enabled
@@ -59,7 +59,7 @@ Alternatively, we can just log the variable values using UE_LOG and keep the edi
 
 - Right click on C++ class and choose "Create Blueprint from C++ class" and choose a name & location
 - Open this blueprint and save it
-- Now we can also drag meshes into the blueprint viewport to give it a visual represenation along with out C++ class features
+- Now we can also drag meshes into the blueprint viewport to give it a visual represenation along with our C++ class features
 - Compile and save, and then drag the blueprint into the level to see it work
 
 Caveats:
@@ -212,5 +212,12 @@ Caveats:
   - Then since some plugins were not available in 5.4, had to go to `LearningKitProject.uproject` to set `Enabled: false`
   - One build failed but then it passed on redoing it
   - It was not identifying UE5 classes but regenerating project files from the `uproject` file fixed that too
+- Upgrading to UE 5.5
+  - Had to update the `LearningKitProjectEditorTarget.cs` file to `BuildSettingsVersion.V5` and `EngineIncludeOrderVersion.Unreal5_5`
+  - Had to update string formatting in UE_LOG from `%s` to `%hs`
+  - Run input action `IA_Run` didn't work with `ETriggerEvent::Started`
+    - kept sending false all the time
+    - changing it to `ETriggerEvent::Triggered` works but fires multiple times which shouldn't be required
+    - added question in UEForum so wait for answers if any
 
 ---

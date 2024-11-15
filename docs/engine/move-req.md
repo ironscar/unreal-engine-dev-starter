@@ -4,21 +4,18 @@
 
 - Let us set up a few requirements on how movement should work for us so that it's easy to integrate FPS and 3PS
 
-|Control  		| FPS 				| 3PS							|
-|---------------|-------------------|-------------------------------|
-| W				|Walk forward		|Walk forward					|
-| A				|Walk left			|Turn left + Walk forward		|
-| S				|Walk backward		|Turn back + Walk forward		|
-| D				|Walk right			|Turn right + Walk forward		|
-| Shift + W		|Run forward		|Run forward					|
-| Shift + A		|Walk left			|Turn left + Run forward		|
-| Shift + S		|Walk right			|Turn back + Run forward		|
-| Shift + D		|Walk backward		|Turn right + Run forward		|
-| Ctrl* + W		|Crouch forward		|Crouch forward					|
-| Ctrl* + A		|Crouch left		|Turn left + Crouch forward		|
-| Ctrl* + S		|Crouch right		|Turn back + Crouch forward		|
-| Ctrl* + D		|Crouch backward	|Turn right + Crouch forward	|
-| Space			|Jump				|Jump							|
+| Control  		 | FPS 				        | 3PS							                  |
+|-------------|-----------------|-----------------------------|
+| W				       | Walk forward		  | Walk forward					           |
+| A				       | Walk left			    | Turn left + Walk forward		  |
+| S				       | Walk backward		 | Turn back + Walk forward		  |
+| D				       | Walk right			   | Turn right + Walk forward		 |
+| Shift + W		 | Run forward		   | Run forward					            |
+| Shift + A		 | Walk left			    | Turn left + Run forward		   |
+| Shift + S		 | Walk right			   | Turn back + Run forward		   |
+| Shift + D		 | Walk backward		 | Turn right + Run forward		  |
+| Ctrl		      | Crouch toggle		 | Crouch toggle					          |
+| Space			    | Jump				        | Jump							                 |
 
 - `*` use `Ctrl` as a toggle for crouch instead of continuous press
 - If running and then you press `Ctrl`, slide in direction of running (only one anim required as run is only one direction)

@@ -1,8 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Kismet/GameplayStatics.h"
-
 #include "MyDestroyerGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 void AMyDestroyerGameMode::StartDestroyTimer() {
 	FTimerHandle Timer;

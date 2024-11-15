@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "CharacterPlayerController.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
-#include "CharacterPlayerController.h"
 
 void ACharacterPlayerController::BeginPlay() {
 	Super::BeginPlay();
@@ -30,7 +30,8 @@ void ACharacterPlayerController::SetupInputComponent() {
 	PlayerEnhancedInputComponent->BindAction(Weapon2Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 2.0f);
 	PlayerEnhancedInputComponent->BindAction(Look2D, ETriggerEvent::Triggered, this, &ACharacterPlayerController::Look);
 
-	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Started, this, &ACharacterPlayerController::SetIsRunning);
+	// Ideally, should be using Started instead of Triggered for this
+	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Triggered, this, &ACharacterPlayerController::SetIsRunning);
 	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetIsRunning);
 
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);

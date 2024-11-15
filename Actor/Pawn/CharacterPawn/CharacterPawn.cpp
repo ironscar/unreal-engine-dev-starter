@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Camera/CameraComponent.h"
 #include "CharacterPawn.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 ACharacterPawn::ACharacterPawn() {
@@ -204,5 +204,5 @@ void ACharacterPawn::SetMoveSideways(float value) {
 
 void ACharacterPawn::SetIsRunning(bool value) {
 	WantsToRun = value;
-	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Running = %s"), WantsToRun ? "yes" : "no");
+	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Running = %hs"), WantsToRun ? "yes" : "no");
 }
