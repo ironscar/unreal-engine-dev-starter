@@ -202,6 +202,7 @@ Caveats:
 
 - `./move-req.md` for movement requirements and related integration details
 - `./shoot-req.md` for shooting requirements and related integration details
+- `./level-design.md` for level design related details
 
 ---
 
