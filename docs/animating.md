@@ -125,12 +125,13 @@
 - Idle [DONE]
 - Run (you cannot run sideways or backwards) [DONE]
 - Idle-run blend space [DONE]
-- At-place Jump (start/loop/fall)
+- At-place Jump (start/loop/fall) [DONE]
 - Running Jump (start/loop/fall)
 - Crouch idle
 - Crouch walk Forward
 - Crouch walk sideways
 - Slide
+- Vault
 - Melee attack
 - Long-range attack
 - Damage taken

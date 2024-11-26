@@ -24,7 +24,7 @@ void ACharacterPlayerController::SetupInputComponent() {
 	SubSystem->AddMappingContext(InputMapping, 0);
 	PlayerEnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent);
 
-	// bind enhanced input actions
+	// bind enhanced input actions (look around and weapons)
 	PlayerEnhancedInputComponent->BindAction(MouseLeft, ETriggerEvent::Completed, this, &ACharacterPlayerController::Shoot);
 	PlayerEnhancedInputComponent->BindAction(Weapon1Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 1.0f);
 	PlayerEnhancedInputComponent->BindAction(Weapon2Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 2.0f);
@@ -34,10 +34,14 @@ void ACharacterPlayerController::SetupInputComponent() {
 	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Triggered, this, &ACharacterPlayerController::SetIsRunning);
 	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetIsRunning);
 
+	// bind enhanced input actions (move)
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveForward);
 	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveSideways);
 	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveSideways);
+
+	// bind enhanced input actions (jump)
+	PlayerEnhancedInputComponent->BindAction(Jump, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetIsJumping);
 }
 
 void ACharacterPlayerController::Look(const FInputActionValue& Value) {
@@ -90,4 +94,8 @@ void ACharacterPlayerController::MoveSideways(const FInputActionValue& Value) {
 
 void ACharacterPlayerController::SetIsRunning(const FInputActionValue& Value) {
 	CharacterPawn->SetIsRunning(Value.Get<bool>());
+}
+
+void ACharacterPlayerController::SetIsJumping(const FInputActionValue& Value) {
+	CharacterPawn->SetIsJumping(Value.Get<bool>());
 }

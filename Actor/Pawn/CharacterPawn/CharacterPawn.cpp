@@ -116,7 +116,7 @@ void ACharacterPawn::MovePawnPerTick() {
 			CameraVector.Z = SkeletalMeshForwardVector.Z;
 			SetActorLocation((CameraVector * CurrentSpeed * MovingSideways) + GetActorLocation());
 
-			// meed to offset target rotation to direction you want to move for 3PS
+			// need to offset target rotation to direction you want to move for 3PS
 			TargetRotation.Yaw += 90 * MovingSideways;
 		}
 
@@ -205,4 +205,17 @@ void ACharacterPawn::SetMoveSideways(float value) {
 void ACharacterPawn::SetIsRunning(bool value) {
 	WantsToRun = value;
 	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Running = %hs"), WantsToRun ? "yes" : "no");
+}
+
+// Called to set isInAir on animation blueprint
+bool ACharacterPawn::SetAnimBlueprintIsInAir_Implementation() {
+	// Each BP ought to override this and set the animation blueprint isInAir with the specific implementation
+	return true;
+}
+
+void ACharacterPawn::SetIsJumping(bool value) {
+	if (value) {
+		IsInAir = SetAnimBlueprintIsInAir_Implementation();
+		UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Jumping = %hs"), IsInAir ? "yes" : "no");
+	}
 }

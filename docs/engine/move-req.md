@@ -130,10 +130,35 @@
 
 ---
 
+## Jump animation integration
+
+- Create `jump_start`, `jump_mid`, `jump_end` animations and imported from Blender
+- Created a new `InputAction` for Jump of type `boolean` and added it to the `InputMappingContext` with `Space`
+- In C++, added this new action to the `CharacterPlayerController`
+    - Create a new method binded to Completed of this new action, which would send true on keyup
+    - This calls a method on the pawn to set a new private flag `WantsToJump`
+- In the Animation BP, we add 3 new states in the state machine by dragging from the `Idle/Run` state
+  - Create a new Anim BP variable called `isInAir` of boolean type 
+  - `Idle/Run` to `Jump_Start` transition happens if `isInAir` is true
+  - `Jump_Start` to `Jump_Loop` transition happens when `GetRelevantAnimTimeRemaining(Jump_Start)` function returns a value lesser than 0.1
+    - this is a predefined function which can be used to check how much of the current animation is done
+  - `Jump_Loop` to `Jump_End` transition happens when `isInAir` is false (we use a not operator here)
+  - `Jump_End` to `Idle/Run` transition happens when `GetRelevantAnimTimeRemaining(Jump_End)` function returns a value lesser than 0.1
+- Things to do for integration
+  - Trying to isolate `GetAnimBlueprintReference` as a method to get the anim BP instance [TODO]
+    - Cannot override this for some reason so have to separately create it in each BP
+  - Connect `WantsToJump` on `CharacterPawn` to `isInAir` on Anim BP
+  - Need to set `isInAir` to false once character is specific height above ground for the end anim to work
+    - else may need to reimport anims with no location data and control it all from code
+  - Need to set `WantsToJump` as false once its back in `Idle/Run` state
+
+---
+
 ## Improvements
 
 - Integrate jump animations into movement
 - Integrate crouch animations into movement
 - Integrate slide animations into movement
+- Integrate vault animations into movement
 
 ---

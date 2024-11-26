@@ -34,6 +34,7 @@ private:
 
 	bool IsFPS = false;
 	bool IsActuallyRunning = false;
+	bool IsInAir = false;
 	float CurrentSpeed = 0;
 	float MovingForward = 0;
 	float MovingSideways = 0;
@@ -109,6 +110,10 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Directions")
 	FRotator GetSkeletalMeshRotation();
 
+	// Called to set isInAir on the animation blueprint
+	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Animations")
+	bool SetAnimBlueprintIsInAir();
+
 public:
 	// Get Muzzle Location (depends on CharacterPawn Muzzle properties)
 	FVector GetMuzzleLocation();
@@ -133,5 +138,8 @@ public:
 
 	// Sets if pawn is running
 	void SetIsRunning(bool value);
+
+	// Sets if pawn is jumping
+	void SetIsJumping(bool value);
 
 };
