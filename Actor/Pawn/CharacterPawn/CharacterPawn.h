@@ -139,7 +139,8 @@ public:
 	// Sets if pawn is running
 	void SetIsRunning(bool value);
 
-	// Sets if pawn is jumping
+	// Sets if pawn is jumping from CharacterController or to signal to stop jumping from Anim BP
+	UFUNCTION(BlueprintCallable, Category = "CharacterPawn Animations")
 	void SetIsJumping(bool value);
 
 };

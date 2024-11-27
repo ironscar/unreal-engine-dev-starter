@@ -215,7 +215,9 @@ bool ACharacterPawn::SetAnimBlueprintIsInAir_Implementation() {
 
 void ACharacterPawn::SetIsJumping(bool value) {
 	if (value) {
-		IsInAir = SetAnimBlueprintIsInAir_Implementation();
-		UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Jumping = %hs"), IsInAir ? "yes" : "no");
+		IsInAir = SetAnimBlueprintIsInAir();
+	} else {
+		IsInAir = false;
 	}
+	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Start Jump = %hs"), IsInAir ? "yes" : "no");
 }

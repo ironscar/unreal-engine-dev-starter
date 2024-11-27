@@ -97,5 +97,6 @@ void ACharacterPlayerController::SetIsRunning(const FInputActionValue& Value) {
 }
 
 void ACharacterPlayerController::SetIsJumping(const FInputActionValue& Value) {
-	CharacterPawn->SetIsJumping(Value.Get<bool>());
+	// value will be false when completed but we want to trigger the jump so use true instead of value
+	CharacterPawn->SetIsJumping(true);
 }

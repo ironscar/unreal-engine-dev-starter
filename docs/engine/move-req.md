@@ -133,24 +133,40 @@
 ## Jump animation integration
 
 - Create `jump_start`, `jump_mid`, `jump_end` animations and imported from Blender
-- Created a new `InputAction` for Jump of type `boolean` and added it to the `InputMappingContext` with `Space`
-- In C++, added this new action to the `CharacterPlayerController`
-    - Create a new method binded to Completed of this new action, which would send true on keyup
-    - This calls a method on the pawn to set a new private flag `WantsToJump`
 - In the Animation BP, we add 3 new states in the state machine by dragging from the `Idle/Run` state
-  - Create a new Anim BP variable called `isInAir` of boolean type 
+  - Create a new Anim BP variable called `isInAir` of boolean type
+  - Each of the new states should have the respective `Play <animation_name>` sequence node connected to the Output pose
+    - without this, it won't know which anim to play and the transitions dependent on sequences won't work either
   - `Idle/Run` to `Jump_Start` transition happens if `isInAir` is true
   - `Jump_Start` to `Jump_Loop` transition happens when `GetRelevantAnimTimeRemaining(Jump_Start)` function returns a value lesser than 0.1
     - this is a predefined function which can be used to check how much of the current animation is done
+    - Also set `Blend settings > Duration` to 0.1 instead of default 0.2 to avoid the jittery transition
   - `Jump_Loop` to `Jump_End` transition happens when `isInAir` is false (we use a not operator here)
   - `Jump_End` to `Idle/Run` transition happens when `GetRelevantAnimTimeRemaining(Jump_End)` function returns a value lesser than 0.1
-- Things to do for integration
-  - Trying to isolate `GetAnimBlueprintReference` as a method to get the anim BP instance [TODO]
+    - Also set `Blend settings > Duration` to 0.1 instead of default 0.2 to avoid the jittery transition
+- `GetAnimBlueprintReference` is a method to get the anim BP instance
     - Cannot override this for some reason so have to separately create it in each BP
-  - Connect `WantsToJump` on `CharacterPawn` to `isInAir` on Anim BP
+- We can now check `isInAir` on the Anim BP `Preview` window at the bottom right and see how the full anim loop looks like
+- Created a new `InputAction` for Jump of type `boolean` and added it to the `InputMappingContext` with `Space` and to `CharacterPlayerController BP`
+- In C++, added this new action to the `CharacterPlayerController`
+    - Create a new method binded to Completed of this new action, which would send `false` on keyup
+    - We don't use the `false` value and instead send call pawn's public blueprint-callable method `SetIsJumping(true)` to signal start of jump
+    - This internally sets the `IsInAir` to `true` and calls the `SetAnimBlueprintIsInAir` method overridden in pawn BP
+    - In the pawn BP, it will call the parent function to get the `true` value and then set the `isInAir` of AnimBP
+- Next we need to connect `IsInAir` on `CharacterPawn` to `isInAir` on Anim BP
+  - We can select the `Jump_Start` to `Jump_Loop` transition and go to `Notifications` in `Details` panel
+  - Then add `OnJumpStartAnimComplete` for the `End Transition Event` and hit compile
+  - Now if we search for `OnJumpStartAnimComplete` in `Event Graph`, there will be an event for it
+  - Set `isInAir` of Anim BP to false
+    - eventually this needs to be height-aware with actual vertical fall but for now this is cosmetically fine 
+    - this will trigger `Jump_Loop` to `Jump_End` transition and then `Jump_End` to `Idle/Run` transition
+  - Create a similar event as `OnJumpEndAnimComplete` for `Jump_End` to `Idle/Run` transition
+  - Use the `TryGetPawnOwner` with target `AnimInstance` (check this on node) and cast it to `BP_MyCharacterPawn`
+  - Check if `isInAir` of AnimBP is false and if so, call pawn's `SetIsJumping(false)` method to set pawn's `isInAir` to false
+
+- Check how to make jump height and ground aware [TODO]
   - Need to set `isInAir` to false once character is specific height above ground for the end anim to work
-    - else may need to reimport anims with no location data and control it all from code
-  - Need to set `WantsToJump` as false once its back in `Idle/Run` state
+  - May need to reimport anims with no location data and control it all from code
 
 ---
 
