@@ -31,8 +31,8 @@ void ACharacterPlayerController::SetupInputComponent() {
 	PlayerEnhancedInputComponent->BindAction(Look2D, ETriggerEvent::Triggered, this, &ACharacterPlayerController::Look);
 
 	// Ideally, should be using Started instead of Triggered for this
-	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Triggered, this, &ACharacterPlayerController::SetIsRunning);
-	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetIsRunning);
+	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Started, this, &ACharacterPlayerController::SetStartRunning);
+	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetStopRunning);
 
 	// bind enhanced input actions (move)
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);
@@ -92,8 +92,14 @@ void ACharacterPlayerController::MoveSideways(const FInputActionValue& Value) {
 	}
 }
 
-void ACharacterPlayerController::SetIsRunning(const FInputActionValue& Value) {
-	CharacterPawn->SetIsRunning(Value.Get<bool>());
+void ACharacterPlayerController::SetStartRunning(const FInputActionValue& Value) {
+	// behavior of value is inconsistent so we hard-code it to each event
+	CharacterPawn->SetIsRunning(true);
+}
+
+void ACharacterPlayerController::SetStopRunning(const FInputActionValue& Value) {
+	// behavior of value is inconsistent so we hard-code it to each event
+	CharacterPawn->SetIsRunning(false);
 }
 
 void ACharacterPlayerController::SetIsJumping(const FInputActionValue& Value) {

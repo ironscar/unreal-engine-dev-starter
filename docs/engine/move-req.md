@@ -33,7 +33,7 @@
 	- This time we bind on `Triggered` and `Completed`
 	- We could have used `Started` to just track when it starts but when you keep both A and D pressed, it fails to emit an event
 	- `Completed` signals end of event
-	- `Triggered` fires multilpe time while event occurs and therefore it keeps track of it even if both are pressed
+	- `Triggered` fires multiple time while event occurs and therefore it keeps track of it even if both are pressed
 	- We do this because we want to track when the event stops and `Triggered` does not help us do that
 	- `Completed` will send a value of zero
   - Both Movement actions are Axis 1D so take a `FInputAction` argument in the binding functions and cast it to `float`
@@ -117,6 +117,7 @@
 - Created a new `InputAction` for Run of type `boolean` and added it to the `InputMappingContext` with `Left Shift`
 - In C++, added this new action to the `CharacterPlayerController`
   - Create a new method binded to Started and Completed of this new action, which would send true on keydown and false on keyup
+    - this doesn't seem to happen in UE5.5 so binded to two different methods and hardcoded the value for each
   - This calls a method on the pawn to set a new private flag `WantsToRun` 
   - Update the `SetAnimBlueprintSpeed` base implementation
 	- update conditions so that we run only if going ahead or going either side in 3PS
@@ -165,6 +166,7 @@
   - Check if `isInAir` of AnimBP is false and if so, call pawn's `SetIsJumping(false)` method to set pawn's `isInAir` to false
 
 - Check how to make jump height and ground aware [TODO]
+  - Need to figure out how to enable collisions across this setup [CHECK]
   - Need to set `isInAir` to false once character is specific height above ground for the end anim to work
   - May need to reimport anims with no location data and control it all from code
 

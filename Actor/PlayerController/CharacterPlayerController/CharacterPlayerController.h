@@ -65,7 +65,8 @@ public:
 	void MoveSideways(const FInputActionValue& Value);
 
 	// called when Left Shift is Started or Completed
-	void SetIsRunning(const FInputActionValue& Value);
+	void SetStartRunning(const FInputActionValue& Value);
+	void SetStopRunning(const FInputActionValue& Value);
 
 	// called when Space is pressed
 	void SetIsJumping(const FInputActionValue& Value);

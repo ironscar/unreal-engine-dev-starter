@@ -64,7 +64,7 @@ public:
 
 	/* Specifies the height muzzle offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Muzzle")
-	float MuzzleOffsetHeight = 10;
+	float MuzzleOffsetHeight = 110;
 
 	/* Specifies speed of walking */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
