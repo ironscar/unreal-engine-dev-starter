@@ -24,6 +24,12 @@ void ACharacterPawn::BeginPlay() {
 
 	// set walk speed to 0
 	SetAnimBlueprintSpeed();
+
+	// get capsule component and setup delegate for collision overlap
+	CapsuleComponent = FindComponentByClass<UCapsuleComponent>();
+	if (this != nullptr && CapsuleComponent != nullptr) {
+		CapsuleComponent->OnComponentBeginOverlap.AddDynamic(this, &ACharacterPawn::BeginOverlap);
+	}
 }
 
 // Called to set speed on animation blueprint
@@ -92,6 +98,11 @@ void ACharacterPawn::Tick(float DeltaTime) {
 
 	// move actor if moving in any direction
 	MovePawnPerTick();
+}
+
+void ACharacterPawn::BeginOverlap(
+	UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+	UE_LOG(LogTemp, Warning, TEXT("Collision occurred"));
 }
 
 float ACharacterPawn::GetTurnSpeed() {

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Pawn.h"
 #include "CharacterPawn.generated.h"
@@ -31,6 +32,7 @@ private:
 	FRotator BaseRotation;
 	UCameraComponent* CameraComponent;
 	USkeletalMeshComponent* SkeletalMeshComponent;
+	UCapsuleComponent* CapsuleComponent;
 
 	bool IsFPS = false;
 	bool IsActuallyRunning = false;
@@ -142,5 +144,10 @@ public:
 	// Sets if pawn is jumping from CharacterController or to signal to stop jumping from Anim BP
 	UFUNCTION(BlueprintCallable, Category = "CharacterPawn Animations")
 	void SetIsJumping(bool value);
+
+	// Called to check collision overlap events
+	UFUNCTION()
+	void BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 };
