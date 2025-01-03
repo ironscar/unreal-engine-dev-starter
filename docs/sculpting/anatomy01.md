@@ -1,4 +1,6 @@
-# Anatomy 01
+# Anatomy 01: Proportions
+
+Find the proportional sketches in `Personal Projects/Learnings/skeletal-reference.psd` on the `Anatomy 01` group
 
 ## Male Body proportions
 
