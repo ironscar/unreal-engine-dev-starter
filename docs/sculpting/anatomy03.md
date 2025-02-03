@@ -9,25 +9,18 @@
 
 ## Breast shapes in poses
 
-### Tilted forward
-
-- when the body is tilted forward
-- gravity acts on the breasts
-- thus, it tends to point towards the ground
-- it can be likened to a pouch with a ball inside, where the ball is stuck between the skin and the rib cage
-- the shape of the breast traces that of the ball at the lower portions and then tapers to the clavicle, as if hanging
-- the larger the breast, the larger the ball, though in larger sizes, the ball is slightly elliptical (longer vertically)
-
-### Flat on chest
-
-- when lying flat on the chest
-
-### Flat on back
-
-- when lying flat on the back
-
-### Arched back
-
-- when lying on the back with the back arched upwards
+- Tilted forward
+  - when the body is tilted forward
+  - gravity acts on the breasts
+  - thus, it tends to point towards the ground
+  - it can be likened to a pouch with a ball inside, where the ball is stuck between the skin and the rib cage
+  - the shape of the breast traces that of the ball at the lower portions and then tapers to the clavicle, as if hanging
+  - the larger the breast, the larger the ball, though in larger sizes, the ball is slightly elliptical (longer vertically)
+- Flat on chest
+  - when lying flat on the chest, the volume gets distributed upwards and out-sideways, due to getting squeezed between the floor and ribcage
+- Flat on back
+  - when lying flat on the back [CONTINUE-HERE]
+- Arched back
+  - when lying on the back with the back arched upwards
 
 ---
