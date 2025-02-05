@@ -19,8 +19,9 @@
 - Flat on chest
   - when lying flat on the chest, the volume gets distributed upwards and out-sideways, due to getting squeezed between the floor and ribcage
 - Flat on back
-  - when lying flat on the back [CONTINUE-HERE]
+  - when lying flat on the back, the volume tends to flatten out and distribute somewhat down and more outsideways
+  - larger the breast, lower it goes and lower the nipples also point towards the down and outside 
 - Arched back
-  - when lying on the back with the back arched upwards
+  - when lying on the back with the back arched upwards [CONTINUE-HERE]
 
 ---
