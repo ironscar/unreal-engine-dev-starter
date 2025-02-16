@@ -15,6 +15,7 @@ Apart from the muscle groups, certain bones also are visible on the front of the
 - `Sternocleidomastoid`: The two muscle tendons that stretch from below the ear, along the neck to the middle of the clavicle
 - `Trapezius`: A majorly posterior muscle that is visible on the sides of the neck from the front tapering towards the shoulders
 - `Deltoids`: The shoulder muscles that start from the outer one-third of the clavicle and connect half way into the upper arm bone
+  - always tapers towards the surface of the arm that is pointed outwards at rest, no matter which way it points during movement
 - `Pectoralis`: The chest muscles that begin from below the deltoids and connect to the inner three-fifth of the clavicle, sternum and ribs as three major tendons respectively
   - there is a slight gap on the clavicle between the deltoid and the pectoralis connections
   - there are three main muscle masses for the pectoralis
@@ -24,6 +25,7 @@ Apart from the muscle groups, certain bones also are visible on the front of the
   - as chest muscles become more developed, the clavicle is less and less visible
 - `Serratus`: A row of muscle tendons that begin from the ribs in the side of the body and connect into the obliques
   - These tend to cover the ribs on the side/front while starting under the scapula
+  - these are rather rounded coming from the side but the interlocking in front is rather flat
 - `External Obliques`: A large muscle group that begin from the back and interlock with the serratus at the side of the body, ending on either side of the abdomen
 - `Abdomen`: Forms the abs with the navel ditributing them into six packs above and one major group that extends towards the pelvis
   - the bottom boundary of the topmost pair of abs marks the end of the rib cage and follows its shape
@@ -46,6 +48,7 @@ Apart from the muscle groups, certain bones also are visible on the back of the 
 
 - `Sternocleidomastoid`: Barely visible starting from the sides of the trapezius muscle and extending towards the front of the neck
 - `Trapezius`: Major muscle of upper back extending from the base of the skull to the middle of the back while hugging the shoulder blades
+  - as the scapula moves outwards or inwards, the trapezius muscle gets stretched or squished respectively
 - `Deltoids`: Starts halfway on the spine of the scapula and extends towards the front of the upper arm
 - `Infraspinatus`: The upper muscle in the scapula that begins at the inner edge and connects under the deltoids
 - `Teres major`: The lower muscle in the scapula that also begins at the inner edge and connects under the deltoids slightly below the infraspinatus
@@ -54,6 +57,8 @@ Apart from the muscle groups, certain bones also are visible on the back of the 
 - `Latissimus dorsi`: The largest muscle in the body covering the lower back, and extends from below the trapezius towards the upper arm bone while covering the lower part of the scapula
   - it goes below the pectoralis and connects further up the upper arm bone
   - it covers both the serratus and the obliques in the back
+  - the serratus however pushes the latissimus dorsi outwards slightly below the shoulder blade and slightly above where the latissimus dorsi tends to curve inwards to the back
+  - in the inward section of the latissimus dorsi, there are two sausage shapes running along the back on either side of spine created by the spine itself
 - `External obliques`: A major muscle that starts from under the latissimus dorsi and connects to the abdomen over the illiac spine of the pelvis
   - They lock in with the serratus and start from the ribs under the latissimus dorsi
 - `Triceps`: A major muscle with three heads (two on the inner side and one on the outer) that covers the back of the upper arm and extends to the elbow on each side

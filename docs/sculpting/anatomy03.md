@@ -22,6 +22,7 @@
   - when lying flat on the back, the volume tends to flatten out and distribute somewhat down and more outsideways
   - larger the breast, lower it goes and lower the nipples also point towards the down and outside 
 - Arched back
-  - when lying on the back with the back arched upwards [CONTINUE-HERE]
+  - when the back is arching, the volume tends to get pulled further downwards and sideways as well
+  - the smaller the breast, the more it retains its shape from normal upright position
 
 ---
