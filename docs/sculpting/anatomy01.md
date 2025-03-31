@@ -19,7 +19,7 @@ Find the proportional sketches in `Personal Projects/Learnings/skeletal-referenc
   - bottom of knee (sixth head)
   - top of ankle (seventh head)
 - The male rib cage has the following characteristics
-  - it is `1.2 times` as wide as the height of the head
+  - it is `1.2 times` as wide as the height of the head when seen from side
   - it is `1.5 times` as tall as the height of the head
   - it is tilted backwards by about `30 degrees` from the vertical axis
   - it is egg-shaped from the side
