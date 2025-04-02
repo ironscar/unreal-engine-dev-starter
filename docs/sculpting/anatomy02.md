@@ -1,6 +1,7 @@
 # Anatomy 02: Torso Muscle groups
 
 We will cover mainly the torso and upper arms, and some of the lower arm (which will later have its own section)
+Find the sketches in `Personal Projects/Learnings/skeletal-reference.psd` on the `Anatomy 02` group
 
 ## Anterior (front) visible bones
 

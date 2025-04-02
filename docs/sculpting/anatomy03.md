@@ -1,5 +1,7 @@
 # Anatomy 03: Female breast
 
+Find the sketches in `Personal Projects/Learnings/skeletal-reference.psd` on the `Anatomy 03` group
+
 - Breasts are fat volumes that form a wave-like connection to the middle pectoralis muscle mass
   - on the two sides, it connects almost at the bottom of the middle pectoralis but at the middle, it rises almost to half of it
   - the breast connects back to the body where the lower pectoralis ends (though for larger breasts, they may connect lower)
