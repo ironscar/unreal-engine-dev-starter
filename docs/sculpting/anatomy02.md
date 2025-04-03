@@ -70,3 +70,17 @@ Apart from the muscle groups, certain bones also are visible on the back of the 
 - `Flexor carpi ulnaris`: A muscle on the forearm that begins at the inside of the elbow
 
 ---
+
+## Armpits
+
+- Armpits are a complex interplay of muscles
+- They are visible when the arms are raised
+- The more the arms are raised normally, the deltoid gets pushed further backwards and downwards
+- The pectoralis gets stretched upwards from its connection point on the arm
+- The biceps come out from below the pectoralis and stretch towards the elbow
+- The lattissimus dorsi below and the teres major muscles go under the biceps and pectoralis where the bicep starts in the armpit
+- The tricep heads come from between the teres major and teres minor and stretch towards the elbow
+- Teres minor and infraspinatus are towards the back and connect to the arm bone under the deltoid
+- The serratus become more visible under the pectoralis and latissimus dorsi muscles following the rib bones
+ 
+---
