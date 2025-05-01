@@ -53,6 +53,7 @@ Apart from the muscle groups, certain bones also are visible on the back of the 
 - `Deltoids`: Starts halfway on the spine of the scapula and extends towards the front of the upper arm
 - `Infraspinatus`: The upper muscle in the scapula that begins at the inner edge and connects under the deltoids
 - `Teres major`: The lower muscle in the scapula that also begins at the inner edge and connects under the deltoids slightly below the infraspinatus
+  - when the arms are kept on the hip or behind the torso, it becomes especially sounded and prominent
 - `Teres minor`: A smaller muscle that is mostly obscured under the Teres major muscle but also starts from the scapula and connects to the deltoid
 - `Rhomboids`: A group of two muscle that connect the inner boundary of the scapula to the spine under the trapezius and is barely visible on the back unless the arms are raised
 - `Latissimus dorsi`: The largest muscle in the body covering the lower back, and extends from below the trapezius towards the upper arm bone while covering the lower part of the scapula
