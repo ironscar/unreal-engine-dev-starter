@@ -153,6 +153,24 @@
 
 ---
 
+### Polygroups
+
+- Polygroups are handy way to group logical sections of the mesh and the polygroup view can be toggled by `Shift + F`
+- The easiest way to create them is by masking the area and then doing `Group Masked` in `Tool > Polygroups`
+- This now allows you to hide or mask these sections quickly to work in isolation
+- Doing `Ctrl + Shift + Click` on a polygroup hides all other polygroups
+  - Doing `Ctrl + Click` outside the mesh will mask the current visible polygroup only
+  - Doing `Ctrl + Shift + Click` outside will make all polygroups visible with the current one masked
+  - Doing `Ctrl + Click` outside the mesh again will mask all other polygroups
+  - This is a quick way to mask all other polygroups apart from the one you want to work on
+- Doing it again hides the current polygroup and shows all other polygroups
+- Doing it outside the mesh unhides all polygroups
+- Sometimes if polygroup view is disabled, the polygroups edges get weird
+  - In this case, Just undo once and redo after enabling polygroup view, which seems to fix it
+- This came in handy during hard-surface modelling where I masked and created polygroups to separate main borders
+
+---
+
 ### Todos
 
 - Sculpt the human body accurately (blur face and perfect body)
