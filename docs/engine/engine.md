@@ -221,5 +221,9 @@ Caveats:
     - changing it to `ETriggerEvent::Triggered` works but fires multiple times which shouldn't be required
     - only works when built through Rider and not if we start the editor directly
     - added question in UEForum so wait for answers if any
+- Upgrading to UE 5.6
+  - Had to update the `LearningKitProjectEditorTarget.cs` file to comment `EngineIncludeOrderVersion.Unreal5_6` since it doesn't exist for some reason
+  - Right click on uproject file and select `Switch Unreal Engine Version` and then selected UE 5.6 which regenerated project files
+  - Then it starts from Rider just fine
 
 ---
