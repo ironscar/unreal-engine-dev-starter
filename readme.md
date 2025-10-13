@@ -1,6 +1,8 @@
 # README
 
-This project attempts to unify various game development concepts. But this repository won't be able to support all assets and so instead I am documenting how to do those instead in various doc files.
+- This project attempts to unify various game development concepts.
+- But this repository won't be able to support all assets and so instead I am documenting how to do those instead in various doc files.
+- For next learning items, refer to https://roadmap.sh/r/game-development-roadmap-3seae
 
 ## Resources
 
