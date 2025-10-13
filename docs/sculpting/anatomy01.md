@@ -19,7 +19,7 @@ Find the sketches in `Personal Projects/Learnings/skeletal-reference.psd` on the
   - bottom of knee (sixth head)
   - top of ankle (seventh head)
 - The male rib cage has the following characteristics
-  - it is `1.2 times` as wide as the height of the head when seen from side
+  - it is `1.2 times` as wide as the height of the head when seen from front and as wide as the height of the head when seen from the side
   - it is `1.5 times` as tall as the height of the head
   - it is tilted backwards by about `30 degrees` from the vertical axis
   - it is egg-shaped from the side
@@ -27,6 +27,7 @@ Find the sketches in `Personal Projects/Learnings/skeletal-reference.psd` on the
 - The male pelvis has following characteristics
   - it is `1.2 times` as wide as the height of the head
   - it seems to tilt the pelvic region backwards from top by about `30 degrees` from the vertical axis
+  - it is as high as one head unit
 
 ## Female Body proportions
 

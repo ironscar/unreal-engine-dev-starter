@@ -48,14 +48,14 @@ Apart from the muscle groups, certain bones also are visible on the back of the 
 ## Posterior (back) Muscle groups
 
 - `Sternocleidomastoid`: Barely visible starting from the sides of the trapezius muscle and extending towards the front of the neck
-- `Trapezius`: Major muscle of upper back extending from the base of the skull to the middle of the back while hugging the shoulder blades
+- `Trapezius`: Major muscle of upper back extending from the base of the skull to the middle of the back while hugging the top of the spine of the shoulder blades
   - as the scapula moves outwards or inwards, the trapezius muscle gets stretched or squished respectively
-- `Deltoids`: Starts halfway on the spine of the scapula and extends towards the front of the upper arm
+- `Deltoids`: Starts halfway on the bottom of the spine of the scapula and extends down towards the front of the upper arm
 - `Infraspinatus`: The upper muscle in the scapula that begins at the inner edge and connects under the deltoids
 - `Teres major`: The lower muscle in the scapula that also begins at the inner edge and connects under the deltoids slightly below the infraspinatus
-  - when the arms are kept on the hip or behind the torso, it becomes especially sounded and prominent
+  - when the arms are kept on the hip or behind the torso, it becomes especially rounded and prominent
 - `Teres minor`: A smaller muscle that is mostly obscured under the Teres major muscle but also starts from the scapula and connects to the deltoid
-- `Rhomboids`: A group of two muscle that connect the inner boundary of the scapula to the spine under the trapezius and is barely visible on the back unless the arms are raised
+- `Rhomboids`: A group of two muscles that connect the inner boundary of the scapula to the spine under the trapezius and is barely visible on the back unless the arms are raised
 - `Latissimus dorsi`: The largest muscle in the body covering the lower back, and extends from below the trapezius towards the upper arm bone while covering the lower part of the scapula
   - it goes below the pectoralis and connects further up the upper arm bone
   - it covers both the serratus and the obliques in the back
@@ -64,7 +64,7 @@ Apart from the muscle groups, certain bones also are visible on the back of the 
 - `External obliques`: A major muscle that starts from under the latissimus dorsi and connects to the abdomen over the illiac spine of the pelvis
   - They lock in with the serratus and start from the ribs under the latissimus dorsi
 - `Triceps`: A major muscle with three heads (two on the inner side and one on the outer) that covers the back of the upper arm and extends to the elbow on each side
-  - They connect to the arm bone below the infraspinatus followed by teres minor, but before teres major and latissimus dorsi which is more towards the front of the arm
+  - They connect to the arm bone below the infraspinatus and teres minor, but before teres major and latissimus dorsi which is more towards the front of the arm
 - `Extensor capi radialis longus`: A muscle on the forearm that begins at the outside of the elbow
 - `Anconeus`: A small muscle directly below the elbow
 - `Extensor digitorium`: A muscle that begins from below the extensor capi radialis longus and anconeus
