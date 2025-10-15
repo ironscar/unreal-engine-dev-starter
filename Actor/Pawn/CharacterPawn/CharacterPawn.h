@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Pawn.h"
 #include "CharacterPawn.generated.h"
@@ -31,9 +32,11 @@ private:
 	FRotator BaseRotation;
 	UCameraComponent* CameraComponent;
 	USkeletalMeshComponent* SkeletalMeshComponent;
+	UCapsuleComponent* CapsuleComponent;
 
 	bool IsFPS = false;
 	bool IsActuallyRunning = false;
+	bool IsInAir = false;
 	float CurrentSpeed = 0;
 	float MovingForward = 0;
 	float MovingSideways = 0;
@@ -63,7 +66,7 @@ public:
 
 	/* Specifies the height muzzle offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Muzzle")
-	float MuzzleOffsetHeight = 10;
+	float MuzzleOffsetHeight = 110;
 
 	/* Specifies speed of walking */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterPawn Animations")
@@ -109,6 +112,10 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Directions")
 	FRotator GetSkeletalMeshRotation();
 
+	// Called to set isInAir on the animation blueprint
+	UFUNCTION(BlueprintNativeEvent, Category = "CharacterPawn Animations")
+	bool SetAnimBlueprintIsInAir();
+
 public:
 	// Get Muzzle Location (depends on CharacterPawn Muzzle properties)
 	FVector GetMuzzleLocation();
@@ -133,5 +140,14 @@ public:
 
 	// Sets if pawn is running
 	void SetIsRunning(bool value);
+
+	// Sets if pawn is jumping from CharacterController or to signal to stop jumping from Anim BP
+	UFUNCTION(BlueprintCallable, Category = "CharacterPawn Animations")
+	void SetIsJumping(bool value);
+
+	// Called to check collision overlap events
+	UFUNCTION()
+	void BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 };

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Camera/CameraComponent.h"
 #include "CharacterPawn.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 ACharacterPawn::ACharacterPawn() {
@@ -24,6 +24,12 @@ void ACharacterPawn::BeginPlay() {
 
 	// set walk speed to 0
 	SetAnimBlueprintSpeed();
+
+	// get capsule component and setup delegate for collision overlap
+	CapsuleComponent = FindComponentByClass<UCapsuleComponent>();
+	if (this != nullptr && CapsuleComponent != nullptr) {
+		CapsuleComponent->OnComponentBeginOverlap.AddDynamic(this, &ACharacterPawn::BeginOverlap);
+	}
 }
 
 // Called to set speed on animation blueprint
@@ -94,6 +100,11 @@ void ACharacterPawn::Tick(float DeltaTime) {
 	MovePawnPerTick();
 }
 
+void ACharacterPawn::BeginOverlap(
+	UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+	UE_LOG(LogTemp, Warning, TEXT("Collision occurred"));
+}
+
 float ACharacterPawn::GetTurnSpeed() {
 	return IsActuallyRunning ? RunTurnSpeed : WalkTurnSpeed;
 }
@@ -116,7 +127,7 @@ void ACharacterPawn::MovePawnPerTick() {
 			CameraVector.Z = SkeletalMeshForwardVector.Z;
 			SetActorLocation((CameraVector * CurrentSpeed * MovingSideways) + GetActorLocation());
 
-			// meed to offset target rotation to direction you want to move for 3PS
+			// need to offset target rotation to direction you want to move for 3PS
 			TargetRotation.Yaw += 90 * MovingSideways;
 		}
 
@@ -204,5 +215,20 @@ void ACharacterPawn::SetMoveSideways(float value) {
 
 void ACharacterPawn::SetIsRunning(bool value) {
 	WantsToRun = value;
-	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Running = %s"), WantsToRun ? "yes" : "no");
+	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Running = %hs"), WantsToRun ? "yes" : "no");
+}
+
+// Called to set isInAir on animation blueprint
+bool ACharacterPawn::SetAnimBlueprintIsInAir_Implementation() {
+	// Each BP ought to override this and set the animation blueprint isInAir with the specific implementation
+	return true;
+}
+
+void ACharacterPawn::SetIsJumping(bool value) {
+	if (value) {
+		IsInAir = SetAnimBlueprintIsInAir();
+	} else {
+		IsInAir = false;
+	}
+	// UE_LOG(LogTemp, Warning, TEXT("FPS Pawn Start Jump = %hs"), IsInAir ? "yes" : "no");
 }

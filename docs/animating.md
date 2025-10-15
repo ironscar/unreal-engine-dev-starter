@@ -79,6 +79,9 @@
     - you can uncheck `All actions` under `Animation` to only export the specific animation
     - make sure to have the new animation selected in the `Action Editor`
     - this creates a new fbx file for the animation itself
+    - when you do this, make sure that the end frame is set correctly for that specific animation
+      - even if there are keyframes, they will be ignored if not set correctly
+      - also make sure that the correct animation is selected even after selecting the skeleton and model in Object mode (sometimes it changes)
   - during import to UE5
     - uncheck `Import meshes in bone hierarchy` and select the existing skeleton asset for the `Skeleton` field
     - this will only import the specific animation sequence as an asset
@@ -122,12 +125,13 @@
 - Idle [DONE]
 - Run (you cannot run sideways or backwards) [DONE]
 - Idle-run blend space [DONE]
-- At-place Jump (start/loop/fall)
+- At-place Jump (start/loop/fall) [DONE]
 - Running Jump (start/loop/fall)
 - Crouch idle
 - Crouch walk Forward
 - Crouch walk sideways
 - Slide
+- Vault
 - Melee attack
 - Long-range attack
 - Damage taken

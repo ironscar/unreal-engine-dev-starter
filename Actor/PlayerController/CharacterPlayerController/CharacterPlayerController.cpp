@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "CharacterPlayerController.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
-#include "CharacterPlayerController.h"
 
 void ACharacterPlayerController::BeginPlay() {
 	Super::BeginPlay();
@@ -24,19 +24,24 @@ void ACharacterPlayerController::SetupInputComponent() {
 	SubSystem->AddMappingContext(InputMapping, 0);
 	PlayerEnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent);
 
-	// bind enhanced input actions
+	// bind enhanced input actions (look around and weapons)
 	PlayerEnhancedInputComponent->BindAction(MouseLeft, ETriggerEvent::Completed, this, &ACharacterPlayerController::Shoot);
 	PlayerEnhancedInputComponent->BindAction(Weapon1Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 1.0f);
 	PlayerEnhancedInputComponent->BindAction(Weapon2Select, ETriggerEvent::Completed, this, &ACharacterPlayerController::ChangeAmmo, 2.0f);
 	PlayerEnhancedInputComponent->BindAction(Look2D, ETriggerEvent::Triggered, this, &ACharacterPlayerController::Look);
 
-	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Started, this, &ACharacterPlayerController::SetIsRunning);
-	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetIsRunning);
+	// Ideally, should be using Started instead of Triggered for this
+	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Started, this, &ACharacterPlayerController::SetStartRunning);
+	PlayerEnhancedInputComponent->BindAction(Run, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetStopRunning);
 
+	// bind enhanced input actions (move)
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveForward);
 	PlayerEnhancedInputComponent->BindAction(MoveY, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveForward);
 	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Triggered, this, &ACharacterPlayerController::MoveSideways);
 	PlayerEnhancedInputComponent->BindAction(MoveX, ETriggerEvent::Completed, this, &ACharacterPlayerController::MoveSideways);
+
+	// bind enhanced input actions (jump)
+	PlayerEnhancedInputComponent->BindAction(Jump, ETriggerEvent::Completed, this, &ACharacterPlayerController::SetIsJumping);
 }
 
 void ACharacterPlayerController::Look(const FInputActionValue& Value) {
@@ -87,6 +92,17 @@ void ACharacterPlayerController::MoveSideways(const FInputActionValue& Value) {
 	}
 }
 
-void ACharacterPlayerController::SetIsRunning(const FInputActionValue& Value) {
-	CharacterPawn->SetIsRunning(Value.Get<bool>());
+void ACharacterPlayerController::SetStartRunning(const FInputActionValue& Value) {
+	// behavior of value is inconsistent so we hard-code it to each event
+	CharacterPawn->SetIsRunning(true);
+}
+
+void ACharacterPlayerController::SetStopRunning(const FInputActionValue& Value) {
+	// behavior of value is inconsistent so we hard-code it to each event
+	CharacterPawn->SetIsRunning(false);
+}
+
+void ACharacterPlayerController::SetIsJumping(const FInputActionValue& Value) {
+	// value will be false when completed but we want to trigger the jump so use true instead of value
+	CharacterPawn->SetIsJumping(true);
 }

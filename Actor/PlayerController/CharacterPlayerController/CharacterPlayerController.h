@@ -65,7 +65,11 @@ public:
 	void MoveSideways(const FInputActionValue& Value);
 
 	// called when Left Shift is Started or Completed
-	void SetIsRunning(const FInputActionValue& Value);
+	void SetStartRunning(const FInputActionValue& Value);
+	void SetStopRunning(const FInputActionValue& Value);
+
+	// called when Space is pressed
+	void SetIsJumping(const FInputActionValue& Value);
 
 protected:
 	
@@ -103,6 +107,10 @@ protected:
 	// to run
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* Run;
+
+	// to jump
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* Jump;
 
 private:
 

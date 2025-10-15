@@ -4,21 +4,18 @@
 
 - Let us set up a few requirements on how movement should work for us so that it's easy to integrate FPS and 3PS
 
-|Control  		| FPS 				| 3PS							|
-|---------------|-------------------|-------------------------------|
-| W				|Walk forward		|Walk forward					|
-| A				|Walk left			|Turn left + Walk forward		|
-| S				|Walk backward		|Turn back + Walk forward		|
-| D				|Walk right			|Turn right + Walk forward		|
-| Shift + W		|Run forward		|Run forward					|
-| Shift + A		|Walk left			|Turn left + Run forward		|
-| Shift + S		|Walk right			|Turn back + Run forward		|
-| Shift + D		|Walk backward		|Turn right + Run forward		|
-| Ctrl* + W		|Crouch forward		|Crouch forward					|
-| Ctrl* + A		|Crouch left		|Turn left + Crouch forward		|
-| Ctrl* + S		|Crouch right		|Turn back + Crouch forward		|
-| Ctrl* + D		|Crouch backward	|Turn right + Crouch forward	|
-| Space			|Jump				|Jump							|
+| Control  		 | FPS 				        | 3PS							                  |
+|-------------|-----------------|-----------------------------|
+| W				       | Walk forward		  | Walk forward					           |
+| A				       | Walk left			    | Turn left + Walk forward		  |
+| S				       | Walk backward		 | Turn back + Walk forward		  |
+| D				       | Walk right			   | Turn right + Walk forward		 |
+| Shift + W		 | Run forward		   | Run forward					            |
+| Shift + A		 | Walk left			    | Turn left + Run forward		   |
+| Shift + S		 | Walk right			   | Turn back + Run forward		   |
+| Shift + D		 | Walk backward		 | Turn right + Run forward		  |
+| Ctrl		      | Crouch toggle		 | Crouch toggle					          |
+| Space			    | Jump				        | Jump							                 |
 
 - `*` use `Ctrl` as a toggle for crouch instead of continuous press
 - If running and then you press `Ctrl`, slide in direction of running (only one anim required as run is only one direction)
@@ -36,7 +33,7 @@
 	- This time we bind on `Triggered` and `Completed`
 	- We could have used `Started` to just track when it starts but when you keep both A and D pressed, it fails to emit an event
 	- `Completed` signals end of event
-	- `Triggered` fires multilpe time while event occurs and therefore it keeps track of it even if both are pressed
+	- `Triggered` fires multiple time while event occurs and therefore it keeps track of it even if both are pressed
 	- We do this because we want to track when the event stops and `Triggered` does not help us do that
 	- `Completed` will send a value of zero
   - Both Movement actions are Axis 1D so take a `FInputAction` argument in the binding functions and cast it to `float`
@@ -120,6 +117,7 @@
 - Created a new `InputAction` for Run of type `boolean` and added it to the `InputMappingContext` with `Left Shift`
 - In C++, added this new action to the `CharacterPlayerController`
   - Create a new method binded to Started and Completed of this new action, which would send true on keydown and false on keyup
+    - this doesn't seem to happen in UE5.5 so binded to two different methods and hardcoded the value for each
   - This calls a method on the pawn to set a new private flag `WantsToRun` 
   - Update the `SetAnimBlueprintSpeed` base implementation
 	- update conditions so that we run only if going ahead or going either side in 3PS
@@ -133,10 +131,52 @@
 
 ---
 
+## Jump animation integration
+
+- Create `jump_start`, `jump_mid`, `jump_end` animations and imported from Blender
+- In the Animation BP, we add 3 new states in the state machine by dragging from the `Idle/Run` state
+  - Create a new Anim BP variable called `isInAir` of boolean type
+  - Each of the new states should have the respective `Play <animation_name>` sequence node connected to the Output pose
+    - without this, it won't know which anim to play and the transitions dependent on sequences won't work either
+  - `Idle/Run` to `Jump_Start` transition happens if `isInAir` is true
+  - `Jump_Start` to `Jump_Loop` transition happens when `GetRelevantAnimTimeRemaining(Jump_Start)` function returns a value lesser than 0.1
+    - this is a predefined function which can be used to check how much of the current animation is done
+    - Also set `Blend settings > Duration` to 0.1 instead of default 0.2 to avoid the jittery transition
+  - `Jump_Loop` to `Jump_End` transition happens when `isInAir` is false (we use a not operator here)
+  - `Jump_End` to `Idle/Run` transition happens when `GetRelevantAnimTimeRemaining(Jump_End)` function returns a value lesser than 0.1
+    - Also set `Blend settings > Duration` to 0.1 instead of default 0.2 to avoid the jittery transition
+- `GetAnimBlueprintReference` is a method to get the anim BP instance
+    - Cannot override this for some reason so have to separately create it in each BP
+- We can now check `isInAir` on the Anim BP `Preview` window at the bottom right and see how the full anim loop looks like
+- Created a new `InputAction` for Jump of type `boolean` and added it to the `InputMappingContext` with `Space` and to `CharacterPlayerController BP`
+- In C++, added this new action to the `CharacterPlayerController`
+    - Create a new method binded to Completed of this new action, which would send `false` on keyup
+    - We don't use the `false` value and instead send call pawn's public blueprint-callable method `SetIsJumping(true)` to signal start of jump
+    - This internally sets the `IsInAir` to `true` and calls the `SetAnimBlueprintIsInAir` method overridden in pawn BP
+    - In the pawn BP, it will call the parent function to get the `true` value and then set the `isInAir` of AnimBP
+- Next we need to connect `IsInAir` on `CharacterPawn` to `isInAir` on Anim BP
+  - We can select the `Jump_Start` to `Jump_Loop` transition and go to `Notifications` in `Details` panel
+  - Then add `OnJumpStartAnimComplete` for the `End Transition Event` and hit compile
+  - Now if we search for `OnJumpStartAnimComplete` in `Event Graph`, there will be an event for it
+  - Set `isInAir` of Anim BP to false
+    - eventually this needs to be height-aware with actual vertical fall but for now this is cosmetically fine 
+    - this will trigger `Jump_Loop` to `Jump_End` transition and then `Jump_End` to `Idle/Run` transition
+  - Create a similar event as `OnJumpEndAnimComplete` for `Jump_End` to `Idle/Run` transition
+  - Use the `TryGetPawnOwner` with target `AnimInstance` (check this on node) and cast it to `BP_MyCharacterPawn`
+  - Check if `isInAir` of AnimBP is false and if so, call pawn's `SetIsJumping(false)` method to set pawn's `isInAir` to false
+
+- Check how to make jump height and ground aware [TODO]
+  - Need to figure out how to enable collisions across this setup [CHECK]
+  - Need to set `isInAir` to false once character is specific height above ground for the end anim to work
+  - May need to reimport anims with no location data and control it all from code
+
+---
+
 ## Improvements
 
 - Integrate jump animations into movement
 - Integrate crouch animations into movement
 - Integrate slide animations into movement
+- Integrate vault animations into movement
 
 ---

@@ -122,10 +122,10 @@
   - In that case, Pose mode has a `Clear Pose Rotation` shortcut set to `Alt + R`
   - Due to various reasons (including but not limited to Nvidia GeForce Experience), this shortcut may not work
   - Go to `Edit > Preferences > Keymap` and search by name `Rotation`
-  - Update the shortcut for `Clear Pose Rotation` to `Shift + Alt + R`
+  - Update the shortcut for `Clear Pose Rotation` to `Ctrl + Alt + T`
   - While painting, if you have to get everything back to default
     - like when you have to mirror bone weights and you need the model to be symmetric again
-  - Select all bones with `A` and press `Shift + Alt + R` to reset rotations for all
+  - Select all bones with `A` and press `Ctrl + Alt + T` to reset rotations for all
   - For resetting location, `Alt + G` works
 
 ---
