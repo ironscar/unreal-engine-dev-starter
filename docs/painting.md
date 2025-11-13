@@ -39,3 +39,10 @@
 - To save adjustments as a new brush, we need to click the `[+]` button at the bottom-right
 
 ---
+
+## Layer types
+
+- `Multiply` is useful when we want everything to get darker by the same amount, such as for shadows
+- `Exclusion` is useful for blending things in a specific way, so far only been handy for blending tattoos into skin
+
+---
