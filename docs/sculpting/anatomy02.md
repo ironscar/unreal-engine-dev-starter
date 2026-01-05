@@ -16,7 +16,7 @@ Apart from the muscle groups, certain bones also are visible on the front of the
 - `Sternocleidomastoid`: The two muscle tendons that stretch from below the ear, along the neck to the middle of the clavicle
 - `Trapezius`: A majorly posterior muscle that is visible on the sides of the neck from the front tapering towards the shoulders
 - `Deltoids`: The shoulder muscles that start from the outer one-third of the clavicle and connect half way into the upper arm bone
-  - always tapers towards the surface of the arm that is pointed outwards at rest, no matter which way it points during movement
+  - always tapers towards the surface of the arm that is pointed outwards at rest, no matter which way the arm points during movement
 - `Pectoralis`: The chest muscles that begin from below the deltoids and connect to the inner three-fifth of the clavicle, sternum and ribs as three major tendons respectively
   - there is a slight gap on the clavicle between the deltoid and the pectoralis connections
   - there are three main muscle masses for the pectoralis
@@ -28,7 +28,7 @@ Apart from the muscle groups, certain bones also are visible on the front of the
   - These tend to cover the ribs on the side/front while starting under the scapula
   - these are rather rounded coming from the side but the interlocking in front is rather flat
 - `External Obliques`: A large muscle group that begin from the back and interlock with the serratus at the side of the body, ending on either side of the abdomen
-- `Abdomen`: Forms the abs with the navel ditributing them into six packs above and one major group that extends towards the pelvis
+- `Abdomen`: Forms the abs with the navel ditributing them into six packs above and one major group that extends towards the pelvis below
   - the bottom boundary of the topmost pair of abs marks the end of the rib cage and follows its shape
   - the abs tend to taper towards the outside and the degree of tilt at the top is more than that of the bottom (at the navel it is almost straight)
 - `Biceps`: Starts below the pectoralis on the arm and extends downwards towards the elbow's inside
