@@ -6,7 +6,7 @@ This doc is the starting point for Hard Surface modeling in ZBrush
 
 ### References
 
-- https://www.youtube.com/watch?v=Mk909y967EI (To be completed)
+- https://www.youtube.com/watch?v=Mk909y967EI (completed)
 
 ### Steps
 
@@ -16,7 +16,7 @@ This doc is the starting point for Hard Surface modeling in ZBrush
   - Clean up the edges as much as possible using mask and unmask
   - Then go to `Tool > Subtool > Extract` and make a `Double` extraction of `thickness = 0` (make sure to click accept after the fact)
     - its going to look like it just has one side still (for now we will continue as is while following the reference tutorial)
-    - this is probably done because doing the `Select Lasso` technique below can make different kinds of selections on front and back and fixing the edges will also be double the work
+    - this is done because doing the `Select Lasso` technique below on a thick mesh behaves wierdly and hides the sides of the mesh as well (that will eventually get deleted)
 
 - Second, we want to clean up the edges of the extracted subtool further
   - We use the `Select Lasso` brush which is activated by `Ctrl + Shift`
@@ -48,3 +48,4 @@ This doc is the starting point for Hard Surface modeling in ZBrush
   - Finally, we smooth out the plane surfaces so that there are no bumps and then we can hit `Apply` again to get a clean sharp shape (Toggle topology with `Shift + F` to see hot it has changed)
 
 - We can apply these techniques to continuously extrude and get the shapes that we want with clean edges
+- This way we can create clean looking panels from a fairly organic shape
