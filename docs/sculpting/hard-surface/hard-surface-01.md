@@ -1,4 +1,4 @@
-# Hard Surface Modeling in ZBrush 1
+`# Hard Surface Modeling in ZBrush 1
 
 This doc is the starting point for Hard Surface modeling in ZBrush
 
