@@ -49,3 +49,19 @@ This doc is the starting point for Hard Surface modeling in ZBrush
 
 - We can apply these techniques to continuously extrude and get the shapes that we want with clean edges
 - This way we can create clean looking panels from a fairly organic shape
+
+### Boolean Operations
+
+- To create holes at the bottom of the armour piece which is currently closed, we decided to use boolean operations
+- So first, we append a sphere subtool and select the `subtract` icon (3rd icon from the left on the subtool top line)
+- Then enable `Live Boolean` at the top beside `Edit` to see how that looks
+  - we can scale/translate the sphere however we want
+- Once ready, we hide all other subtools except the one that we want to create a hole in and the one creating the hole (the sphere)
+- Then we select `Tool > Subtool > Boolean > Make Boolean Mesh` which will take a little time and create a new tool
+- Then click `Append` in the subtool menu to find something called `UMesh_*` which looks something like your final shape and select that
+  - after this we can delete the old tool and the sphere, and see the new tool with a hole in it
+- Finally, turn off `Live Boolean`
+- We can also do other boolean operations such as:
+  - `Union`: second icon from left (default)
+  - `Intersection`: fourth icon from left
+- At higher subdivisions, this can help create rather clean shapes easily than manually sculpting that detail
